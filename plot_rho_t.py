@@ -74,7 +74,7 @@ def title_name(params, quantum_or_not, d=None):
 
 
 class plotTemporalSpatialState():
-    def __init__(self, quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, rho_or_phase):
+    def __init__(self, quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, rho_or_phase, quantum_method):
         self.quantum_or_not = quantum_or_not
         self.network_type = network_type
         self.N = N
@@ -86,16 +86,22 @@ class plotTemporalSpatialState():
         self.distribution_params = distribution_params
         self.seed_initial_condition_list = seed_initial_condition_list
         self.rho_or_phase = rho_or_phase
+        self.quantum_method = quantum_method
 
     def read_phi(self, seed_initial_condition, rho_or_phase=None, full_data_t=False):
         if rho_or_phase is None:
             rho_or_phase = self.rho_or_phase
         if self.quantum_or_not:
             if rho_or_phase == 'rho':
-                des = '../data/quantum/state/' + self.network_type + '/' 
+                if self.quantum_method == 'CN':
+                    des = '../data/quantum/state/' + self.network_type + '/' 
+                elif self.quantum_method == 'eigen':
+                    des = '../data/quantum/state_eigen/' + self.network_type + '/' 
             elif rho_or_phase == 'phase':
-                des = '../data/quantum/phase/' + self.network_type + '/' 
-
+                if self.quantum_method == 'CN':
+                    des = '../data/quantum/phase/' + self.network_type + '/' 
+                elif self.quantum_method == 'eigen':
+                    des = '../data/quantum/phase_eigen/' + self.network_type + '/' 
         else:
             des = '../data/classical/state/' + self.network_type + '/' 
         if full_data_t:
@@ -226,7 +232,7 @@ class plotTemporalSpatialState():
         des_remove_edge = f'../data/matrix_save/disorder_edge_remove/'
         if not os.path.exists(des_remove_edge):
             os.makedirs(des_remove_edge)
-        file_remove_edge = des_remove_edge + 'network_type={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}.npy'
+        file_remove_edge = des_remove_edge + f'network_type={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}.npy'
         if not os.path.exists(file_remove_edge):
             L = int( np.sqrt(self.N) )
             G = nx.grid_graph(dim=[L, L], periodic=True)
@@ -811,6 +817,7 @@ m = 5.68
 
 if __name__ == '__main__':
     quantum_or_not = True
+    quantum_method = 'eigen'
     initial_setup = 'u_uniform_random'
     network_type = '1D'
     N = 10000
@@ -875,7 +882,7 @@ if __name__ == '__main__':
     phase_list = [[0.05]]
 
 
-    ptss = plotTemporalSpatialState(quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, rho_or_phase)
+    ptss = plotTemporalSpatialState(quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, rho_or_phase, quantum_method)
 
 
     distribution_params_raw = [rho + phase for rho in rho_list for phase in phase_list]
@@ -911,7 +918,7 @@ if __name__ == '__main__':
     #ptss.plot_rho_theta_t(seed_initial_condition, distribution_params_list)
 
     """
-    ptss.dt = 1
+    ptss.dt = 10
     ptss.N = 10000
     ptss.alpha = 1
     ptss.initial_setup = 'u_uniform_random'
@@ -921,20 +928,27 @@ if __name__ == '__main__':
     plot_t_list = np.arange(0, 1000, 10).tolist()
     plot_t_list = np.arange(0, 10000, 100).tolist()
     plot_t_list = np.sort(np.unique(np.hstack((np.arange(0, 1000, 10).tolist(),  np.arange(0, 10000, 100).tolist() ))))
+    plot_t_list = np.sort(np.unique(np.hstack((np.arange(0, 1000, 10).tolist(),  np.arange(0, 20000, 100).tolist() ))))
+    plot_t_list = np.sort(np.unique(np.hstack((np.arange(0, 1000, 50).tolist(),  np.arange(0, 50000, 500).tolist() ))))
     seed_initial_condition = 0
-    log_or_linear = 'linear'
     log_or_linear = 'log'
-    plot_rho_or_phase_list = ['rho', 'phase', 'u']
+    log_or_linear = 'linear'
     plot_rho_or_phase_list = ['rho']
+    plot_rho_or_phase_list = ['rho', 'phase', 'u']
     ptss.network_type = '2D'
     d_list = [4]
     ptss.network_type = '2D_disorder'
     d_list = [0.51, 0.55, 0.7, 0.9]
-    d_list = [0.7]
-    ptss.initial_setup = 'phase_multi_locals'
-    distribution_params_list = [[0, 1, 1] ]
+    d_list = [0.9]
     ptss.initial_setup = 'full_local'
     distribution_params_list = [[0, 0, 0]]
+    ptss.initial_setup = 'phase_multi_locals'
+    distribution_params_list = [[0, 10000, 1], [0, 10000, 0.5] ]
+    ptss.initial_setup = 'phase_bowl'
+    distribution_params_list = [[0, -0.1, -0.1, 1, -1], [0, -0.05, -0.05, 0.5, -0.5], [0, -0.01, -0.01, 0.5, -0.5], [0, -0.001, -0.001, 0.5, -0.5]]
+    distribution_params_list = [[0, -0.001, -0.001, 0.5, -0.5], [0, -0.0012, -0.0012, 0.5, -0.5], [0, -0.0024, -0.0024, 1, -1], [0, -0.024, -0.024, 10, -10]]
+    ptss.initial_setup = 'phase_bowl_region'
+    distribution_params_list = [[0, 1, 1, 1, -1], [0, 1, 1, 0.5, -0.5]]
     show_remove_edge = True
     """to see the diffusion / localization"""
     #ptss.initial_setup = 'full_local'
@@ -944,7 +958,7 @@ if __name__ == '__main__':
         for d in d_list:
             ptss.d = d
             for plot_rho_or_phase in plot_rho_or_phase_list:
-                #ptss.heatmap(plot_t_list, seed_initial_condition, log_or_linear, plot_rho_or_phase, velocity=False, show_remove_edge=show_remove_edge)
+                ptss.heatmap(plot_t_list, seed_initial_condition, log_or_linear, plot_rho_or_phase, velocity=False, show_remove_edge=show_remove_edge)
                 #ptss.heatmap(plot_t_list, seed_initial_condition, log_or_linear, plot_rho_or_phase, velocity=True)
                 pass
             #ptss.quiver_phase(plot_t_list, seed_initial_condition, velocity=False)

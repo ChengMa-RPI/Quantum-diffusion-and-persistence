@@ -3,7 +3,7 @@ os.environ['OPENBLAS_NUM_THREADS'] ='1'
 os.environ['OMP_NUM_THREADS'] = '1'
 
 import sys
-from helper_function import network_generate
+from helper_function import network_generate, disorder_lattice_clusters
 import numpy as np
 import matplotlib.pyplot as plt
 import time
@@ -19,7 +19,7 @@ from scipy.fft import fft, fftn
 
 
 class diffusionPersistence:
-    def __init__(self, quantum_or_not, network_type, m, N, d, seed, alpha, t, dt, initial_setup, distribution_params):
+    def __init__(self, quantum_or_not, network_type, m, N, d, seed, alpha, t, dt, initial_setup, distribution_params, quantum_method='CN'):
         """TODO: Class for implementing time-dependent simulation for diffusion systems.
 
         :quantum_not: quantum or classical, quantum if True, else classical
@@ -48,6 +48,7 @@ class diffusionPersistence:
         self.initial_setup = initial_setup
         self.distribution_params = distribution_params
         self.seed_initial_condition = None  # set as None as parameters will pass to multiprocessing task
+        self.quantum_method = quantum_method  # use CN (Crank-Nicolson) or eig (eigenvalue decomposition) 
 
         self.save_read_A_M()  # save matrices A and M to the disk if not yet; otherwise, read them from the disk. 
         self.degree = np.sum(self.A, 0)  # an array of degrees for each node
@@ -63,14 +64,11 @@ class diffusionPersistence:
         save_des = '../data/matrix_save/'
         topology_des = save_des + 'topology/'
         operator_des = save_des + 'quan_operator/'
-        for des in [topology_des, operator_des]:
+        eigen_des = save_des + 'quan_eigen/'
+        for des in [topology_des, operator_des, eigen_des]:
             if not os.path.exists(des):
                 os.makedirs(des)
         file_topology = topology_des + f'network_type={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}.npy'
-        if self.m == m_e:
-            file_operator = operator_des + f'network_type={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}_alpha={self.alpha}_dt={self.dt}.npy'
-        else:
-            file_operator = operator_des + f'network_type={self.network_type}_m={self.m}_N={self.N}_d={self.d}_seed={self.seed}_alpha={self.alpha}_dt={self.dt}.npy'
 
         if os.path.exists(file_topology):
             # read A if it has already been saved
@@ -87,25 +85,47 @@ class diffusionPersistence:
             self.A, self.A_interaction, self.index_i, self.index_j, self.cum_index = network_generate(network_type, N, 1, 0, seed, d) 
             np.save(file_topology, self.A) 
 
-        if os.path.exists(file_operator):
-            self.M = np.load(file_operator)
-        else:
-            # calculate M and save it
-            m = self.m
-            dt = self.dt
-            if type(self.alpha) == int:
-                dx = self.alpha
+        if self.quantum_method == 'CN':  # Crank-Nicolson
+            if self.m == m_e:
+                file_operator = operator_des + f'network_type={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}_alpha={self.alpha}_dt={self.dt}.npy'
             else:
-                dx = self.alpha[0]
-            degree = np.sum(self.A, 0)
-            a = -degree + (4j * m * dx **2) /  (hbar * dt)
-            b = degree + (4j * m * dx **2) /  (hbar * dt)
-            A1 = self.A + np.diag(a)
-            B1 = - self.A  + np.diag(b)
-            A1_inv = spinv(A1, check_finite=False)
-            M = A1_inv.dot(B1)
-            self.M = M
-            np.save(file_operator, M) 
+                file_operator = operator_des + f'network_type={self.network_type}_m={self.m}_N={self.N}_d={self.d}_seed={self.seed}_alpha={self.alpha}_dt={self.dt}.npy'
+            if os.path.exists(file_operator):
+                self.M = np.load(file_operator)
+            else:
+                # calculate M and save it
+                m = self.m
+                dt = self.dt
+                if type(self.alpha) == int:
+                    dx = self.alpha
+                else:
+                    dx = self.alpha[0]
+                degree = np.sum(self.A, 0)
+                a = -degree + (4j * m * dx **2) /  (hbar * dt)
+                b = degree + (4j * m * dx **2) /  (hbar * dt)
+                A1 = self.A + np.diag(a)
+                B1 = - self.A  + np.diag(b)
+                A1_inv = spinv(A1, check_finite=False)
+                M = A1_inv.dot(B1)
+                self.M = M
+                np.save(file_operator, M) 
+        elif quantum_method == 'eigen':
+            file_eig = operator_des + f'network_type={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}_eig.npy'
+            file_vec = operator_des + f'network_type={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}_vec.npy'
+            file_vec_inv = operator_des + f'network_type={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}_vec_inv.npy'
+            if os.path.exists(file_eig):
+                self.eig = np.load(file_eig)
+                self.vec = np.load(file_vec)
+                self.vec_inv = np.load(file_vec_inv)
+            else:
+                degree = np.sum(self.A>0, 1)
+                L = -self.A + np.diag(degree)
+                self.eig, self.vec = np.linalg.eig(L)
+                self.vec_inv = np.linalg.inv(self.vec)
+                np.save(file_eig, self.eig) 
+                np.save(file_vec, self.vec) 
+                np.save(file_vec_inv, self.vec_inv) 
+            self.eig = self.eig * hbar ** 2 / 2 / self.m / self.alpha
 
     def cutoff_limit(self, N, random_data, lambda_ratio):
         """TODO: high frequency mode cutoff
@@ -170,6 +190,34 @@ class diffusionPersistence:
             data_select /= np.sqrt(lambda_ratio) ** 3
         return data_select
 
+    def _get_truncated_normal(self, std, rho_or_phase='rho'):
+        if rho_or_phase == 'phase':
+           lower, upper = -np.pi, np.pi
+        else:
+            std = std / np.sqrt(1-std**2)
+            r0 = 1/np.sqrt(self.N_actual)
+            std *= r0
+            lower, upper = -r0, r0
+        if std == 0:
+            a, b = lower/0.1, upper / 0.1
+        else:
+            a, b = lower / std, upper / std
+        initial_prep = stats.truncnorm(a, b, loc=0, scale=std).rvs(self.N_actual)
+        return initial_prep
+
+    def find_gcc_correspondings(self):
+        des = '../data/matrix_save/disorder_corresponding/'
+        des_file = des + f'network_type={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}.csv'
+        if os.path.exists(des_file):
+            cluster = pd.read_csv(des_file, header=None).iloc[:, -1].tolist()
+        else:
+            if not os.path.exists(des):
+                os.makedirs(des)
+            cluster = list(disorder_lattice_clusters(self.network_type, self.N, self.seed, self.d))
+            df = pd.DataFrame(cluster)
+            df.to_csv(des_file, header=None, index=False)
+        return cluster
+
     def get_initial_condition(self):
         """TODO: implementations for different initial conditions
         :returns: 
@@ -181,6 +229,7 @@ class diffusionPersistence:
 
         initial_setup = self.initial_setup
         N_actual = self.N_actual
+        r0 = 1/np.sqrt(N_actual)
         average = 1 / N_actual
         if not quantum_or_not:
             # for classical
@@ -204,7 +253,6 @@ class diffusionPersistence:
                 # uniform random for u and theta
                 u_std, phase_std = self.distribution_params  # standard deviation for u and phase
                 u_std = u_std / np.sqrt(1-u_std**2)
-                r0 = 1/np.sqrt(N_actual)  
                 u_std *= r0
                 u_start, u_end = -u_std * np.sqrt(3), u_std * np.sqrt(3)
                 phase_start, phase_end = -phase_std * np.sqrt(3), phase_std * np.sqrt(3)
@@ -215,7 +263,6 @@ class diffusionPersistence:
             elif initial_setup == 'u_uniform_random_cutoff':
                 # uniform random for u and theta with high frequency mode cutoffs
                 u_std, u_cutoff, phase_std, phase_cutoff = self.distribution_params
-                r0 = 1/np.sqrt(N_actual)
 
                 u_start, u_end = -u_std * np.sqrt(3), u_std * np.sqrt(3)
                 phase_start, phase_end = -phase_std * np.sqrt(3), phase_std * np.sqrt(3)
@@ -233,53 +280,26 @@ class diffusionPersistence:
 
             elif initial_setup in ['u_normal_random', 'u_normal_phase_uniform_random']:
                 u_std, phase_std = self.distribution_params
-                u_std = u_std / np.sqrt(1-u_std**2)
-                r0 = 1/np.sqrt(N_actual)
-                u_std *= r0
-                u_lower, u_upper = -r0, r0
-                if u_std == 0:
-                    u_a, u_b = u_lower/0.1, u_upper / 0.1
-                else:
-                    u_a, u_b = u_lower / u_std, u_upper / u_std
-                initial_u = stats.truncnorm(u_a, u_b, loc=0, scale=u_std).rvs(N_actual)
+                initial_u = self._get_truncated_normal(u_std)
                 initial_rho = (initial_u + r0) ** 2
-                phase_lower, phase_upper = -np.pi, np.pi
+
                 if initial_setup == 'u_normal_random':
                     # (Truncated) Gaussian random for u and phase, truncated to avoid invalid u (<0) or phase (outside of [-pi, pi])
-                    if phase_std == 0:
-                        phase_a, phase_b = phase_lower / 0.1, phase_upper / 0.1
-                    else:
-                        phase_a, phase_b = phase_lower / phase_std, phase_upper / phase_std
-                    initial_phase = stats.truncnorm(phase_a, phase_b, loc=0, scale=phase_std).rvs(N_actual)
+                    initial_phase = self._get_truncated_normal(phase_std, 'phase')
                 else:
-                    # (Truncated) Gaussian random fro u and uniform random for phase
+                    # (Truncated) Gaussian random for u and uniform random for phase
                     initial_phase = np.random.uniform(-phase_std * np.pi, phase_std * np.pi, size=N_actual)  # please note phase_std is not real standard dev, it is actually the range! 
             elif initial_setup == 'u_normal_random_cutoff':
                 # (Truncated) Gaussian random with cutoffs
                 u_std, u_cutoff, phase_std, phase_cutoff = self.distribution_params
-                r0 = 1/np.sqrt(N_actual)
-                u_std *= r0
-
-                u_lower, u_upper = -r0, r0
-                if u_std == 0:
-                    u_a, u_b = u_lower/0.1, u_upper / 0.1
-                else:
-                    u_a, u_b = u_lower / u_std, u_upper / u_std
-                initial_u = stats.truncnorm(u_a, u_b, loc=0, scale=u_std).rvs(N_actual)
-                phase_lower, phase_upper = -np.pi, np.pi
-                if phase_std == 0:
-                    phase_a, phase_b = phase_lower / 0.1, phase_upper / 0.1
-                else:
-                    phase_a, phase_b = phase_lower / phase_std, phase_upper / phase_std
-                initial_phase = stats.truncnorm(phase_a, phase_b, loc=0, scale=phase_std).rvs(N_actual)
-
+                initial_u = self._get_truncated_normal(u_std)
                 u_select = self.cutoff_limit(N, initial_u, u_cutoff)
                 u_select = u_select / np.sqrt(1-u_std**2)  # offset the selected k mode for u_cutoff
                 u_norm = (u_select + r0) / np.sqrt(np.sum(( u_select+r0) **2)) - r0
                 initial_rho = (u_norm + r0) ** 2
 
-                phase_select = self.cutoff_limit(N, initial_phase, phase_cutoff)
-                initial_phase = phase_select 
+                initial_phase = self._get_truncated_normal(phase_std, 'phase')
+                initial_phase = self.cutoff_limit(N, initial_phase, phase_cutoff)
 
 
             elif initial_setup == 'uniform_random':
@@ -319,15 +339,7 @@ class diffusionPersistence:
             elif initial_setup == 'phase_multi_locals':
                 # phase localized, equal density at all sites, but with multiple nodes with nonzero phase
                 u_std, phase_local_num, phase_local_value = self.distribution_params
-                u_std = u_std / np.sqrt(1-u_std**2)
-                r0 = 1/np.sqrt(N_actual)
-                u_std *= r0
-                u_lower, u_upper = -r0, r0
-                if u_std == 0:
-                    u_a, u_b = u_lower/0.1, u_upper / 0.1
-                else:
-                    u_a, u_b = u_lower / u_std, u_upper / u_std
-                initial_u = stats.truncnorm(u_a, u_b, loc=0, scale=u_std).rvs(N_actual)
+                initial_u = self._get_truncated_normal(u_std)
                 initial_rho = (initial_u + r0) ** 2
                 initial_phase = np.zeros(N_actual)
                 if phase_local_num == 1:
@@ -343,14 +355,50 @@ class diffusionPersistence:
                     elif self.network_type in ['2D', '2D_disorder', '3D', '3D_disorder']:
                         initial_phase[int(N_actual//2 + np.sqrt(N_actual) // 2)] = phase_local_value * np.pi
                         initial_phase[int(N_actual//2 + np.sqrt(N_actual) // 2)+1] = -phase_local_value * np.pi
+                elif phase_local_num == self.N: 
+                    initial_phase[::2] = phase_local_value * np.pi
+                    initial_phase[1::2] = -phase_local_value * np.pi
+
                 else:
                     # under experiments! For now, multiple local sites are randomly selected
                     local_site = np.random.choice(N_actual, phase_local_num, replace=False)
                     initial_phase[local_site] = phase_local_value * np.pi
 
+            elif initial_setup in ['phase_bowl', 'phase_bowl_region']:
+                # \theta = min(theta_max, k_x*x^2 + ky*y^2 + const) for k1, k2 > 0; if negative slopes, provide theta_min
+                # theta_max is cutoff, to make sure all phases in the range of (-pi, +pi)
+                # phase_th: theta_min or theta_max, depends on phase_kx, phase_ky
+                if self.network_type in ['2D', '2D_disorder']:
+                    L = int(np.sqrt(self.N))
+                    if initial_setup == 'phase_bowl':
+                        u_std, phase_kx, phase_ky, phase_c, phase_th = self.distribution_params
+                        phase_c = (1-1e-4) * np.pi * phase_c  # to make sure theta in (-pi, +pi), but one can also try the value outside of this region.
+                        phase_th = (1-1e-4) * np.pi * phase_th
+                    else:
+                        u_std, phase_x_ratio, phase_y_ratio, phase_c, phase_th = self.distribution_params
+                        phase_th = phase_th * np.pi
+                        phase_c = phase_c * np.pi
+                        phase_kx = (phase_th - phase_c) / (phase_x_ratio * L / 2) ** 2
+                        phase_ky = (phase_th - phase_c) / (phase_y_ratio * L / 2) ** 2
+                    initial_u = self._get_truncated_normal(u_std)
+                    initial_rho = (initial_u + r0) ** 2
+                    if self.network_type == '2D_disorder':
+                        cluster_id = np.array(self.find_gcc_correspondings())  # node index in regular graph before removing edges(nodes)
+                    else:
+                        cluster_id = np.arange(self.N)
+                    pos_x, pos_y = cluster_id // L - L // 2, cluster_id % L - L // 2
+                    phase_parabola = phase_kx * pos_x ** 2 + phase_ky * pos_y ** 2 + phase_c
+                    if phase_kx > 0 and phase_ky > 0:
+                        initial_phase = np.minimum(phase_parabola, phase_th)
+                    elif phase_kx < 0 and phase_ky < 0:
+                        initial_phase = np.maximum(phase_parabola, phase_th)
+                    else:
+                        print("not parabola")
+                else:
+                    print("method not available for networks other than 2D")
 
             elif initial_setup == 'gaussian_wave':
-                # start from Gaussian wave packet
+                # start from Gaussian wave packet in 1D
                 sigma, p0 = self.distribution_params
                 x = np.arange(0, int(self.N  * self.alpha), self.alpha)
                 x0 = np.round(x.mean(), 5)
@@ -404,7 +452,7 @@ class diffusionPersistence:
         return phi_state
 
     def quantum_diffusion(self):
-        """TODO: implementation of Crank-Nicholson method for quantum diffusion
+        """TODO: implementation of Crank-Nicolson method for quantum diffusion
 
         :returns: state, rho and phase 
 
@@ -424,7 +472,7 @@ class diffusionPersistence:
         return rho, phase
 
     def eigen_fourier(self):
-        """TODO: implementation of continuum limit Fourier transformation method for quantum dynamics
+        """TODO: implementation of continuum limit Fourier transformation method for quantum dynamics, Deprecated 
 
         :returns: state, rho and phase 
 
@@ -472,10 +520,26 @@ class diffusionPersistence:
         rho = np.abs(psi_xt) ** 2
         return rho, phase 
 
+    def eigen_disorder(self):
+        """TODO: implementation of continuum limit Eigenvalue decomposition method for quantum dynamics
+
+        :returns: state, rho and phase 
+
+        """
+        t_list = self.t 
+        psi_0 = self.get_initial_condition()
+        # psi(t=0) = sum_i=1^n c_i |n>  (--> Ec = psi --> c = E^-1 psi) 
+        # psi(t) = sum_i=1^n c_i exp(-1j E_n * t/hbar) |n>
+        coeff = self.vec_inv.dot(psi_0)
+        psi_xt = (self.vec.dot((coeff.reshape(len(coeff), 1) * np.exp(-1j * self.eig.reshape(len(self.eig), 1) * t_list/hbar)))).transpose()
+        phase = np.angle(psi_xt) 
+        rho = np.abs(psi_xt) ** 2
+        return rho, phase 
+
     def test_qd_gausswave(self, dx, dt):
         """TODO: For test purpose, quantum dynamics for Gaussian wave packet
 
-        :returns: state, psi for Crank-Nicholson and analytical solution 
+        :returns: state, psi for Crank-Nicolson and analytical solution 
 
         """
         L = 10
@@ -572,7 +636,7 @@ class diffusionPersistence:
         return data
         
     def save_phi_parallel(self, cpu_number, seed_initial_condition_list):
-        """TODO: call parallel function to implement Crank-Nicholson method to generate data
+        """TODO: call parallel function to implement Crank-Nicolson method to generate data
 
         :cpu_number: the number of cpus to use for multiprocessing
         :seed_initial_condition_list: seed list to generate initial conditions
@@ -609,7 +673,8 @@ class diffusionPersistence:
 
         """
         self.seed_initial_condition = seed_initial_condition
-        data = self.eigen_fourier()
+        #data = self.eigen_fourier()
+        data = self.eigen_disorder()
         if len(self.t) > 5000:
             t = np.hstack(( self.t[:100], self.t[100:10000][::10], self.t[10000:][::100] ))  # save space
             for file_i, data_i in zip(save_des, data):
@@ -632,8 +697,10 @@ class diffusionPersistence:
         :returns: None
 
         """
-        des_state = '../data/quantum/state_ectfp/' + self.network_type + '/' 
-        des_phase = '../data/quantum/phase_ectfp/' + self.network_type + '/' 
+        #des_state = '../data/quantum/state_ectfp/' + self.network_type + '/' 
+        #des_phase = '../data/quantum/phase_ectfp/' + self.network_type + '/' 
+        des_state = '../data/quantum/state_eigen/' + self.network_type + '/' 
+        des_phase = '../data/quantum/phase_eigen/' + self.network_type + '/' 
         des_list = [des_state, des_phase]
         save_file = []
         for des in des_list:
@@ -701,6 +768,12 @@ if __name__ == '__main__':
     phase_list = [[1]]
     rho_list = [[0], [0.05], [0.1], [0.2]]
 
+
+    # multiple localized phase, uniform density
+    initial_setup = 'phase_multi_locals'
+    rho_list = [[0]]
+    phase_list = [[10000, 1], [10000, 0.5]]
+
     # normal random for u and phase
     initial_setup = 'u_normal_random'
     rho_list = [[0], [0.05], [0.1], [0.2]]
@@ -711,10 +784,20 @@ if __name__ == '__main__':
     rho_list = [[0, 0.2], [0.05, 0.2], [0.1, 0.2], [0.2, 0.2]]
     phase_list = [[0, 0.2], [0.05, 0.2], [0.1, 0.2], [0.2, 0.2]]
 
-    # multiple localized phase, uniform density
-    initial_setup = 'phase_multi_locals'
+    # normal random for u and bowl-shape phase 
+    initial_setup = 'phase_bowl'
     rho_list = [[0]]
-    phase_list = [[1, 1], [10, 0.5]]
+    phase_list = [[0.1, 0.1, -1, 1], [0.05, 0.05, -0.5, 0.5], [0.01, 0.01, -0.5, 0.5], [0.001, 0.001, -0.5, 0.5]]
+    phase_list = [[-0.1, -0.1, 1, -1], [-0.05, -0.05, 0.5, -0.5], [-0.01, -0.01, 0.5, -0.5], [-0.001, -0.001, 0.5, -0.5]]
+    phase_list = [[-0.001, -0.001, 0.5, -0.5], [-0.0012, -0.0012, 0.5, -0.5], [-0.0024, -0.0024, 1, -1], [-0.024, -0.024, 10, -10]]
+
+    # normal random for u and bowl-shape phase with covered ratio
+    initial_setup = 'phase_bowl_region'
+    rho_list = [[0]]
+    phase_list = [[1, 1, 0.5, -0.5], [0.7, 0.7, 0.5, -0.5], [0.9, 0.9, 0.5, -0.5], [0.8, 0.8, 0.5, -0.5]]
+    phase_list = [[1, 1, 1, -1], [0.7, 0.7, 1, -1], [0.9, 0.9, 1, -1], [0.8, 0.8, 1, -1]]
+
+
 
     "prepare distribution parameters"
     distribution_params_raw = [rho + phase for phase in phase_list for rho in rho_list]
@@ -726,13 +809,6 @@ if __name__ == '__main__':
 
 
     "network topology"
-    ####### disordered lattice ######################
-    network_type_list = ['2D_disorder', '3D_disorder'] 
-    d_list = [0.7, 0.4]
-    N_list_list = [[10000], [8000]]
-    alpha_list = [1]
-    seed_list = [0, 1, 2]
-
     ########## regular lattice #####################
     network_type_list = ['1D', '2D', '3D']
     d_list = [4, 4, 4]
@@ -740,31 +816,47 @@ if __name__ == '__main__':
     alpha_list = [1]
     seed_list = [0]
 
+
     "for test purpose, set small N first"
-    network_type = ['1D']
+    network_type_list = ['1D']
     d_list = [4]
     N_list_list = [[1000]]
     alpha_list = [1]
     seed_list = [0]
 
+    ########## regular lattice #####################
+    network_type_list = ['2D']
+    d_list = [4]
+    N_list_list = [[10000]]
+    alpha_list = [1]
+    seed_list = [0]
 
-    num_realization_list = [1]* len(alpha_list)
+    ####### disordered lattice ######################
+    network_type_list = ['2D_disorder'] 
+    d_list = [0.7]
+    N_list_list = [[900, 1600, 2500, 3600, 4900, 6400, 8100, 10000]]
+    alpha_list = [1, 1, 1, 1, 1, 1, 1, 1] 
+    seed_list = np.arange(7, 10, 1)
+
+    num_realization_list = [1] * len(alpha_list)
     dt_list = [1] * len(alpha_list)
-    m_list = [m_e]  * len(alpha_list)
-
+    m_list = [m_e] * len(alpha_list)
+    quantum_method = 'eigen'
     #############################################################
     # start simulation
     for seed in seed_list:
         for network_type, d, N_list in zip(network_type_list, d_list, N_list_list):
             for m, N, alpha, dt, num_realization in zip(m_list, N_list, alpha_list, dt_list, num_realization_list):
                 seed_initial_condition_list = np.arange(num_realization) 
-                t = np.arange(0, 2000*dt, dt)
                 t = np.arange(0, 10000*dt, dt)
+
+                t = np.arange(0, 30000*dt, dt)
+                t = np.hstack((t[::100] ))  # save space, only for eigenvalue approach, as there is no dt dependent. 
+                #t = np.arange(0, 20000*dt, dt)
                 for distribution_params in distribution_params_list:
                     t1 = time.time()
-                    dp = diffusionPersistence(quantum_or_not, network_type, m, N, d, seed, alpha, t, dt, initial_setup, distribution_params)
-                    dp.save_phi_parallel(cpu_number, seed_initial_condition_list)
-                    #dp.save_phi_eigen_fourier_parallel(cpu_number, seed_initial_condition_list)
+                    dp = diffusionPersistence(quantum_or_not, network_type, m, N, d, seed, alpha, t, dt, initial_setup, distribution_params, quantum_method)
+                    #dp.save_phi_parallel(cpu_number, seed_initial_condition_list)
+                    dp.save_phi_eigen_fourier_parallel(cpu_number, seed_initial_condition_list)
                     t2 = time.time()
                     print(f'time for running on network={network_type}, N={N}, initial distribution={distribution_params} is {round(t2 - t1, 2)}.')
-
