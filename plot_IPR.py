@@ -91,7 +91,7 @@ def title_name(params, quantum_or_not, d=None):
 
 
 class plotIPR():
-    def __init__(self, quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, full_data_t, q_exp=2, quantum_method='CN'):
+    def __init__(self, quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, full_data_t, ipr_normalize, q_exp=2, quantum_method='CN'):
         self.quantum_or_not = quantum_or_not
         self.network_type = network_type
         self.N = N
@@ -102,38 +102,10 @@ class plotIPR():
         self.initial_setup = initial_setup
         self.distribution_params = distribution_params
         self.seed_initial_condition_list = seed_initial_condition_list
+        self.ipr_normalize = ipr_normalize
         self.q_exp = q_exp
         self.full_data_t = full_data_t
         self.quantum_method = quantum_method
-
-    def plot_ipr_collections(self, N_list, distribution_params_list, seed_list, ipr_normalize, plot_ipr_list, plot_scale, plot_t_limit):
-        dict_ipr_list = dict()
-        dict_ipr_peak = dict()
-        dict_peak_time = dict()
-        dict_lifetime = dict()
-        dict_t = dict()
-        for distribution_params in distribution_params_list:
-            self.distribution_params = distribution_params
-            for N in N_list:
-                self.N = N
-                t, ipr_list, ipr_peak, peak_time, lifetime = self.cal_ipr_t(seed_list, ipr_normalize)
-                dict_t[(tuple(distribution_params), N)] = t
-                dict_ipr_list[(tuple(distribution_params), N)] = ipr_list
-                dict_ipr_peak[(tuple(distribution_params), N)] = ipr_peak
-                dict_peak_time[(tuple(distribution_params), N)] = peak_time
-                dict_lifetime[(tuple(distribution_params), N)] = lifetime
-        for plot_ipr in plot_ipr_list:
-            if plot_ipr == 'ipr_t':
-                dict_data = dict_ipr_list
-            elif plot_ipr == 'ipr_peak':
-                dict_data = dict_ipr_peak
-            elif plot_ipr == 'peak_time':
-                dict_data = dict_peak_time
-            elif plot_ipr == 'lifetime':
-                dict_data = dict_lifetime
-            else:
-                print('no data available')
-            self.plot_ipr_one_type(dict_t, dict_data, N_list, distribution_params_list, plot_ipr, plot_scale, plot_t_limit)
 
     def read_phi(self, seed_initial_condition):
         if self.quantum_or_not:
@@ -151,14 +123,14 @@ class plotIPR():
         t, state = data[:, 0], data[:, 1:]
         return t, state
     
-    def cal_ipr_t(self, seed_list, ipr_normalize):
+    def cal_ipr_t(self, seed_list):
         ipr_list = []
         for seed_initial_condition in self.seed_initial_condition_list:
             for seed in seed_list:
                 self.seed = seed
                 t, state = self.read_phi(seed_initial_condition)
                 N_actual = len(state[0])
-                if ipr_normalize:
+                if self.ipr_normalize:
                     ipr = np.sum(state ** self.q_exp, 1) * N_actual **(self.q_exp- 1 ) 
                 else:
                     ipr = np.sum(state ** self.q_exp, 1) 
@@ -180,10 +152,89 @@ class plotIPR():
                 l -= 1
             while r < len(ipr_list[i]) and ipr_list[i][r] > ipr_half[i]:
                 r += 1
-            lifetime.append(t[r-1] - t[l+1])
+            lifetime.append(t[r] - t[l])
             peak_time.append(t[peak_i])
             ipr_peak.append(ipr_list[i][peak_i])
         return t, ipr_list, ipr_peak, peak_time, lifetime
+
+    def plot_ipr_collections(self, N_list, distribution_params_list, seed_list, ipr_normalize, plot_ipr_list, plot_scale, plot_t_limit):
+        dict_ipr_list = dict()
+        dict_ipr_peak = dict()
+        dict_peak_time = dict()
+        dict_lifetime = dict()
+        dict_t = dict()
+        for distribution_params in distribution_params_list:
+            self.distribution_params = distribution_params
+            for N in N_list:
+                self.N = N
+                t, ipr_list, ipr_peak, peak_time, lifetime = self.cal_ipr_t(seed_list)
+                dict_t[(tuple(distribution_params), N)] = t
+                dict_ipr_list[(tuple(distribution_params), N)] = ipr_list
+                dict_ipr_peak[(tuple(distribution_params), N)] = ipr_peak
+                dict_peak_time[(tuple(distribution_params), N)] = peak_time
+                dict_lifetime[(tuple(distribution_params), N)] = lifetime
+        for plot_ipr in plot_ipr_list:
+            if plot_ipr == 'ipr_t':
+                dict_data = dict_ipr_list
+            elif plot_ipr == 'ipr_peak':
+                dict_data = dict_ipr_peak
+            elif plot_ipr == 'peak_time':
+                dict_data = dict_peak_time
+            elif plot_ipr == 'lifetime':
+                dict_data = dict_lifetime
+            else:
+                print('no data available')
+            self.plot_ipr_one_type(dict_t, dict_data, N_list, distribution_params_list, plot_ipr, plot_scale, plot_t_limit)
+
+    def plot_ipr_one_type(self, dict_t, dict_data, N_list, distribution_params_list, plot_ipr, plot_scale, plot_t_limit):
+        if len(N_list) == 1:
+            show_all_curve = True
+        else:
+            show_all_curve = False
+        if len(distribution_params_list) == 1:
+            rows = 1
+            cols = 1
+            fig, axes = plt.subplots(rows, cols, sharex=True, sharey=True, figsize=(12, 10))
+        else:
+            rows = 2
+            cols = len(distribution_params_list) // rows
+            fig, axes = plt.subplots(rows, cols, sharex=True, sharey=True, figsize=(4 * cols, 3.5 * rows))
+        for i, distribution_params in enumerate(distribution_params_list):
+            if self.initial_setup == 'full_local':
+                title = 'fully localized'
+            else:
+                title = title_name(distribution_params, self.quantum_or_not)
+            if len(distribution_params_list) == 1:
+                ax = axes
+            else:
+                ax = axes[i // cols, i % cols]
+            simpleaxis(ax)
+            self.distribution_params = distribution_params
+            ave_list = []
+            for j, N in enumerate(N_list):
+                self.N = N
+                average = self.plot_ipr_ax(ax, dict_t[(tuple(distribution_params), N)], dict_data[(tuple(distribution_params), N)], color1[j], plot_ipr, plot_scale, plot_t_limit, show_all_curve)
+                ave_list.append(average)
+            ax.tick_params(axis='both', which='major', labelsize=13)
+            ax.set_title(title, size=labelsize*0.5, y=0.94)
+            if plot_ipr in ['ipr_peak', 'peak_time', 'lifetime']:
+                ax.plot(N_list, ave_list, color='tab:grey', alpha=0.8)
+
+        #ax.legend(fontsize=legendsize*0.7, frameon=False, loc=4, bbox_to_anchor=(1.23, 0.49) ) 
+        if plot_ipr == 'ipr_t':
+            if len(distribution_params_list) == 1:
+                ax.legend(fontsize=legendsize*0.8, frameon=False, loc=4, bbox_to_anchor=(1.1, 0.7) ) 
+            else:
+                ax.legend(fontsize=legendsize*0.6, frameon=False, loc=4, bbox_to_anchor=(1.42, 0.39) ) 
+
+            
+
+        fig.subplots_adjust(left=0.15, right=0.88, wspace=0.25, hspace=0.40, bottom=0.13, top=0.90)
+        filename = f'quantum={self.quantum_or_not}_network={self.network_type}_d={self.d}_initial={self.initial_setup}_N_list={N_list}_ipr_{self.q_exp}_{ipr_normalize}_{plot_ipr}_{plot_scale}.png'
+        #filename = f'quantum={self.quantum_or_not}_network={self.network_type}_initial={self.initial_setup}_N_list={N_list}_ipr_{self.q_exp}_zoomin.png'
+        save_des = '../transfer_figure/' + filename
+        plt.savefig(save_des, format='png')
+        plt.close()
 
     def plot_ipr_ax(self, ax, t, y, color, plot_ipr, plot_scale, plot_t_limit, show_all_curve):
         if plot_ipr == 'ipr_t':
@@ -197,11 +248,24 @@ class plotIPR():
                     ax.plot(t, np.vstack((y)).transpose(), '--', color=color, linewidth=1, alpha=0.6)
                 #ax.plot(t, y[0], '--', color=color, linewidth=1, alpha=0.6)
                 ax.plot(t, np.mean(np.vstack((y)), 0), color=color, linewidth = 2.5, alpha=0.8, label=label)
-                #ax.semilogx(t, np.mean(np.vstack((ipr_list)), 0), linewidth = 2.5, alpha=0.8, label=f'N={self.N}')
-                #ax.loglog(t, np.mean(np.vstack((ipr_list)), 0), linewidth = 2.5, alpha=0.8, label=label)
+            elif plot_scale == 'logx':
+                if show_all_curve:
+                    ax.semilogx(t[1:], np.vstack((y)).transpose()[1:], '--', color=color, linewidth=1, alpha=0.6)
+                ax.semilogx(t[1:], np.mean(np.vstack((y)), 0)[1:], color=color, linewidth = 2.5, alpha=0.8, label=label)
+            elif plot_scale == 'logy':
+                if show_all_curve:
+                    ax.semilogy(t, np.vstack((y)).transpose(), '--', color=color, linewidth=1, alpha=0.6)
+                ax.semilogy(t, np.mean(np.vstack((y)), 0), color=color, linewidth = 2.5, alpha=0.8, label=label)
+            elif plot_scale == 'loglog':
+                if show_all_curve:
+                    ax.loglog(t[1:], np.vstack((y)).transpose()[1:], '--', color=color, linewidth=1, alpha=0.6)
+                ax.loglog(t[1:], np.mean(np.vstack((y)), 0)[1:], color=color, linewidth = 2.5, alpha=0.8, label=label)
             average = None
             xlabel = '$t$'
-            ylabel = 'IPR $( \\times N) $'
+            if self.ipr_normalize:
+                ylabel = 'IPR $( \\times N) $'
+            else:
+                ylabel = 'IPR'
         elif plot_ipr in ['ipr_peak', 'peak_time', 'lifetime']:
             ax.plot(np.ones(len(y)) * self.N, y, '.', color=color)
             xlabel = '$N$'
@@ -221,40 +285,6 @@ class plotIPR():
 
 
 
-    def plot_ipr_one_type(self, dict_t, dict_data, N_list, distribution_params_list, plot_ipr, plot_scale, plot_t_limit):
-        if len(N_list) == 1:
-            show_all_curve = True
-        else:
-            show_all_curve = False
-        rows = 2
-        cols = len(distribution_params_list) // rows
-        fig, axes = plt.subplots(rows, cols, sharex=True, sharey=True, figsize=(4 * cols, 3.5 * rows))
-        for i, distribution_params in enumerate(distribution_params_list):
-            title = title_name(distribution_params, self.quantum_or_not)
-            ax = axes[i // cols, i % cols]
-            simpleaxis(ax)
-            self.distribution_params = distribution_params
-            ave_list = []
-            for j, N in enumerate(N_list):
-                self.N = N
-                average = self.plot_ipr_ax(ax, dict_t[(tuple(distribution_params), N)], dict_data[(tuple(distribution_params), N)], color1[j], plot_ipr, plot_scale, plot_t_limit, show_all_curve)
-                ave_list.append(average)
-            ax.tick_params(axis='both', which='major', labelsize=13)
-            ax.set_title(title, size=labelsize*0.5, y=0.94)
-            if plot_ipr in ['ipr_peak', 'peak_time', 'lifetime']:
-                ax.plot(N_list, ave_list, color='tab:grey', alpha=0.8)
-
-        #ax.legend(fontsize=legendsize*0.7, frameon=False, loc=4, bbox_to_anchor=(1.23, 0.49) ) 
-        if plot_ipr == 'ipr_t':
-            ax.legend(fontsize=legendsize*0.6, frameon=False, loc=4, bbox_to_anchor=(1.42, 0.39) ) 
-            
-
-        fig.subplots_adjust(left=0.15, right=0.88, wspace=0.25, hspace=0.40, bottom=0.13, top=0.90)
-        filename = f'quantum={self.quantum_or_not}_network={self.network_type}_d={self.d}_initial={self.initial_setup}_N_list={N_list}_ipr_{self.q_exp}_{plot_ipr}_{plot_scale}.png'
-        #filename = f'quantum={self.quantum_or_not}_network={self.network_type}_initial={self.initial_setup}_N_list={N_list}_ipr_{self.q_exp}_zoomin.png'
-        save_des = '../transfer_figure/' + filename
-        plt.savefig(save_des, format='png')
-        plt.close()
 
 
 
@@ -293,14 +323,20 @@ if __name__ == '__main__':
     "bowl-shaped phase"
     initial_setup = 'phase_bowl_region'
     network_type = '2D_disorder'
-    d = 0.7
+    d = 0.51
     rho_list = [[0]]
     phase_list = [[1, 1, 1, -1], [0.7, 0.7, 1, -1], [1, 1, 0.5, -0.5], [0.7, 0.7, 0.5, -0.5]]
+
+    "fully local"
+    initial_setup = 'full_local'
+    rho_list = [[0]]
+    phase_list = [[0, 0]]
 
     distribution_params_raw = [rho + phase for rho in rho_list for phase in phase_list]
     #distribution_params_raw = [rho for rho in rho_list]
     quantum_method = 'eigen'
-    pipr = plotIPR(quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, full_data_t, q_exp, quantum_method)
+    ipr_normalize = False
+    pipr = plotIPR(quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, full_data_t, ipr_normalize, q_exp, quantum_method)
 
     distribution_params_list = []
     for i in distribution_params_raw:
@@ -308,8 +344,10 @@ if __name__ == '__main__':
     N_list = [10000]
     N_list = [900, 1600, 2500, 3600, 4900, 6400, 8100, 10000]
     seed_list = np.arange(10)
-    ipr_normalize = True
     plot_ipr_list = ['ipr_t', 'ipr_peak', 'peak_time', 'lifetime']
+    plot_ipr_list = ['ipr_t']
+    plot_scale = 'logx'
     plot_scale = 'normal'
+    plot_scale = 'loglog'
     plot_t_limit = None
     pipr.plot_ipr_collections(N_list, distribution_params_list, seed_list, ipr_normalize, plot_ipr_list, plot_scale, plot_t_limit)

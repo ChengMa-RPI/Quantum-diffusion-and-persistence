@@ -72,7 +72,6 @@ def title_name(params, quantum_or_not, d=None):
         else:
             return rho_title 
 
-
 class plotTemporalSpatialState():
     def __init__(self, quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, rho_or_phase, quantum_method):
         self.quantum_or_not = quantum_or_not
@@ -227,7 +226,7 @@ class plotTemporalSpatialState():
         plt.close()
 
     def get_removal_scatter(self, n_splits=11, markersize=0.5):
-        "get removed edge for 2D disordered lattice, and save it to file"
+        "get removed edge for 2D disordered lattice, and save it to file, only work for N = 10000, n_splits should be customized for N"
 
         des_remove_edge = f'../data/matrix_save/disorder_edge_remove/'
         if not os.path.exists(des_remove_edge):
@@ -267,7 +266,6 @@ class plotTemporalSpatialState():
 
         plt.plot(scatter_x, scatter_y, '.', markersize=markersize, c='tab:grey')
         return None
-
 
     def heatmap(self, plot_t_list, seed_initial_condition, log_or_linear, plot_rho_or_phase, velocity=False, linewidth=0, show_remove_edge=False):
         """plot and save figure for animation
@@ -357,6 +355,65 @@ class plotTemporalSpatialState():
             fig.savefig(save_des + f't={plot_t}.png')
             plt.close()
         return None
+
+
+    def plot_state_radius(self, plot_t_list, full_data_t):
+        """ 
+        plot state (rho) versus radius to the center in 2D.
+        :plot_t_list: snapshots for list of timestamps
+        :average: whether to take the average of all pathsof the same radius
+        """
+        save_des = f'../transfer_figure/quantum={self.quantum_or_not}_network={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}_alpha={self.alpha}_{self.rho_or_phase}_setup={self.initial_setup}_params={self.distribution_params}_rho_r/' 
+        if not os.path.exists(save_des):
+            os.makedirs(save_des)
+        self.rho_or_phase = 'rho'
+        L = int(np.sqrt(self.N))
+        t, state = self.read_phi(seed_initial_condition, full_data_t=full_data_t)
+        cluster_file = f'../data/matrix_save/disorder_corresponding/network_type={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}.csv'
+        cluster_corresponding = np.array(pd.read_csv(cluster_file, header=None).iloc[:, -1].tolist())
+        row, col = cluster_corresponding // L, cluster_corresponding % L
+        if self.initial_setup == 'full_local':
+            local = np.where(state[0] >0.8)[0]
+            center_id = cluster_corresponding[local]  # index of localized site
+            center_row, center_col = center_id // L, center_id % L
+        elif self.initial_setup == 'phase_bowl_region':
+            center_row, center_col = L // 2, L // 2
+        for plot_t in plot_t_list:
+            index = np.where(np.abs(t - plot_t) < 1e-2)[0]
+            if len(index) == 0:
+                continue
+            index = index[0]
+            fig, ax = plt.subplots(1, 1, sharex=True, sharey=True, figsize=(12, 10))
+            simpleaxis(ax)
+            ax.set_title(f'$t={plot_t}$', size=labelsize*1.2)
+            y_plot = state[index]
+            # periodic boundary condition
+            dr = np.min((np.abs(row - center_row), np.abs(np.abs(row - center_row) - L)  ),axis=0)
+            dc = np.min((np.abs(col - center_col), np.abs(np.abs(col - center_col) - L)  ),axis=0)
+            dist2center = np.sqrt(dr ** 2 + dc **2)
+            dist_unique = np.sort(np.unique(dist2center))
+            state_dist_ave = []
+            for d_i in dist_unique:
+                index_d = np.where(dist2center == d_i)[0]
+                y_select = y_plot[index_d]
+                ax.plot(d_i * np.ones(len(y_select)), y_select, 'o', markersize=7, color='tab:grey', alpha=0.4)
+                state_dist_ave.append(np.mean(y_select))
+            ax.semilogy(dist_unique, state_dist_ave, color='black', alpha=0.8)
+
+            ax.tick_params(axis='both', which='major', labelsize=ticksize*1.0)
+            xlabel, ylabel = '$x$', '$\\rho$'
+            fig.text(x=0.02, y=0.5, horizontalalignment='center', s='$\\rho$', size=labelsize*1, rotation=90)
+            fig.text(x=0.5, y=0.04, horizontalalignment='center', s='$r$', size=labelsize*1)
+
+            fig.subplots_adjust(left=0.15, right=0.95, wspace=0.25, hspace=0.25, bottom=0.13, top=0.90)
+            filename = save_des + f't={plot_t}.png'
+            plt.savefig(filename, format='png')
+            plt.close()
+
+
+
+
+
 
 
     def quiver_phase(self, plot_t_list, seed_initial_condition, velocity=False, linewidth=0):
@@ -958,7 +1015,7 @@ if __name__ == '__main__':
         for d in d_list:
             ptss.d = d
             for plot_rho_or_phase in plot_rho_or_phase_list:
-                ptss.heatmap(plot_t_list, seed_initial_condition, log_or_linear, plot_rho_or_phase, velocity=False, show_remove_edge=show_remove_edge)
+                #ptss.heatmap(plot_t_list, seed_initial_condition, log_or_linear, plot_rho_or_phase, velocity=False, show_remove_edge=show_remove_edge)
                 #ptss.heatmap(plot_t_list, seed_initial_condition, log_or_linear, plot_rho_or_phase, velocity=True)
                 pass
             #ptss.quiver_phase(plot_t_list, seed_initial_condition, velocity=False)
@@ -1008,3 +1065,20 @@ if __name__ == '__main__':
 
     plot_t_list = np.round(np.arange(0, 1000, 10), 3)
     #ptss.plot_rho_x(plot_t_list, seed_initial_condition, full_data_t)
+
+
+    # plot rho versus radius/distance to center
+
+    ptss.initial_setup = 'full_local'
+    ptss.distribution_params = [0, 0, 0]
+
+    ptss.initial_setup = 'phase_bowl_region'
+    ptss.distribution_params = [0, 1, 1, 1, -1]
+    ptss.network_type = '2D_disorder'
+    ptss.d = 0.55
+    ptss.N = 10000
+    ptss.seed = 0
+    t = np.arange(0, 1000000, 1)
+    plot_t_list = np.unique(np.hstack((t[:20], t[20:200][::10], t[200:2000][::100], t[2000:10000][::500], t[10000:][::5000])))
+    full_data_t = True
+    ptss.plot_state_radius(plot_t_list, full_data_t=full_data_t)

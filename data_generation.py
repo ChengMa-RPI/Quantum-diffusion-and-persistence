@@ -48,7 +48,7 @@ class diffusionPersistence:
         self.initial_setup = initial_setup
         self.distribution_params = distribution_params
         self.seed_initial_condition = None  # set as None as parameters will pass to multiprocessing task
-        self.quantum_method = quantum_method  # use CN (Crank-Nicolson) or eig (eigenvalue decomposition) 
+        self.quantum_method = quantum_method  # use CN (Crank-Nicolson) or eigen (eigenvalue decomposition) 
 
         self.save_read_A_M()  # save matrices A and M to the disk if not yet; otherwise, read them from the disk. 
         self.degree = np.sum(self.A, 0)  # an array of degrees for each node
@@ -758,10 +758,7 @@ if __name__ == '__main__':
     rho_list = [[0], [0.05], [0.1], [0.2]]
     phase_list = [[0], [0.05], [0.1], [0.2]]
 
-    #fully localized density and uniform phase
-    initial_setup = 'full_local'
-    rho_list = [[0]]
-    phase_list = [[0, 0]]
+ 
 
     # normal random for u and uniform random for phase 
     initial_setup = 'u_normal_phase_uniform_random'
@@ -791,11 +788,17 @@ if __name__ == '__main__':
     phase_list = [[-0.1, -0.1, 1, -1], [-0.05, -0.05, 0.5, -0.5], [-0.01, -0.01, 0.5, -0.5], [-0.001, -0.001, 0.5, -0.5]]
     phase_list = [[-0.001, -0.001, 0.5, -0.5], [-0.0012, -0.0012, 0.5, -0.5], [-0.0024, -0.0024, 1, -1], [-0.024, -0.024, 10, -10]]
 
+   #fully localized density and uniform phase
+    initial_setup = 'full_local'
+    rho_list = [[0]]
+    phase_list = [[0, 0]]
+
     # normal random for u and bowl-shape phase with covered ratio
     initial_setup = 'phase_bowl_region'
     rho_list = [[0]]
     phase_list = [[1, 1, 0.5, -0.5], [0.7, 0.7, 0.5, -0.5], [0.9, 0.9, 0.5, -0.5], [0.8, 0.8, 0.5, -0.5]]
     phase_list = [[1, 1, 1, -1], [0.7, 0.7, 1, -1], [0.9, 0.9, 1, -1], [0.8, 0.8, 1, -1]]
+    phase_list = [[1, 1, 1, -1]]
 
 
 
@@ -833,15 +836,17 @@ if __name__ == '__main__':
 
     ####### disordered lattice ######################
     network_type_list = ['2D_disorder'] 
-    d_list = [0.7]
+    d_list = [0.55]
+
     N_list_list = [[900, 1600, 2500, 3600, 4900, 6400, 8100, 10000]]
     alpha_list = [1, 1, 1, 1, 1, 1, 1, 1] 
-    seed_list = np.arange(7, 10, 1)
+    seed_list = np.arange(0, 10, 1)
 
     num_realization_list = [1] * len(alpha_list)
     dt_list = [1] * len(alpha_list)
     m_list = [m_e] * len(alpha_list)
     quantum_method = 'eigen'
+
     #############################################################
     # start simulation
     for seed in seed_list:
@@ -850,8 +855,8 @@ if __name__ == '__main__':
                 seed_initial_condition_list = np.arange(num_realization) 
                 t = np.arange(0, 10000*dt, dt)
 
-                t = np.arange(0, 30000*dt, dt)
-                t = np.hstack((t[::100] ))  # save space, only for eigenvalue approach, as there is no dt dependent. 
+                t = np.arange(0, 100000*dt, dt)
+                t = np.hstack((t[:20], t[20:200][::10], t[200:2000][::100], t[2000:10000][::500], t[10000:100000][::5000], t[100000:][::50000]))# save space, only for eigenvalue approach, as there is no dt dependent. 
                 #t = np.arange(0, 20000*dt, dt)
                 for distribution_params in distribution_params_list:
                     t1 = time.time()
