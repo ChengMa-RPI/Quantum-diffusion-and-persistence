@@ -65,12 +65,12 @@ def title_name(params, quantum_or_not, d=None):
 
     if quantum_or_not:
         if d:
-            return f'$d={d}$' + '\n' + phase_title
+            return f'$\\phi={d}$' + '\n' + phase_title
         else:
             return rho_title  + '\n' + phase_title
     else:
         if d:
-            return f'$d={d}$' 
+            return f'$\\phi={d}$' 
         else:
             return rho_title  
 
@@ -192,10 +192,16 @@ class plotSignTime():
                 simpleaxis(ax)
                 self.distribution_params = distribution_params
                 self.d = d
+                ax.set_title(title_name(distribution_params, self.quantum_or_not, d), size=labelsize*0.55, y=0.92)
+                if d == 1:
+                    self.network_type = '2D'
+                    self.d = 4
+                else:
+                    self.network_type = '2D_disorder'
+                    self.d = d
                 self.plot_sign_time_distribution(ax, tau, 'above')
                 self.plot_sign_time_distribution(ax, tau, 'below')
                 ax.tick_params(axis='both', which='major', labelsize=15)
-                ax.set_title(title_name(distribution_params, self.quantum_or_not, d), size=labelsize*0.55, y=0.92)
 
 
         axes[-1, -2].legend(fontsize=legendsize*0.7, frameon=False, loc=4, bbox_to_anchor=(1.19, 0.19) ) 
@@ -216,7 +222,7 @@ if __name__ == '__main__':
     quantum_or_not = True
     network_type = '2D'
     network_type = '2D_disorder'
-    N = 100
+    N = 10000
     d = 4
     seed = 0
     alpha = 1
@@ -230,7 +236,8 @@ if __name__ == '__main__':
     phase_list = [[-1, 1], [-1/2, 1/2], [-1/4, 1/4], [0, 0]]
 
     rho_list = [[1, 1]]
-    phase_list = [[-1, 1], [-1/2, 1/2], [-1/4, 1/4]]
+    phase_list = [[-1, 1], [-1/2, 1/2], [-1/4, 1/4], [-1/8, 1/8]]
+    phase_list = [[-1, 1], [-1/2, 1/2], [-1/4, 1/4], [-1/8, 1/8] ]
     distribution_params_raw = [rho + phase for rho in rho_list for phase in phase_list]
     distribution_params_list = []
     for i in distribution_params_raw:
@@ -238,7 +245,7 @@ if __name__ == '__main__':
 
 
     #pst.plot_signtime_initial_setup(tau, distribution_params_list)
-    d_list = [0.6, 0.7, 0.8, 0.9]
+    d_list = [0.5, 0.55, 0.7, 0.9, 1]
     pst.plot_signtime_disorder(tau, d_list, distribution_params_list)
 
 

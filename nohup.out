@@ -1,0 +1,4396 @@
+  File "/home/mac6/RPI/research/quantum_se/code/diffusive_persistence.py", line 366
+    """
+IndentationError: unexpected indent
+  File "/home/mac6/RPI/research/quantum_se/code/diffusive_persistence.py", line 366
+    """
+IndentationError: unexpected indent
+1879.0630660057068
+2402.33092212677
+1865.1052198410034
+2393.9751822948456
+2385.2642407417297
+2399.5765886306763
+1863.690954208374
+1861.3690326213837
+1876.3679151535034
+1869.577635526657
+1850.767993927002
+1704.7698438167572
+2496.62757229805
+1809.7549457550049
+1871.7560527324677
+1849.4354283809662
+2574.107309818268
+1891.9298844337463
+1891.322990655899
+2405.751953601837
+2534.814940929413
+2368.0783898830414
+1833.3847365379333
+1845.1449406147003
+3067.9391758441925
+2398.8789994716644
+1836.6867325305939
+2113.3846838474274
+more than one component
+2190.71923327446
+1115.5985493659973
+1127.7516510486603
+848.2030429840088
+more than one component
+1849.7124042510986
+1834.1831786632538
+2000.3821086883545
+2001.8754982948303
+3574.114032268524
+2388.6649639606476
+1873.4420828819275
+2391.829574108124
+1888.1796536445618
+2427.038382768631
+1874.8178968429565
+1836.0880374908447
+1727.2264912128448
+1871.0446364879608
+2439.4459240436554
+1889.1508994102478
+1943.6457991600037
+1917.3909888267517
+1996.7817249298096
+1878.5053656101227
+899.8498411178589
+1122.3921854496002
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=8.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=7.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=6.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=4.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=3.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=2.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=1.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=3.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=0.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=7.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=0.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=5.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=5.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=6.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=2.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=6.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=8.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=6.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=5.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=8.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=8.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=9.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=6.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=3.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=1.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=6.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=6.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=5.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=7.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=2.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=2.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=1.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=9.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=0.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=9.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=5.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=1.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=9.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=1.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=3.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=0.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=7.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=1.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=4.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=0.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=1.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=7.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=7.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=2.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=4.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=7.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=8.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=7.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=9.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=7.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=6.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=3.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=8.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=1.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=9.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=3.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=6.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=3.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=4.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=0.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=7.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=1.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=5.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=3.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=5.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=8.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=7.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=0.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=5.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=2.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=6.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=0.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=9.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=8.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=6.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=8.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=3.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=6.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=8.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=2.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=3.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=2.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=9.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=5.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=2.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=4.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=7.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=6.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=1.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=6.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=5.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=3.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=9.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=6.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=7.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=9.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=7.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=0.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=2.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=4.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=2.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=0.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=5.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=1.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=4.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=5.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=0.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=3.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=1.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=4.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=7.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=3.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=0.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=3.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=9.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=1.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=5.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=3.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=0.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=3.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=6.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=4.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=3.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=1.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=6.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=0.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=2.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=9.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=6.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=5.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=0.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=0.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=9.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=6.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=8.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=0.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=2.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=1.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=2.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=8.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=5.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=4.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=0.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=9.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=5.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=4.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=6.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=7.npy
+633.7009220123291
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=1.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=2.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=8.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=3.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=1.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=2.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=7.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=0.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=7.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=3.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=9.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=9.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=5.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=8.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=1.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=6.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=3.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=1.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=9.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=1.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=9.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=7.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=8.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=8.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=5.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=3.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=0.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=2.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=8.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=1.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=9.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=1.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=3.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=2.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=9.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=1.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=1.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=7.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=0.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=9.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=2.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=5.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=7.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=8.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=2.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=0.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=2.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=6.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=1.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=9.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=8.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=2.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=8.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=2.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=5.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=4.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=8.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=4.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=9.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=6.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=8.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=4.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=5.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=2.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=6.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=3.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=5.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=9.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=1.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=7.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=3.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=6.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=3.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=7.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=9.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=9.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=7.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=4.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=9.npy
+469.04574942588806
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=4.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=8.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=4.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=2.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=5.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=1.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=5.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=2.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=5.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=7.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=8.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=5.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=8.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=4.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=0.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=9.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=6.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=7.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=0.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=8.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=0.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=1.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=7.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=0.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=8.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=2.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=6.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=3.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=7.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=6.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=5.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=0.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=2.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=0.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=3.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=5.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=3.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=8.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=4.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=8.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=7.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=6.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=4.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=3.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=2.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=1.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=3.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=0.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=7.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=0.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=5.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=5.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=6.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=2.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=6.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=8.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=6.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=5.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=8.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=8.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=9.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=6.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=3.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=1.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=6.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=6.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=5.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=7.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=2.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=2.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=1.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=9.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=0.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=9.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=5.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=1.npy
+479.1982858181
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=9.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=1.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=3.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=0.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=7.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=1.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=4.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=0.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=1.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=7.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=7.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=2.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=4.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=7.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=8.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=7.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=9.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=7.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=6.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=3.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=8.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=1.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=9.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=3.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=6.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=3.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=4.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=0.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=7.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=1.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=5.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=3.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=5.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=8.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=7.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=0.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=5.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=2.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=6.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=0.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=9.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=8.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=6.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=8.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=3.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=6.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=8.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=2.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=3.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=2.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=9.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=5.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=2.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=4.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=7.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=6.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=1.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=6.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=5.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=3.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=9.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=6.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=7.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=9.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=7.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=0.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=2.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=4.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=2.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=0.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=5.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=1.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=4.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=5.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=0.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=3.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=1.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=4.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=7.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=3.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=0.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=3.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=9.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=1.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=5.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=3.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=0.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=3.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=6.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=4.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=3.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=1.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=6.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=0.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=2.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=9.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=6.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=5.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=0.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=0.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=9.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=6.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=8.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=0.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=2.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=1.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=2.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=8.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=5.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=4.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=0.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=9.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=5.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=4.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=6.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=7.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=1.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=2.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=8.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=3.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=1.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=2.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=7.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=0.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=7.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=3.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=9.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=9.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=5.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=8.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=1.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=6.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=3.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=1.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=9.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=1.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=9.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=7.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=8.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=8.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=5.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=3.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=0.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=2.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=8.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=1.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=9.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=1.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=3.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=2.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=9.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=1.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=1.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=7.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=0.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=9.npy
+470.8993589878082
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=2.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=5.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=7.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=8.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=2.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=0.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=2.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=6.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=1.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=9.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=8.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=2.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=8.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=2.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=5.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=4.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=8.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=4.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=9.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=6.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=8.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=4.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=5.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=2.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=6.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=3.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=5.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=9.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=1.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=7.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=3.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=6.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=3.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=7.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=9.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=9.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=7.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=4.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=9.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=4.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=8.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=4.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=2.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=5.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=1.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=5.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=2.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=5.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=7.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=8.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=4.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=5.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=8.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=4.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=0.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=9.npy
+N=10000_d=0.7_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=6.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=7.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=0.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=8.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=0.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=1.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=7.npy
+N=10000_d=0.9_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=0.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=8.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=2.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=6.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=3.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=7.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=6.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=5.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.5, 0.5]_seed_initial=0.npy
+N=10000_d=0.51_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=2.npy
+N=10000_d=0.55_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=0.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -1, 1]_seed_initial=3.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=5.npy
+N=10000_d=0.6_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=3.npy
+N=10000_d=0.8_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.25, 0.25]_seed_initial=8.npy
+N=10000_d=0.5_seed=0_alpha=1_dt=0.1_setup=uniform_random_params=[1, 1, -0.125, 0.125]_seed_initial=4.npy
+466.7078573703766
+539.4159874916077
+457.5678641796112
+467.62640476226807
+472.5963213443756
+460.6673469543457
+475.91981530189514
+471.29855012893677
+469.3058331012726
+466.55597829818726
+0.3419153690338135
+0.521578311920166
+0.5650372505187988
+0.5409181118011475
+0.5912840366363525
+0.5905907154083252
+0.589841365814209
+0.5685162544250488
+0.5056860446929932
+0.5340225696563721
+0.543316125869751
+0.5338921546936035
+0.5266971588134766
+0.5253794193267822
+0.539421558380127
+0.5497555732727051
+Traceback (most recent call last):
+  File "/home/mac6/RPI/research/quantum_se/code/diffusive_persistence.py", line 368, in <module>
+    dp = diffusionPersistence(quantum_or_not, network_type, N, d, seed, alpha, t, dt, initial_setup, distribution_params, reference_line)
+  File "/home/mac6/RPI/research/quantum_se/code/diffusive_persistence.py", line 47, in __init__
+    self.save_read_A_M()  # save A and M to the disk if not yet; otherwise, read them from the disk. 
+  File "/home/mac6/RPI/research/quantum_se/code/diffusive_persistence.py", line 72, in save_read_A_M
+    self.A, self.A_interaction, self.index_i, self.index_j, self.cum_index = network_generate(network_type, N, 1, 0, seed, d) 
+  File "/home/mac6/RPI/research/mutual_framework.py", line 277, in network_generate
+    A = A * np.random.RandomState(seed + modifer).uniform(0, 1,  (N, N))  
+ValueError: operands could not be broadcast together with shapes (25,25) (30,30) 
+658.2362973690033
+451.16224122047424
+462.0371615886688
+453.5883300304413
+453.98719477653503
+450.41724705696106
+449.92143297195435
+460.2469336986542
+452.9512240886688
+579.4287164211273
+455.10908365249634
+458.4701998233795
+456.45246982574463
+458.6953158378601
+435.01110458374023
+447.58771872520447
+more than one component
+17.600178956985474
+17.113265991210938
+12.989229917526245
+19.1302809715271
+more than one component
+19.94654631614685
+19.948067665100098
+16.480672359466553
+23.53184723854065
+more than one component
+21.697654724121094
+21.570291996002197
+20.059834241867065
+14.710485935211182
+more than one component
+22.466811418533325
+22.2578547000885
+19.988569259643555
+19.71222162246704
+20.423933029174805
+20.141184329986572
+19.938905715942383
+21.5997531414032
+451.5846953392029
+457.2206058502197
+452.0000603199005
+580.5129888057709
+457.29981565475464
+583.1781163215637
+421.5223925113678
+583.9240438938141
+505.7031977176666
+452.3562159538269
+582.9519867897034
+455.29061484336853
+578.8625280857086
+591.3702194690704
+577.274432182312
+575.8286602497101
+5.035943269729614
+4.925345182418823
+8.60551118850708
+24.966932773590088
+26.53951597213745
+5.202989339828491
+5.544209957122803
+9.773115396499634
+8.90691089630127
+27.187078714370728
+1562.5320172309875
+885.8184993267059
+887.5009350776672
+884.4746923446655
+87.48709154129028
+87.04737544059753
+89.55008721351624
+87.84303975105286
+20.320518732070923
+26.41054058074951
+21.91204285621643
+25.717989921569824
+25.317270040512085
+24.156272888183594
+25.34594178199768
+20.830832719802856
+25.087039470672607
+26.643160343170166
+25.44584822654724
+25.678470849990845
+29.468737363815308
+25.900901556015015
+30.193482875823975
+28.552420377731323
+24.266043663024902
+24.574233770370483
+29.18188452720642
+25.486650466918945
+28.889186143875122
+26.03300142288208
+29.142531156539917
+25.55303382873535
+28.258822441101074
+25.20097589492798
+26.039812326431274
+25.061644554138184
+24.339428424835205
+24.407835721969604
+29.964804887771606
+29.748433828353882
+Traceback (most recent call last):
+  File "/home/mac6/RPI/research/quantum_se/code/plot_varaince_state.py", line 446, in <module>
+    psv.plot_std_t(distribution_params_list, seed_initial_condition_list, stop_t)
+  File "/home/mac6/RPI/research/quantum_se/code/plot_varaince_state.py", line 202, in plot_std_t
+    corvar_ensemble, corvar_limit, corvar_limit_approx = self.corvar_t_ensemble_approx(distribution_params )
+  File "/home/mac6/RPI/research/quantum_se/code/plot_varaince_state.py", line 133, in corvar_t_ensemble_approx
+    corvar_ensemble = (u_std**2 * np.sum(np.cos(t.reshape(len(t), 1) * omega_k ) **2 * np.cos(k * self.r_separation), axis=1) + phase_std**2 * np.sum(np.sin(t.reshape(len(t), 1) * omega_k ) **2 * no.cos(k * self.r_separation), axis=1) )  / np.sqrt(N) 
+NameError: name 'no' is not defined. Did you mean: 'n'?
+1.5476415157318115
+2.5499651432037354
+1.5270028114318848
+2.352348566055298
+0.04885984243466711
+0.05034314753827125
+0.05032095239448133
+0.049197301375702135
+0.04897423718996292
+0.050859200023415964
+0.051716168631102157
+0.049579935285969545
+0.047220557184203336
+0.048657071001385076
+2134.228716135025
+0.049253692994722174
+0.04918146481167635
+0.05199619225539618
+0.05091678850671731
+0.04981000752650646
+0.04996671818544718
+0.048904460422831614
+0.04951521004455341
+0.050700289085842454
+0.04960251714367675
+2241.8047194480896
+0.049967992184071504
+0.04978875274995191
+0.05034297769251988
+0.05033858786130137
+0.05037143469670953
+0.0482379635041405
+0.04826950315767462
+0.05031968400607534
+0.048673211413237195
+0.0500919501834353
+2761.9445140361786
+0.048129228288776436
+0.05039580528407416
+0.0510985197790015
+0.050974698880750166
+0.04804331519326185
+0.049915335956276584
+0.04979512224209023
+0.052078679204590916
+0.04942131035800586
+0.05124111342930775
+2176.3692898750305
+81.20627331733704
+89.0657000541687
+82.98348236083984
+78.25878715515137
+82.74812436103821
+90.02343010902405
+81.56983041763306
+81.44327902793884
+79.69571089744568
+81.59222054481506
+80.98826432228088
+86.09399676322937
+80.36602687835693
+83.14468479156494
+79.06432557106018
+83.98622012138367
+79.26027202606201
+83.82799553871155
+80.54327583312988
+81.13467144966125
+82.7048065662384
+83.88530731201172
+79.96367073059082
+81.75353455543518
+81.03963112831116
+3117.992442369461
+3045.082000732422
+3195.139080286026
+3152.2469794750214
+3116.869111061096
+3034.911319255829
+3142.6689581871033
+3157.354719400406
+2962.3413059711456
+3059.2494311332703
+3094.767888069153
+3067.8636100292206
+3017.1184463500977
+3043.23300075531
+2966.369126558304
+3057.390520095825
+3013.7933361530304
+2989.7392489910126
+3051.668011188507
+3002.910671234131
+3022.1441745758057
+2992.568483352661
+2985.366214990616
+2937.3510315418243
+2946.1240644454956
+3035.3468177318573
+3108.0026202201843
+3045.3822305202484
+3071.476682662964
+3231.873283624649
+3145.1261875629425
+3211.4724473953247
+3003.614879131317
+2902.1830344200134
+2966.479553461075
+2901.451435804367
+3101.5731456279755
+2969.6148674488068
+3025.9855740070343
+2910.9985823631287
+3091.654485464096
+2986.4748594760895
+2977.721779346466
+3069.8603925704956
+2998.5296301841736
+3047.4497158527374
+3065.6820142269135
+3040.834172964096
+3029.096449613571
+3096.8075954914093
+3034.672732114792
+3162.373927593231
+3072.0753893852234
+3032.761278629303
+3024.173609018326
+3008.5203261375427
+2996.970905303955
+3078.1525316238403
+3060.6740584373474
+3069.007308483124
+3022.721489906311
+3138.20028924942
+3060.459311246872
+3059.847672700882
+2152.95267701149
+2912.278337240219
+3615.5998272895813
+3639.015729904175
+1789.6122806072235
+2328.9812264442444
+1987.4136760234833
+2882.274273633957
+3000.1710851192474
+2371.467385530472
+1734.1665782928467
+2896.3770785331726
+1896.2365522384644
+2958.4482803344727
+2339.0203137397766
+1865.106775045395
+2937.1384608745575
+2924.6628081798553
+2794.870321750641
+1752.2637491226196
+2115.7908549308777
+2994.6830022335052
+2611.5066015720367
+3009.505859851837
+1914.027191400528
+2493.9707441329956
+2813.588146209717
+2952.0689668655396
+1849.7025673389435
+2512.98175573349
+1870.6681771278381
+2887.3948249816895
+2878.423151254654
+1781.8240740299225
+2373.7760832309723
+3038.175029039383
+2956.7813568115234
+1846.9814960956573
+2335.4232199192047
+2073.765459537506
+2865.695672273636
+2983.739064693451
+2346.8711342811584
+1644.041887998581
+2404.6175549030304
+2900.56826710701
+1893.7685055732727
+2874.4545238018036
+1917.6725928783417
+2335.3177485466003
+2183.784138917923
+1948.9149961471558
+2283.4402573108673
+2264.7712123394012
+1927.006751537323
+2227.8146295547485
+2363.393800973892
+1876.717844247818
+2151.4366228580475
+2111.498323917389
+2289.3152673244476
+2221.280528306961
+1857.0829539299011
+1861.2781655788422
+2345.781740665436
+2688.1187660694122
+2561.411455631256
+3639.8533205986023
+Traceback (most recent call last):
+  File "/home/mac6/RPI/research/quantum_se/code/diffusive_persistence.py", line 7, in <module>
+    from mutual_framework import network_generate
+  File "/home/mac6/RPI/research/mutual_framework.py", line 273
+    if network_type == '2D_disorder' or network_type = '3D_disorder':
+                                                     ^
+SyntaxError: invalid syntax
+more than one component
+more than one component
+more than one component
+1858.4759476184845
+1299.971070766449
+2726.007446050644
+1691.2201483249664
+2969.1709504127502
+2375.1565310955048
+1908.517543554306
+1713.5470826625824
+2056.6747398376465
+2915.834785461426
+1574.0905356407166
+2131.244797706604
+1948.3046979904175
+1247.2179889678955
+2088.3054234981537
+1368.4784126281738
+2222.682375192642
+2124.7626914978027
+1345.5191276073456
+2492.575975894928
+1116.5863196849823
+2345.274176597595
+2249.4208183288574
+1366.4347846508026
+1934.4704530239105
+2134.4116995334625
+2430.764239549637
+1353.5733201503754
+2256.9272260665894
+1117.960024356842
+2093.8909270763397
+2289.5476570129395
+1172.201328754425
+1565.7510724067688
+958.2308654785156
+1892.4023678302765
+1811.8819003105164
+1000.9055075645447
+1992.167980670929
+996.2067301273346
+1839.4947445392609
+1928.334625005722
+955.1165487766266
+1936.5624778270721
+1820.8341295719147
+989.3029527664185
+1854.9345171451569
+1054.769642829895
+1810.4150335788727
+1876.8914535045624
+1012.081437587738
+1813.939024925232
+1877.4337463378906
+1005.9808082580566
+1940.351581811905
+1831.568106174469
+1025.1264021396637
+1986.026156425476
+985.7411165237427
+1774.24498462677
+1828.09032869339
+978.9679353237152
+1938.8734676837921
+1032.8055999279022
+1807.269671678543
+1916.785987854004
+999.7225983142853
+1667.1081702709198
+1646.067833185196
+1554.5033328533173
+1472.575199842453
+1353.2228376865387
+1446.5530440807343
+1502.109857082367
+1454.5609328746796
+1445.8758730888367
+1516.1414771080017
+1448.472216129303
+1400.6441445350647
+1460.2557084560394
+1458.4084765911102
+1497.8163814544678
+1505.652324438095
+1426.1576719284058
+1512.0156788825989
+1496.3295407295227
+1488.1653032302856
+1525.5238857269287
+1484.8432030677795
+1478.3984401226044
+1634.8125863075256
+1531.3546957969666
+1546.2553997039795
+1609.3965950012207
+1445.0270652770996
+1536.84521484375
+1506.0119903087616
+1707.6581473350525
+1711.5394325256348
+1323.6044096946716
+668.5180556774139
+788.9370310306549
+299.270555973053
+944.2846128940582
+550.6241300106049
+819.1917223930359
+1125.2320275306702
+927.4005417823792
+579.0425016880035
+920.3875615596771
+238.00520658493042
+224.19351434707642
+227.49876880645752
+217.08469605445862
+194.92056393623352
+202.04553532600403
+201.45110368728638
+206.32318496704102
+189.42604303359985
+more than one component
+1953.0437479019165
+1967.358502149582
+1996.7078974246979
+2034.3576242923737
+1677.5273790359497
+1647.6793794631958
+1669.2635538578033
+1699.919994354248
+1697.9298243522644
+1621.5477106571198
+1725.5381197929382
+1710.188901424408
+1673.6432602405548
+more than one component
+1662.2309155464172
+1635.3998413085938
+1619.7246174812317
+2830.744029521942
+2892.1935164928436
+2962.465033054352
+2938.297844648361
+2377.9929749965668
+2471.6686408519745
+2409.287112236023
+2368.0943245887756
+2402.9629962444305
+2365.0643243789673
+2462.176157951355
+2457.5780189037323
+2365.169415950775
+more than one component
+2452.003026008606
+2279.816795349121
+2352.387673854828
+3575.609045982361
+3587.0791063308716
+3608.231782436371
+3702.078262090683
+2862.2057831287384
+2981.6781849861145
+2913.9403505325317
+2915.7997930049896
+2901.4932901859283
+2915.970470428467
+2918.458514213562
+2815.4436781406403
+2946.447088956833
+more than one component
+2864.7396173477173
+2923.249303817749
+2877.535685777664
+3609.2697491645813
+3750.6141517162323
+3667.2637155056
+3787.3679134845734
+3222.326911211014
+2878.0636615753174
+2938.418214559555
+2877.9202518463135
+3098.8008584976196
+3062.381681203842
+3084.894804239273
+3080.5276300907135
+2963.048528432846
+more than one component
+3016.9083716869354
+3149.583831310272
+3055.946604013443
+2155.1378257274628
+2144.1083250045776
+2066.457667350769
+2193.475568294525
+1811.8167016506195
+1832.9316601753235
+1839.487678527832
+1745.0707952976227
+1827.5174472332
+1803.4352440834045
+1831.773367881775
+1863.803283214569
+1802.3601496219635
+more than one component
+1785.6165726184845
+1825.4307339191437
+1834.1266961097717
+2740.802012205124
+2787.301742553711
+2830.4538893699646
+2846.138340473175
+2278.2525124549866
+2338.1541311740875
+2335.187878847122
+2340.9469208717346
+2333.9643182754517
+2345.091584444046
+2294.3044426441193
+2385.4939970970154
+2302.6965324878693
+more than one component
+2272.4844241142273
+2285.2424914836884
+2320.139196395874
+3472.8280403614044
+3598.760313510895
+3540.0648028850555
+3533.151314973831
+2895.1844012737274
+2912.2466049194336
+3010.1392557621
+3032.759303331375
+2838.060176372528
+2875.4674413204193
+2818.21129488945
+3013.3603308200836
+2852.828931570053
+2862.573269844055
+2801.078241586685
+2688.789386510849
+3603.920100212097
+3664.286244869232
+3637.833394765854
+3724.2321157455444
+2901.2803795337677
+2993.925502061844
+2915.160692214966
+2995.956088781357
+3147.3771579265594
+2932.2581508159637
+3032.30042219162
+3079.247529029846
+2763.9494001865387
+more than one component
+2885.3571498394012
+2896.62345123291
+3026.0776031017303
+1731.103507757187
+1502.451637506485
+1553.228969335556
+1566.4734082221985
+1614.0270199775696
+1562.5304951667786
+1540.5890004634857
+1521.9028902053833
+1544.1347179412842
+1541.072092294693
+1572.9397757053375
+1537.806719303131
+1576.7870576381683
+more than one component
+1555.666086435318
+1439.0844368934631
+1410.1953828334808
+2849.958972454071
+2783.314554452896
+2950.7283482551575
+2890.12953042984
+2340.385042667389
+2290.4004604816437
+2378.9665291309357
+2468.7811539173126
+2294.9439022541046
+2319.430438518524
+2377.2762808799744
+2350.7512950897217
+2382.8703145980835
+more than one component
+2399.318461894989
+2170.806074857712
+2185.6084303855896
+3511.8702595233917
+3565.441466331482
+3505.8199768066406
+3759.324506044388
+2871.4684777259827
+2855.1965267658234
+3027.0654940605164
+2892.2409019470215
+3040.0972487926483
+2939.3465523719788
+2953.6812613010406
+2892.009092569351
+2941.8067383766174
+more than one component
+2783.04114985466
+2913.282433986664
+2758.036396741867
+3707.9136686325073
+3649.069073200226
+3766.315040588379
+3687.318532705307
+2958.54140996933
+2969.3370013237
+3021.553349494934
+2999.3722853660583
+2987.145194530487
+3040.5667731761932
+2970.4396300315857
+2950.915049314499
+2984.65319275856
+more than one component
+2867.1744735240936
+3005.747174978256
+2969.8244202136993
+1019.0617215633392
+912.8027188777924
+1004.9662976264954
+890.4236440658569
+915.3881630897522
+910.2588164806366
+901.9789125919342
+904.7760796546936
+904.980387210846
+898.2114171981812
+927.2658479213715
+916.9704496860504
+915.0550978183746
+more than one component
+890.0067713260651
+893.9444966316223
+931.9154543876648
+2827.669238805771
+2825.554379224777
+2849.6896312236786
+2922.924464225769
+2340.8212089538574
+2383.249713420868
+2403.564610481262
+2423.191522836685
+2262.8923740386963
+2336.5050275325775
+2359.7272202968597
+2415.8763217926025
+2289.8619496822357
+more than one component
+2265.0928361415863
+2287.4525315761566
+2180.923696041107
+3600.23020195961
+3629.649785757065
+3571.1092298030853
+3677.6598098278046
+2927.5070667266846
+2903.0351264476776
+2906.090985774994
+2927.6766142845154
+2929.855239868164
+2878.030844449997
+2941.579920053482
+2966.2148294448853
+3061.2206761837006
+2923.279855966568
+2986.414311170578
+2934.779641389847
+3755.8783371448517
+3702.433192014694
+3869.6574001312256
+3791.0447602272034
+3012.4493668079376
+3138.0823459625244
+2923.7783131599426
+3037.7594747543335
+2976.004075050354
+3061.4834768772125
+3073.811294555664
+3140.4086129665375
+3039.102559328079
+3025.4557955265045
+2859.3689303398132
+3007.2916402816772
+more than one component
+1084.6906807422638
+1039.2706801891327
+1077.2025389671326
+1071.3717050552368
+946.554053068161
+963.4009590148926
+960.9388127326965
+948.0512442588806
+936.671849489212
+946.3849935531616
+955.1527073383331
+969.4582777023315
+932.4759523868561
+more than one component
+918.3373856544495
+946.8187627792358
+937.3783240318298
+2136.0779111385345
+2138.6240882873535
+2151.338856935501
+2133.418001651764
+1883.9479291439056
+1878.7427077293396
+1891.6623237133026
+1894.6986155509949
+1832.3024835586548
+1828.1567206382751
+1847.9236824512482
+1862.2655107975006
+1838.6904380321503
+more than one component
+1834.5908448696136
+1828.4540815353394
+1800.2013139724731
+2247.0473885536194
+2273.615003824234
+2256.6326339244843
+2274.9301710128784
+1903.2899987697601
+1916.0769906044006
+1873.7108824253082
+1973.6360607147217
+1920.9586148262024
+1923.2372722625732
+1960.2387449741364
+1927.9499771595001
+1918.4099164009094
+1889.1875970363617
+1943.3505210876465
+1903.9896371364594
+2206.41699051857
+2226.8204786777496
+2254.1481919288635
+2267.607586145401
+1940.2251238822937
+1936.3832366466522
+1926.0837953090668
+1940.7197525501251
+1933.6787509918213
+1935.030392408371
+1909.0248718261719
+1918.4480679035187
+1926.8728804588318
+more than one component
+1909.6788272857666
+1887.1658430099487
+1840.8695330619812
+1112.1302647590637
+1152.733601808548
+1110.5824658870697
+1211.6073348522186
+981.8067421913147
+985.9101722240448
+1011.8888664245605
+1010.0471181869507
+972.1960740089417
+980.6200919151306
+1016.5342664718628
+981.5403912067413
+1015.5183906555176
+more than one component
+1000.5426139831543
+997.8607032299042
+930.3420186042786
+2188.1882112026215
+2114.7305812835693
+2142.1070194244385
+2200.9633021354675
+1821.9467883110046
+1849.8213787078857
+1897.1868965625763
+1792.8917384147644
+1831.7691595554352
+1821.7019491195679
+1799.9958157539368
+1892.2625200748444
+1836.1442770957947
+more than one component
+1839.326446056366
+1761.1747648715973
+1876.245346069336
+2209.807903766632
+2231.7959253787994
+2299.6966140270233
+2253.0550668239594
+1915.092621564865
+1894.2345707416534
+1918.403150320053
+1970.1447050571442
+1875.909336566925
+1913.2770495414734
+1960.7144076824188
+1944.221201658249
+1859.8900303840637
+1855.4140934944153
+1805.6309337615967
+1882.9280619621277
+2176.3559770584106
+2242.491725206375
+2269.6228663921356
+2300.984875679016
+1824.5215427875519
+1954.4617958068848
+1893.0177357196808
+1858.7361381053925
+2028.7655413150787
+1873.9815056324005
+1889.2085347175598
+1945.1564984321594
+1971.8949778079987
+more than one component
+1840.9867901802063
+1889.6646616458893
+1956.5606968402863
+949.752879858017
+1086.699119567871
+959.9757578372955
+938.8925182819366
+963.51553606987
+965.8474547863007
+963.0456490516663
+959.3306517601013
+978.708615064621
+1002.0535774230957
+996.1564710140228
+932.2031064033508
+977.6833202838898
+more than one component
+960.756420135498
+more than one component
+930.7207012176514
+979.992190361023
+2140.835914850235
+2190.411813735962
+2188.1843979358673
+2223.124149084091
+1846.5075857639313
+1798.6201374530792
+1885.1803154945374
+1923.1216595172882
+1873.7730820178986
+1852.5917115211487
+1888.8655185699463
+1855.6094913482666
+1860.269777059555
+more than one component
+1821.8944783210754
+1885.8849623203278
+1779.0658512115479
+2248.8100650310516
+2261.9136888980865
+2229.9754071235657
+2271.77565741539
+1899.75425863266
+1908.215690612793
+1919.0040180683136
+1907.9224796295166
+1923.7516512870789
+1953.45143866539
+1892.1928741931915
+1867.7015471458435
+1913.0391092300415
+1931.4190366268158
+1893.8016276359558
+1906.6772339344025
+2282.9328124523163
+2314.9587383270264
+2337.6832168102264
+2320.746038198471
+1936.0895948410034
+1928.571144104004
+1970.343726158142
+1964.5169661045074
+1928.6868705749512
+1932.0888669490814
+1903.7152700424194
+1927.0787694454193
+1913.2010231018066
+more than one component
+1950.3484947681427
+1970.1296381950378
+1979.2646298408508
+1007.882009267807
+1173.1975102424622
+1047.1139976978302
+1079.5531935691833
+1036.612726688385
+1074.121367931366
+1027.7270858287811
+1026.1348972320557
+1019.8584101200104
+1020.3784356117249
+1054.9864995479584
+1010.2497985363007
+1032.8739612102509
+more than one component
+1029.3059055805206
+1010.9673094749451
+1002.037230014801
+2218.951471567154
+2215.7249460220337
+2234.126416683197
+2257.6927032470703
+1891.9226279258728
+1913.0866179466248
+1888.2852265834808
+1948.5977375507355
+1865.2772226333618
+1857.3447756767273
+1891.8624370098114
+1893.4638426303864
+1837.7819743156433
+more than one component
+1872.21737742424
+1833.8103983402252
+1828.1377816200256
+2225.5831253528595
+2333.8035769462585
+2315.6772334575653
+2291.310165643692
+1851.7175178527832
+1940.6400046348572
+1909.539454460144
+1942.0820446014404
+1924.5308566093445
+1864.7603797912598
+1889.811463356018
+1884.1115794181824
+1922.7860264778137
+1857.800680398941
+1915.995346069336
+1883.4650447368622
+2283.3664631843567
+2268.994586467743
+2256.472902059555
+2282.3125874996185
+1934.3765361309052
+1891.5723428726196
+1928.5841426849365
+1946.307656288147
+1969.525732755661
+1872.412556886673
+1894.0969314575195
+2019.8332996368408
+1909.0872082710266
+1915.2918584346771
+1874.363779783249
+1794.055745601654
+Traceback (most recent call last):
+  File "/home/mac6/RPI/research/quantum_se/code/diffusive_persistence.py", line 588, in <module>
+    for network_type, d, N_list in zip(network_type_list, d_list, N_list_list):
+NameError: name 'N_list_list' is not defined
+1835.7451841831207
+2296.5132842063904
+1816.247566461563
+1876.4554841518402
+1920.1344904899597
+2028.756121635437
+2405.352319955826
+2215.677574634552
+1873.8815546035767
+1855.4798216819763
+1945.698159456253
+2411.5496656894684
+1544.0496361255646
+2187.1407964229584
+1543.3043520450592
+1239.289704799652
+2442.306478500366
+1670.3050074577332
+1530.6368379592896
+1538.7978591918945
+1211.381777048111
+1888.662654876709
+2360.915247440338
+2554.639367580414
+2699.051195859909
+914.7314257621765
+933.2277388572693
+1357.348879814148
+1425.094974040985
+1.2898106575012207
+save ALL data
+180.90648531913757
+save ALL data
+159.75801181793213
+save ALL data
+172.88105058670044
+save ALL data
+198.72804760932922
+3667.8767116069794
+3743.084559440613
+3753.1613688468933
+3720.234209537506
+3683.1241631507874
+3787.475830554962
+3758.856520175934
+3787.037963628769
+3801.523288965225
+3791.394570350647
+3745.3292033672333
+3807.073342561722
+3634.858601331711
+3723.623155117035
+3825.9166507720947
+3640.2333199977875
+3660.801097869873
+3812.1131703853607
+3886.8982520103455
+3801.6793777942657
+3721.518289089203
+3582.9655678272247
+3792.7618753910065
+3664.4135642051697
+3694.724620103836
+3981.2222380638123
+3712.4651894569397
+3750.5912046432495
+3677.115162372589
+3683.585461139679
+3515.270196914673
+3705.88329577446
+3953.2122554779053
+3663.038537502289
+3756.7888293266296
+3720.5465927124023
+3659.291547060013
+3682.7494740486145
+3943.1648128032684
+3636.870527982712
+3522.933081626892
+3624.996354341507
+3701.5270969867706
+3664.06267285347
+3815.461061477661
+165.10166239738464
+187.10713028907776
+188.19082164764404
+167.91887855529785
+190.37586188316345
+165.55584478378296
+184.67161655426025
+177.66762399673462
+177.4280927181244
+171.61400771141052
+142.33294701576233
+142.5830843448639
+145.54515624046326
+146.38778805732727
+4076.01216506958
+147.90425372123718
+149.97166657447815
+139.06227254867554
+144.5804979801178
+140.86623239517212
+140.77991819381714
+123.99381065368652
+122.97109913825989
+4088.2743995189667
+120.57607007026672
+126.46679401397705
+145.84623885154724
+171.64554071426392
+162.45164895057678
+183.5578989982605
+156.4483699798584
+183.46953558921814
+176.03663206100464
+150.75892567634583
+4622.586004257202
+4207.736142158508
+3917.9145510196686
+3545.21452665329
+3686.155793428421
+3632.1616871356964
+3619.2992498874664
+3694.2488045692444
+3711.9547526836395
+3808.5367431640625
+3470.2434375286102
+3459.1831963062286
+3071.8545813560486
+2300.5561912059784
+2367.947122335434
+2377.5636904239655
+2336.915676355362
+2324.053726196289
+2212.3781049251556
+2301.6329622268677
+2363.1787090301514
+2391.4443242549896
+2362.2999782562256
+2672.4846937656403
+2573.7628078460693
+2755.282773733139
+2779.6128058433533
+2832.635870695114
+1685.7201974391937
+2725.9140770435333
+1212.3062455654144
+1310.9796206951141
+2420.976467370987
+1772.0142517089844
+2297.597683429718
+1534.92706990242
+1205.1854410171509
+1911.2966482639313
+1205.2002592086792
+1572.7888119220734
+2325.1233265399933
+1419.8675320148468
+1903.4231984615326
+1552.0216937065125
+1880.822035074234
+1207.1164197921753
+1555.9005076885223
+1866.5515999794006
+1213.2102801799774
+1899.681257724762
+1199.705472946167
+1255.602599620819
+1895.6565186977386
+1525.2633435726166
+2419.371366262436
+1861.7452595233917
+1900.8777024745941
+2410.632203102112
+2412.229034423828
+2442.9223594665527
+1858.173995733261
+1910.6780428886414
+2181.6136422157288
+2264.559543132782
+2119.9619133472443
+2389.258134126663
+1871.7104561328888
+1855.0680689811707
+1861.331617116928
+2385.1434693336487
+1879.2073469161987
+1853.9863924980164
+1846.688128232956
+2442.6763401031494
+2685.013107061386
+2408.4687552452087
+2391.290015220642
+2403.4661417007446
+2393.7504980564117
+2408.068639755249
+1852.46044588089
+1889.4789781570435
+1859.8053011894226
+2388.4631197452545
+2241.7310752868652
+1879.3861780166626
+1864.794200181961
+2385.8403651714325
+2102.411749601364
+2389.7247228622437
+2215.1610944271088
+1952.7869358062744
+Traceback (most recent call last):
+  File "/home/mac6/RPI/research/quantum_se/code/plot_varaince_state.py", line 1475, in <module>
+    psv.plot_std_t_collection(rho_list, phase_list, seed_initial_condition_list, stop_t, full_data_t=True, remove_bias=remove_bias, eigen_fourier=True)
+  File "/home/mac6/RPI/research/quantum_se/code/plot_varaince_state.py", line 430, in plot_std_t_collection
+    corvar_eigen, t = self.corvar_t_eigen_fourier(seed_initial_condition_list, full_data_t=full_data_t, remove_bias=remove_bias)
+  File "/home/mac6/RPI/research/quantum_se/code/plot_varaince_state.py", line 149, in corvar_t_eigen_fourier
+    t, state = self.read_phi_eigen_fourier(seed_initial_condition, full_data_t=full_data_t)
+  File "/home/mac6/RPI/research/quantum_se/code/plot_varaince_state.py", line 121, in read_phi_eigen_fourier
+    data = np.load(save_file)
+  File "/home/mac6/.local/lib/python3.10/site-packages/numpy/lib/npyio.py", line 407, in load
+    fid = stack.enter_context(open(os_fspath(file), "rb"))
+FileNotFoundError: [Errno 2] No such file or directory: '../data/quantum/state_ectfp/1D/N=10000_d=4_seed=0_alpha=1_dt=1_setup=u_normal_random_cutoff_params=[0, 0.2, 0.05, 0.2]_seed_initial=0_full.npy'
+1867.13281083107
+1855.6695849895477
+1859.5763852596283
+1914.1016705036163
+1820.6094148159027
+2243.4971690177917
+3211.388163089752
+1860.985417842865
+1877.4903032779694
+1844.6643702983856
+1853.1400303840637
+1872.4499878883362
+1853.679330587387
+1835.721135377884
+3505.1455924510956
+2172.1618378162384
+2749.188944339752
+3062.667085647583
+2180.138349533081
+2501.0976872444153
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+187.2384762763977
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+187.4445140361786
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+191.3716480731964
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+204.8705711364746
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+178.04349374771118
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+1274.8025197982788
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+473.551011800766
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+273.12505435943604
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+159.00871396064758
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+158.44442892074585
+3778.0682311058044
+3765.873396396637
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+159.3743691444397
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+188.01953983306885
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+183.6558620929718
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+176.78739023208618
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+177.53489923477173
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+188.12140440940857
+2267.9701759815216
+2348.1746361255646
+1935.6810142993927
+1986.7620687484741
+2261.5454428195953
+2284.089265346527
+1926.8399047851562
+2413.0250611305237
+1851.8411207199097
+2129.101584672928
+1900.8243618011475
+2056.1558294296265
+2390.086720943451
+2492.595517873764
+4087.776535511017
+3638.43790102005
+2406.460562467575
+2396.9099457263947
+1888.6335413455963
+2099.1015934944153
+1942.7358784675598
+2396.665676355362
+2193.3345608711243
+2406.8976962566376
+2395.5955584049225
+2388.0784363746643
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+1181.2558872699738
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+410.8748154640198
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+398.9098732471466
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+400.06857657432556
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+388.93705463409424
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+425.85308289527893
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+396.35238456726074
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+419.6596221923828
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+411.17283034324646
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+395.5385537147522
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+404.754061460495
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+394.7550983428955
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+410.01320457458496
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+442.51599407196045
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+406.9777946472168
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+422.60237646102905
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+528.3802378177643
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+591.3244826793671
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+157.68291997909546
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+158.10477471351624
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+166.59713006019592
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+173.01924109458923
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+454.75703048706055
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+518.6946451663971
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+141.98158168792725
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+151.88606524467468
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+175.25364351272583
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+175.97187399864197
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+171.56346082687378
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+166.2907304763794
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+454.58309960365295
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+421.97803807258606
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+151.8781189918518
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+168.95248436927795
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+175.00622653961182
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+173.59382915496826
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+422.16912746429443
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+161.08389139175415
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+455.3335633277893
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+168.40375566482544
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+184.5966293811798
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+179.4065704345703
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+226.27886176109314
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+217.43249702453613
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+472.8577103614807
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+496.78731417655945
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+194.9365303516388
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+193.56391763687134
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+239.81350660324097
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+229.4970829486847
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+552.0760264396667
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+546.6155812740326
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+202.5214445590973
+224.387761592865
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+239.98710465431213
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+265.8137526512146
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+227.04212522506714
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+530.1753447055817
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+543.2632920742035
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+240.5590536594391
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+208.1850733757019
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+269.70151686668396
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+558.9374809265137
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+572.8505673408508
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+410.7552230358124
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+424.84051156044006
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+469.6668543815613
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+489.8592586517334
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+394.02601313591003
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+512.2828440666199
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+508.001727104187
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+508.79805994033813
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+386.6915409564972
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+517.3774118423462
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+389.0802035331726
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+407.7492296695709
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+418.2824537754059
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+397.87479305267334
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+503.49687671661377
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+510.5738174915314
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+444.6789629459381
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+501.19418716430664
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+758.5053353309631
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+493.32879161834717
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+756.8502731323242
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+487.8995187282562
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+508.815927028656
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+746.9682741165161
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+494.3724889755249
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+731.2142531871796
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+480.3364119529724
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+558.501277923584
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+820.7518925666809
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+595.2002141475677
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+912.8345565795898
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+917.3794701099396
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+603.1824424266815
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+886.2015235424042
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+617.0812866687775
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+982.7271494865417
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+902.074399471283
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+601.1306855678558
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+965.5921218395233
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+586.963437795639
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+910.4624357223511
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+652.0480961799622
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+872.5683128833771
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+908.457549571991
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+588.4804527759552
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+884.7754898071289
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+553.838803768158
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+731.051008939743
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+640.7981975078583
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+612.3876066207886
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+561.2849311828613
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+632.6303961277008
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+658.4866743087769
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+595.5691418647766
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+612.9464981555939
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+601.484504699707
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+590.064160823822
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+631.0049822330475
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+621.5201108455658
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+512.9829812049866
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+520.0794177055359
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+509.1701874732971
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+506.1441397666931
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+531.880077123642
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+670.2305126190186
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+417.28556966781616
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+410.42145586013794
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+413.590576171875
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+423.6508481502533
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+371.7888038158417
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+416.1364014148712
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+430.31059312820435
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+388.26612067222595
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+426.0777189731598
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+433.30999994277954
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+405.3724102973938
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+404.9419798851013
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+446.0172040462494
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+405.69636392593384
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+416.56066489219666
+  File "/home/mac6/RPI/research/quantum_se/code/diffusive_persistence.py", line 715
+    N_list_list = [8000]]
+                        ^
+SyntaxError: unmatched ']'
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+1179.9158155918121
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+504.11183166503906
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+521.7349350452423
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+514.0220990180969
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+517.3365812301636
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+498.24226689338684
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+504.33848214149475
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+510.2612681388855
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+482.01937341690063
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+502.61564111709595
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+610.0826392173767
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+531.5040929317474
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+528.570837020874
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+516.9190108776093
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+483.43899369239807
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+515.9390277862549
+  File "/home/mac6/RPI/research/quantum_se/code/diffusive_persistence.py", line 715
+    N_list_list = [8000]]
+                        ^
+SyntaxError: unmatched ']'
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+670.6655750274658
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+377.7609088420868
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+315.18115997314453
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+336.5111880302429
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+316.4782724380493
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+329.7093904018402
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+411.53506898880005
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+351.61127400398254
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+320.49990487098694
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+325.7382459640503
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+334.2024145126343
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+322.4948856830597
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+331.85328221321106
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+321.66690945625305
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+308.95614290237427
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+307.4890785217285
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+556.3552656173706
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+497.3296480178833
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+508.53034710884094
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+497.81009101867676
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+522.3539159297943
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+498.19081139564514
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+646.832305431366
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+506.7439937591553
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+517.4481105804443
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+500.6537356376648
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+501.0238585472107
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+493.7954294681549
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+501.944815158844
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+517.2738039493561
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+519.8681964874268
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+507.19239687919617
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+331.7885112762451
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+321.52584052085876
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+333.8269748687744
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+337.051882982254
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+321.5969252586365
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+327.5453636646271
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+321.5009956359863
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+325.66679430007935
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+319.44197273254395
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+327.4309449195862
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+330.26966762542725
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+327.52515840530396
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+398.52402544021606
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+333.5234112739563
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+336.342805147171
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+save ALL data
+333.2012038230896
+1160.9899468421936
+1164.8262178897858

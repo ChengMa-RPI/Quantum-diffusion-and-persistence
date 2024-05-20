@@ -3,8 +3,8 @@ os.environ['OPENBLAS_NUM_THREADS'] ='1'
 os.environ['OMP_NUM_THREADS'] = '1'
 
 import sys
-sys.path.insert(1, '/home/mac/RPI/research/')
-from mutual_framework import network_generate
+sys.path.insert(1, '/home/mac6/RPI/research/')
+from mutual_framework import network_generate, disorder_lattice_clusters
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -54,18 +54,35 @@ def plot_R_phi(network_type, N_list, d_list, seed_list, color_list):
     fig.text(x=0.5, y=0.04, horizontalalignment='center', s="$\\phi$", size=18)
     fig.subplots_adjust(left=0.15, right=0.9, wspace=0.25, hspace=0.25, bottom=0.15, top=0.95)
 
+def find_gcc_correspondings(network_type, N, seed, d):
+    cluster = disorder_lattice_clusters(network_type, N, seed, d)
+    des = '../data/matrix_save/disorder_corresponding/'
+    if not os.path.exists(des):
+        os.makedirs(des)
+    des_file = des + f'network_type={network_type}_N={N}_d={d}_seed={seed}.csv'
+    df = pd.DataFrame(cluster)
+    df.to_csv(des_file, header=False, index=False)
+    return False
 
 
 
+
+
+N = 10000
+seed = 0
+
+network_type = '3D_disorder'
+d_list = [0.3, 0.5, 0.7, 1]
+N = 8000
 
 network_type = '2D_disorder'
-d_list = np.arange(0.3, 0.9, 0.03)
-seed_list = np.arange(10)
-N_list = [100, 900, 1600, 4900, 10000]
+d_list = [0.51, 0.55, 0.7, 0.9]
+N = 100
 
-
+for d in d_list:
+    find_gcc_correspondings(network_type, N, seed, d)
 
 t1 = time.time()
-plot_R_phi(network_type, N_list, d_list, seed_list, color_list)
+#plot_R_phi(network_type, N_list, d_list, seed_list, color_list)
 t2 = time.time()
 print(t2 - t1)
