@@ -215,7 +215,6 @@ class plotSignTime():
 
 
 
-
 if __name__ == '__main__':
     quantum_or_not = False
     initial_setup = 'uniform_random'
