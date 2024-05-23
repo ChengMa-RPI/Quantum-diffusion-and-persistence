@@ -93,9 +93,13 @@ def title_name(params, quantum_or_not, d=None):
 class plotIPR():
     def __init__(self, quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, full_data_t, ipr_normalize, q_exp=2, quantum_method='CN'):
         self.quantum_or_not = quantum_or_not
-        self.network_type = network_type
+        if network_type in ['2D_disorder', '3D_disorder'] and d == 1:
+            self.network_type = network_type[:2]
+            self.d = 4
+        else:
+            self.network_type = network_type
+            self.d = d
         self.N = N
-        self.d = d
         self.seed = seed
         self.alpha = alpha
         self.dt = dt
@@ -108,11 +112,14 @@ class plotIPR():
         self.quantum_method = quantum_method
 
     def read_phi(self, seed_initial_condition):
-        if self.quantum_or_not:
+        if self.quantum_or_not == 'SE':
             if self.quantum_method == 'CN':  # Crank-Nicolson method
                 des = '../data/quantum/state/' + self.network_type + '/' 
             elif self.quantum_method == 'eigen':
                 des = '../data/quantum/state_eigen/' + self.network_type + '/' 
+        elif self.quantum_or_not == 'TB':
+            des = '../data/tightbinding/state_eigen/' + self.network_type + '/' 
+
         else:
             des = '../data/classical/state/' + self.network_type + '/' 
         if self.full_data_t:
@@ -291,7 +298,8 @@ class plotIPR():
 if __name__ == '__main__':
     initial_setup = 'uniform_random'
     quantum_or_not = False
-    quantum_or_not = True
+    quantum_or_not = 'SE'
+    quantum_or_not = 'TB'
     initial_setup = 'gaussian_wave'
     N = 1000
     d = 4
@@ -323,7 +331,7 @@ if __name__ == '__main__':
     "bowl-shaped phase"
     initial_setup = 'phase_bowl_region'
     network_type = '2D_disorder'
-    d = 0.51
+    d = 0.9
     rho_list = [[0]]
     phase_list = [[1, 1, 1, -1], [0.7, 0.7, 1, -1], [1, 1, 0.5, -0.5], [0.7, 0.7, 0.5, -0.5]]
 

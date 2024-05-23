@@ -22,7 +22,7 @@ class diffusionPersistence:
     def __init__(self, quantum_or_not, network_type, m, N, d, seed, alpha, t, dt, initial_setup, distribution_params, quantum_method='CN'):
         """TODO: Class for implementing time-dependent simulation for diffusion systems.
 
-        :quantum_not: quantum or classical, quantum if True, else classical
+        :quantum_or_not: quantum or classical, quantum Schrodinger if SE, quantum tight binding if tb, classical if False
         :network_type: network topology, regular lattice: '1D', '2D', '3D'; disordered lattice: '2D_disorder', '3D_disorder'
         :m: mass of particle
         :N: the number of grids in the system
@@ -37,10 +37,14 @@ class diffusionPersistence:
 
         """
         self.quantum_or_not = quantum_or_not
-        self.network_type = network_type
         self.m = m
+        if network_type in ['2D_disorder', '3D_disorder'] and d == 1:  # no edge remove, same as 2D/3D regular lattice
+            self.network_type = network_type[:2]
+            self.d = 4
+        else:
+            self.network_type = network_type
+            self.d = d
         self.N = N
-        self.d = d
         self.seed = seed
         self.alpha = alpha
         self.t = t
@@ -49,7 +53,6 @@ class diffusionPersistence:
         self.distribution_params = distribution_params
         self.seed_initial_condition = None  # set as None as parameters will pass to multiprocessing task
         self.quantum_method = quantum_method  # use CN (Crank-Nicolson) or eigen (eigenvalue decomposition) 
-
         self.save_read_A_M()  # save matrices A and M to the disk if not yet; otherwise, read them from the disk. 
         self.degree = np.sum(self.A, 0)  # an array of degrees for each node
         self.N_actual = len(self.A)  # the number of actual nodes, N = N_actual for regular lattice
@@ -64,8 +67,8 @@ class diffusionPersistence:
         save_des = '../data/matrix_save/'
         topology_des = save_des + 'topology/'
         operator_des = save_des + 'quan_operator/'
-        eigen_des = save_des + 'quan_eigen/'
-        for des in [topology_des, operator_des, eigen_des]:
+        tb_des = save_des + 'tb_operator/'  # directory to save eigenvalue for tight binding model
+        for des in [topology_des, operator_des, tb_des]:
             if not os.path.exists(des):
                 os.makedirs(des)
         file_topology = topology_des + f'network_type={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}.npy'
@@ -84,6 +87,9 @@ class diffusionPersistence:
             # generate A
             self.A, self.A_interaction, self.index_i, self.index_j, self.cum_index = network_generate(network_type, N, 1, 0, seed, d) 
             np.save(file_topology, self.A) 
+
+        if not self.quantum_or_not:
+            return 
 
         if self.quantum_method == 'CN':  # Crank-Nicolson
             if self.m == m_e:
@@ -109,23 +115,28 @@ class diffusionPersistence:
                 M = A1_inv.dot(B1)
                 self.M = M
                 np.save(file_operator, M) 
-        elif quantum_method == 'eigen':
-            file_eig = operator_des + f'network_type={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}_eig.npy'
-            file_vec = operator_des + f'network_type={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}_vec.npy'
-            file_vec_inv = operator_des + f'network_type={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}_vec_inv.npy'
+        elif self.quantum_method == 'eigen':
+            if self.quantum_or_not == 'SE':
+                degree = np.sum(self.A>0, 1)
+                L = -self.A + np.diag(degree)
+                eigen_des = operator_des
+            elif self.quantum_or_not == 'TB':
+                L = -self.A  
+                eigen_des = tb_des
+            file_eig = eigen_des + f'network_type={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}_eig.npy'
+            file_vec = eigen_des + f'network_type={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}_vec.npy'
+            file_vec_inv = eigen_des + f'network_type={self.network_type}_N={self.N}_d={self.d}_seed={self.seed}_vec_inv.npy'
             if os.path.exists(file_eig):
                 self.eig = np.load(file_eig)
                 self.vec = np.load(file_vec)
                 self.vec_inv = np.load(file_vec_inv)
             else:
-                degree = np.sum(self.A>0, 1)
-                L = -self.A + np.diag(degree)
                 self.eig, self.vec = np.linalg.eig(L)
                 self.vec_inv = np.linalg.inv(self.vec)
                 np.save(file_eig, self.eig) 
                 np.save(file_vec, self.vec) 
                 np.save(file_vec_inv, self.vec_inv) 
-            self.eig = self.eig * hbar ** 2 / 2 / self.m / self.alpha
+            self.eig = self.eig * hbar ** 2 / 2 / self.m / self.alpha ** 2
 
     def cutoff_limit(self, N, random_data, lambda_ratio):
         """TODO: high frequency mode cutoff
@@ -231,7 +242,7 @@ class diffusionPersistence:
         N_actual = self.N_actual
         r0 = 1/np.sqrt(N_actual)
         average = 1 / N_actual
-        if not quantum_or_not:
+        if not self.quantum_or_not:
             # for classical
             if initial_setup == 'uniform_random':
                 rho_range = self.distribution_params
@@ -613,7 +624,7 @@ class diffusionPersistence:
 
         """
         self.seed_initial_condition = seed_initial_condition
-        if quantum_or_not:
+        if self.quantum_or_not:
             data = self.quantum_diffusion()
 
         else:
@@ -673,7 +684,7 @@ class diffusionPersistence:
 
         """
         self.seed_initial_condition = seed_initial_condition
-        #data = self.eigen_fourier()
+        #data = self.eigen_fourier()  #deprecated, no longer need Fourier transformation
         data = self.eigen_disorder()
         if len(self.t) > 5000:
             t = np.hstack(( self.t[:100], self.t[100:10000][::10], self.t[10000:][::100] ))  # save space
@@ -699,8 +710,12 @@ class diffusionPersistence:
         """
         #des_state = '../data/quantum/state_ectfp/' + self.network_type + '/' 
         #des_phase = '../data/quantum/phase_ectfp/' + self.network_type + '/' 
-        des_state = '../data/quantum/state_eigen/' + self.network_type + '/' 
-        des_phase = '../data/quantum/phase_eigen/' + self.network_type + '/' 
+        if self.quantum_or_not == 'SE':
+            des_state = '../data/quantum/state_eigen/' + self.network_type + '/' 
+            des_phase = '../data/quantum/phase_eigen/' + self.network_type + '/' 
+        elif self.quantum_or_not == 'TB':
+            des_state = '../data/tightbinding/state_eigen/' + self.network_type + '/' 
+            des_phase = '../data/tightbinding/phase_eigen/' + self.network_type + '/' 
         des_list = [des_state, des_phase]
         save_file = []
         for des in des_list:
@@ -731,8 +746,9 @@ hbar = 0.6582
 if __name__ == '__main__':
 
     "quantum or classical"
-    quantum_or_not = False
-    quantum_or_not = True
+    quantum_or_not = False  # classical diffusion
+    quantum_or_not = 'SE'  # quantum Schrodinger Eq
+    quantum_or_not = 'TB'  # quantum Tight binding model
 
 
     "initial setup"
@@ -788,17 +804,17 @@ if __name__ == '__main__':
     phase_list = [[-0.1, -0.1, 1, -1], [-0.05, -0.05, 0.5, -0.5], [-0.01, -0.01, 0.5, -0.5], [-0.001, -0.001, 0.5, -0.5]]
     phase_list = [[-0.001, -0.001, 0.5, -0.5], [-0.0012, -0.0012, 0.5, -0.5], [-0.0024, -0.0024, 1, -1], [-0.024, -0.024, 10, -10]]
 
-   #fully localized density and uniform phase
-    initial_setup = 'full_local'
-    rho_list = [[0]]
-    phase_list = [[0, 0]]
-
     # normal random for u and bowl-shape phase with covered ratio
     initial_setup = 'phase_bowl_region'
     rho_list = [[0]]
     phase_list = [[1, 1, 0.5, -0.5], [0.7, 0.7, 0.5, -0.5], [0.9, 0.9, 0.5, -0.5], [0.8, 0.8, 0.5, -0.5]]
     phase_list = [[1, 1, 1, -1], [0.7, 0.7, 1, -1], [0.9, 0.9, 1, -1], [0.8, 0.8, 1, -1]]
     phase_list = [[1, 1, 1, -1]]
+
+   #fully localized density and uniform phase
+    initial_setup = 'full_local'
+    rho_list = [[0]]
+    phase_list = [[0, 0]]
 
 
 
@@ -836,10 +852,11 @@ if __name__ == '__main__':
 
     ####### disordered lattice ######################
     network_type_list = ['2D_disorder'] 
-    d_list = [0.55]
+    d_list = [1]
+    d_list = [0.51]
 
     N_list_list = [[900, 1600, 2500, 3600, 4900, 6400, 8100, 10000]]
-    alpha_list = [1, 1, 1, 1, 1, 1, 1, 1] 
+    alpha_list = [1, 1, 1, 1, 1, 1, 1, 1]
     seed_list = np.arange(0, 10, 1)
 
     num_realization_list = [1] * len(alpha_list)
@@ -855,7 +872,7 @@ if __name__ == '__main__':
                 seed_initial_condition_list = np.arange(num_realization) 
                 t = np.arange(0, 10000*dt, dt)
 
-                t = np.arange(0, 100000*dt, dt)
+                t = np.arange(0, 1000000*dt, dt)
                 t = np.hstack((t[:20], t[20:200][::10], t[200:2000][::100], t[2000:10000][::500], t[10000:100000][::5000], t[100000:][::50000]))# save space, only for eigenvalue approach, as there is no dt dependent. 
                 #t = np.arange(0, 20000*dt, dt)
                 for distribution_params in distribution_params_list:
