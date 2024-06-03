@@ -19,10 +19,8 @@ import multiprocessing as mp
 from collections import Counter
 import scipy.stats as stats
 import time
-import matplotlib.image as mpimg
 from collections import defaultdict
 from matplotlib import patches 
-import json
 from calculate_fft import state_fft
 from scipy import special
 from scipy.fft import fft, ifft
@@ -68,8 +66,6 @@ def corvar_t_scaling(cor_var, remove_bias, u_std, phase_std, alpha, network_type
         elif remove_bias == 'Dx':    
             cor_var = cor_var / ( (D_u-D_theta)/alpha**d_power )
     return cor_var
-
-
 
 class plotStateVariance():
     def __init__(self, quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, rho_or_phase, r_separation, t_separation):
@@ -293,7 +289,6 @@ class plotStateVariance():
             d_power = 3
         else:
             d_power = 0
-
         cor_var = (self.r_separation==0) * ( u_std ** 2 + phase_std ** 2) / 2 + 1/ (2 * a_r) ** d_power * (u_std**2 - phase_std**2)/2 * np.sqrt(np.pi/v_r) ** d_power * np.real( (np.exp(1j * c_r - 1j * np.pi/4) / 2 * (special.erf(np.sqrt(1j * v_r) * (a_r + b_r) ) - special.erf(np.sqrt(1j * v_r) * (-a_r + b_r) ) )) **d_power )    
         aug_x = np.sqrt(-1j * v_r) * a_r
         corvar_limit_approx =  (self.r_separation==0) * ( u_std ** 2 + phase_std ** 2 ) / 2 + 1/2/ (2 * np.pi/self.alpha)**d_power * (u_std**2/u_cutoff - phase_std**2/phase_cutoff) * np.sqrt(np.pi/v_r)**d_power  * np.real(np.exp(1j * (np.pi/4 - c_r)) )   
@@ -358,6 +353,9 @@ class plotStateVariance():
 
 
     def plot_std_t_collection(self, rho_params_list, phase_params_list, seed_initial_condition_list, stop_t, full_data_t=False, remove_bias=False, eigen_fourier=False, grid='2'):
+        """plot variance of \rho or \theta changing with t, 
+        grid: the figure is organized as grid by grid. If both rho_params_list and phase_params_list consist of 4 different parameter setups, then '2' (default) -- 2 * 2, each subpanel has four curves for simulation results(ENI), '4' -- 4 * 4, each subpanel just has one parameter combination. 
+        """
         if grid == '2':
             rows = 2
             cols = 2
@@ -505,8 +503,6 @@ class plotStateVariance():
         elif grid == '4':
             ax.legend(fontsize=labelsize*0.60, frameon=False, loc=4, bbox_to_anchor= label_position) 
             fig.subplots_adjust(left=0.11, right=0.95, wspace=0.25, hspace=0.3, bottom=0.13, top=0.90)
-        #fig.text(x=0.02, y=0.5, horizontalalignment='center', s=ylabel, size=labelsize*1.3, rotation=90)
-        #fig.text(x=0.5, y=0.04, horizontalalignment='center', s=xlabel, size=labelsize*1.3)
         save_des = '../transfer_figure/' + filename
         plt.savefig(save_des, format='png')
         plt.close()
@@ -1752,6 +1748,37 @@ m = 5.68
 letters = 'abcdefghijklmnopqrstuvwxyz'
 
 
+
+if __name__ == '__main__':
+    quantum_or_not = True  
+    network_type = '1D'
+    N = 1000
+    d = 4
+    seed = 0
+    alpha = 1
+    dt = 1
+    initial_setup = "u_normal_random"
+    distribution_params = [0, 0]  # no us, just for requirement of the class parameters.  
+    seed_initial_condition_list = np.arange(0, 10, 1)  #the number of realizations for each parameter setup.
+    rho_or_phase = 'rho'  # plot statistics for rho or phase
+    r_separation = 0  # to calculate the two-point (position) correlation function 
+    t_separation = 0  # to calculate the (two-point time) autocorrelation function
+    ### if both r_separation and t_separation are 0, then it actually calculates the variance.
+    psv = plotStateVariance(quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, rho_or_phase, r_separation, t_separation)  # initialize the instance
+
+    """Fig 1 (N = 10000 in the paper)"""  
+    rho_list = [0, 0.05, 0.1, 0.2]
+    phase_list = [0, 0.05, 0.1, 0.2]
+    stop_t = 50 
+    remove_bias = False
+    eigen_fourier = False
+    full_data_t = False # depending the date generated 
+    grid = '2'
+    psv.plot_std_t_collection(rho_list, phase_list, seed_initial_condition_list, stop_t, full_data_t=full_data_t, remove_bias=remove_bias, eigen_fourier=eigen_fourier, grid=grid)
+
+
+
+'''
 if __name__ == '__main__':
     quantum_or_not = True
     initial_setup = 'uniform_random'
@@ -1880,6 +1907,7 @@ if __name__ == '__main__':
         for stop_r in stop_r_list:
             #psv.plot_std_r_collection(rho_params, phase_params_list, seed_initial_condition_list, stop_r, t_list, remove_bias)
             pass
+
         for stop_t in stop_t_list:
             if stop_t <= 1000:
                 full_data_t = False
@@ -2023,7 +2051,6 @@ if __name__ == '__main__':
             pass
 
 
-        """
         ### test LLSSL for different dx
         t_list = [10]
         dx_list = [0.2, 1, 2]
@@ -2035,4 +2062,5 @@ if __name__ == '__main__':
         psv.network_type = '2D'
         psv.N = 10000
         #psv.plot_var_t_tau_dx_erf(rho_params_list, phase_params_list, dx_list, t_list, tau_list)
-        """
+'''
+
