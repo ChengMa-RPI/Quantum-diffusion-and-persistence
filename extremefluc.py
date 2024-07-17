@@ -100,26 +100,143 @@ class extremefluc():
         t, state = data[:, 0], data[:, 1:]
         return t, state
 
-    def extract_extreme(self, ):
+    def extract_extreme(self, seed_initial_condition, std_threshold=0.5):
+        t, state = self.read_phi(seed_initial_condition)
+        if self.rho_or_phase == 'rho':
+            state = state * self.N
+        state_ave = np.mean(state, 1)
+        deviation = state - state_ave.reshape(len(state_ave), 1) 
+        extreme_above = np.max(deviation, 1)
+        extreme_below = np.min(deviation, 1)
+        "determine the starting point for stability, cut off the initial steps"
+        std = np.std(deviation, 1)
+        std_mean = np.mean(std[-1000:])
+        std_diff = np.abs(std - std_mean)/std_mean
+        index = np.where(std_diff > std_threshold)[0][-1]
+        index_stable = max(index * 2, 10)
+        return t, deviation, index_stable, extreme_above, extreme_below
+
+    def plot_extreme(self):
         fig, ax = plt.subplots(1, 1, sharex=True, sharey=True, figsize=(12, 10))
         simpleaxis(ax)
         for seed_initial_condition in self.seed_initial_condition_list:
-            t, state = self.read_phi(seed_initial_condition)
-            state_ave = np.mean(state, 1)
-            deviation = state - state_ave 
-            extreme_above = np.max(deviation, 1)
-            extreme_below = np.min(deviation, 1)
+            t, deviation, index_stable, extreme_above, extreme_below = self.extract_extreme(seed_initial_condition)
             ax.plot(t, extreme_above, color='tab:red', linestyle='-', linewidth=1)
             ax.plot(t, extreme_below, color='tab:blue', linestyle='-', linewidth=1)
         if self.rho_or_phase == 'rho':
-            ylabel = '$\\rho_{\\Delta}$'
+            ylabel = '$\\Delta_{\\mathrm{max}}(\\rho)$'
         elif self.rho_or_phase == 'phase':
-            ylabel = '$\\theta_{\\Delta}$'
+            ylabel = '$\\Delta_{\\mathrm{max}}(\\theta)$'
         ax.set_xlabel('t',fontsize=labelsize*0.7)
         ax.set_ylabel(ylabel, fontsize=labelsize*0.7)
         ax.tick_params(axis='both', labelsize=labelsize*0.5)
         fig.subplots_adjust(left=0.18, right=0.98, wspace=0.25, hspace=0.40, bottom=0.13, top=0.95)
         filename = f'quantum={self.quantum_or_not}_network={self.network_type}_d={self.d}_initial={self.initial_setup}_{self.distribution_params}_N={self.N}_{self.rho_or_phase}_extreme_t.png'
+        save_des = '../transfer_figure/' + filename
+        plt.savefig(save_des, format='png')
+        plt.close()
+
+    def plot_deviation_distribution(self, ):
+        fig, ax = plt.subplots(1, 1, sharex=True, sharey=True, figsize=(12, 10))
+        simpleaxis(ax)
+        nbins = 1000
+        t_interval = 10
+        x_interval = 10
+        deviation_list = []
+        for seed_initial_condition in self.seed_initial_condition_list:
+            t, deviation, index_stable, extreme_above, extreme_below = self.extract_extreme(seed_initial_condition)
+            t_interval_actual = round(t_interval/(t[2]-t[1]))
+            deviation_stable = deviation[index_stable:]
+            deviation_list.append(deviation_stable[::t_interval_actual][::x_interval].flatten())
+        deviation_list = np.hstack((deviation_list))
+        count, bins = np.histogram(deviation_list, nbins)
+        f = count / np.sum(count)
+        ax.semilogy(bins[:-1], f, '.')
+        if self.rho_or_phase == 'rho':
+            xlabel = '$\\Delta_{i}(\\rho)$'
+        elif self.rho_or_phase == 'phase':
+            xlabel = '$\\Delta_{i}(\\theta)$'
+        ax.set_xlabel(xlabel,fontsize=labelsize*0.7)
+        ax.set_ylabel('$p(\\Delta_{i})$', fontsize=labelsize*0.7)
+        ax.tick_params(axis='both', labelsize=labelsize*0.5)
+        fig.subplots_adjust(left=0.18, right=0.98, wspace=0.25, hspace=0.40, bottom=0.13, top=0.95)
+        filename = f'quantum={self.quantum_or_not}_network={self.network_type}_d={self.d}_initial={self.initial_setup}_{self.distribution_params}_N={self.N}_{self.rho_or_phase}_deviation_distribution.png'
+        save_des = '../transfer_figure/' + filename
+        plt.savefig(save_des, format='png')
+        plt.close()
+
+    def _ax_extreme_distribution(self, ax, extreme_list, label, ylabel):
+        simpleaxis(ax)
+        nbins = 20
+        extreme_list = np.hstack((extreme_list))
+        count, bins = np.histogram(extreme_list, nbins)
+        f = count / np.sum(count)
+        ax.semilogy(bins[:-1], f, '.-', label=label)
+        if self.rho_or_phase == 'rho':
+            xlabel = '$\\Delta_{\\mathrm{max}}(\\rho)$'
+        elif self.rho_or_phase == 'phase':
+            xlabel = '$\\Delta_{\\mathrm{max}}(\\theta)$'
+        ax.set_xlabel(xlabel,fontsize=labelsize*0.7)
+        ax.set_ylabel(ylabel, fontsize=labelsize*0.7)
+        ax.tick_params(axis='both', labelsize=labelsize*0.5)
+
+    def plot_extreme_distribution(self, N_list):
+        fig, axes = plt.subplots(1, 2, sharex=False, sharey=True, figsize=(18, 10))
+        t_interval = 10
+        for N in N_list:
+            self.N = N
+            label = f'$N=${N}'
+            extreme_above_list = []
+            extreme_below_list = []
+            for seed_initial_condition in self.seed_initial_condition_list:
+                t, deviation, index_stable, extreme_above, extreme_below = self.extract_extreme(seed_initial_condition)
+                t_interval_actual = round(t_interval/(t[2]-t[1]))
+                extreme_above_stable = extreme_above[index_stable:]
+                extreme_above_list.append(extreme_above_stable[::t_interval_actual])
+                extreme_below_stable = extreme_below[index_stable:]
+                extreme_below_list.append(extreme_below_stable[::t_interval_actual])
+            self._ax_extreme_distribution(axes[0], extreme_above_list, label, '$p_a(\\Delta_{\\mathrm{max}})$')
+            self._ax_extreme_distribution(axes[1], extreme_below_list, label, '$p_b(\\Delta_{\\mathrm{max}})$')
+        axes[0].legend(fontsize=labelsize*0.55, frameon=False, loc=4, bbox_to_anchor= (1.25, 0.71)) 
+        fig.subplots_adjust(left=0.12, right=0.95, wspace=0.25, hspace=0.40, bottom=0.10, top=0.90)
+        filename = f'quantum={self.quantum_or_not}_network={self.network_type}_d={self.d}_initial={self.initial_setup}_{self.distribution_params}_N={N_list}_{self.rho_or_phase}_extreme_distribution.png'
+        save_des = '../transfer_figure/' + filename
+        plt.savefig(save_des, format='png')
+        plt.close()
+
+    def plot_extreme_N(self, N_list):
+        fig, ax = plt.subplots(1, 1, sharex=False, sharey=True, figsize=(12, 10))
+        simpleaxis(ax)
+        t_interval = 10
+        extreme_above_N = []
+        extreme_below_N = []
+        for N in N_list:
+            self.N = N
+            label = f'$N=${N}'
+            extreme_above_list = []
+            extreme_below_list = []
+            for seed_initial_condition in self.seed_initial_condition_list:
+                t, deviation, index_stable, extreme_above, extreme_below = self.extract_extreme(seed_initial_condition)
+                t_interval_actual = round(t_interval/(t[2]-t[1]))
+                extreme_above_stable = extreme_above[index_stable:]
+                extreme_above_list.append(extreme_above_stable[::t_interval_actual])
+                extreme_below_stable = extreme_below[index_stable:]
+                extreme_below_list.append(extreme_below_stable[::t_interval_actual])
+            extreme_above_N.append( np.mean(np.hstack((extreme_above_list))) )
+            extreme_below_N.append( np.abs(np.mean(np.hstack((extreme_below_list))) ))
+
+        ax.loglog(N_list, extreme_above_N, '--o', color='tab:red', label='above', markersize=5) 
+        ax.loglog(N_list, extreme_below_N, '--*', color='tab:blue', label='below', markersize=5) 
+        if self.rho_or_phase == 'rho':
+            ylabel = '$\\langle \\Delta_{\\mathrm{max}}(\\rho) \\rangle$'
+        elif self.rho_or_phase == 'phase':
+            ylabel = '$\\langle \\Delta_{\\mathrm{max}}(\\theta) \\rangle$'
+        ax.set_xlabel('$N$',fontsize=labelsize*0.7)
+        ax.set_ylabel(ylabel, fontsize=labelsize*0.7)
+        ax.tick_params(axis='both', labelsize=labelsize*0.6)
+        ax.legend(fontsize=labelsize*0.55, frameon=False, loc=4, bbox_to_anchor= (1.05, 0.01)) 
+        fig.subplots_adjust(left=0.12, right=0.95, wspace=0.25, hspace=0.40, bottom=0.10, top=0.90)
+        filename = f'quantum={self.quantum_or_not}_network={self.network_type}_d={self.d}_initial={self.initial_setup}_{self.distribution_params}_N={N_list}_{self.rho_or_phase}_extreme_N.png'
         save_des = '../transfer_figure/' + filename
         plt.savefig(save_des, format='png')
         plt.close()
@@ -132,16 +249,21 @@ if __name__ == '__main__':
     initial_setup = 'u_normal_random'
     distribution_params = [0.2, 0]
     distribution_params = [0, 0.2]
+    distribution_params = [0, 0.05]
     seed_initial_condition_list = np.arange(10)
     rho_or_phase = 'phase'
     rho_or_phase = 'rho'
-    quantum_method = 'CN'
+    quantum_method = 'eigen'
     full_data_t = True
     network_type = '1D'
     N = 10000
     d = 4
     seed = 0
     alpha = 1
-    dt = 1
-    ef = extremefluc(quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, rho_or_phase, full_data_t)
-    ef.extract_extreme()
+    dt = 10
+    ef = extremefluc(quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, rho_or_phase, full_data_t, quantum_method)
+    #ef.plot_extreme()
+    #ef.plot_deviation_distribution()
+    N_list = [100, 200, 500, 1000, 2000, 5000, 10000]
+    #ef.plot_extreme_distribution(N_list)
+    ef.plot_extreme_N(N_list)
