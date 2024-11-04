@@ -68,7 +68,7 @@ def corvar_t_scaling(cor_var, remove_bias, u_std, phase_std, alpha, network_type
     return cor_var
 
 class plotStateVariance():
-    def __init__(self, quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, rho_or_phase, r_separation, t_separation):
+    def __init__(self, quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, rho_or_phase, r_separation, t_separation, quantum_method):
         self.quantum_or_not = quantum_or_not
         self.network_type = network_type
         self.N = N
@@ -82,6 +82,7 @@ class plotStateVariance():
         self.rho_or_phase = rho_or_phase
         self.r_separation = r_separation
         self.t_separation = t_separation
+        self.quantum_method = quantum_method
 
     def read_phi(self, seed_initial_condition, rho_or_phase=None, full_data_t=False):
         if rho_or_phase is None:
@@ -106,9 +107,11 @@ class plotStateVariance():
         if rho_or_phase is None:
             rho_or_phase = self.rho_or_phase
         if rho_or_phase == 'rho':
-            des = '../data/quantum/state_ectfp/' + self.network_type + '/' 
+            des = '../data/quantum/state_ectfp/' + self.network_type + '/'  # deprecated
+            des = '../data/quantum/state_eigen/' + self.network_type + '/' 
         elif rho_or_phase == 'phase':
-            des = '../data/quantum/phase_ectfp/' + self.network_type + '/' 
+            des = '../data/quantum/phase_ectfp/' + self.network_type + '/'  # deprecated 
+            des = '../data/quantum/phase_eigen/' + self.network_type + '/' 
 
         if full_data_t:
             save_file = des + f'N={self.N}_d={self.d}_seed={self.seed}_alpha={self.alpha}_dt={self.dt}_setup={self.initial_setup}_params={self.distribution_params}_seed_initial={seed_initial_condition}_full.npy'
@@ -158,7 +161,7 @@ class plotStateVariance():
             corvar_list.append(cor_var)
         corvar_list = np.vstack((corvar_list))
         corvar_mean = np.mean(corvar_list, axis=0)
-        return corvar_mean, t
+        return corvar_list, corvar_mean, t
 
     def corvar_r(self, seed_initial_condition_list, t_i, remove_bias):
         corvar_list = []
@@ -473,7 +476,7 @@ class plotStateVariance():
                 if eigen_fourier == True:
                     dt = self.dt
                     self.dt = 1
-                    corvar_eigen, t_eigen = self.corvar_t_eigen_fourier(seed_initial_condition_list, full_data_t=full_data_t, remove_bias=remove_bias)
+                    corvar_eigen_list, corvar_eigen, t_eigen = self.corvar_t_eigen_fourier(seed_initial_condition_list, full_data_t=full_data_t, remove_bias=remove_bias)
                     self.dt = dt
                     stop_eigen = np.where(t_eigen < stop_t)[0][-1] + 1
                     ax.plot(t_eigen[:stop_eigen], corvar_eigen[:stop_eigen], label='ECTE' + label, linestyle='dashdot', linewidth=3.0, color=color_labels[3])
@@ -962,45 +965,54 @@ class plotStateVariance():
         plt.close()
 
 
-    def plot_var_t_tau(self, rho_params_list, phase_params_list, seed_initial_condition_list, t_list, tau_list, full_data_t, remove_bias, eigen_fourier=False):
+    def plot_var_t_tau(self, rho_params_list, phase_params_list, seed_initial_condition_list, t_list, tau_list, full_data_t, remove_bias, eigen_fourier=False, is_rho_phase_equal=False):
         rows = 2
         cols = 2
         fig, axes = plt.subplots(rows, cols, sharex=False, sharey=False, figsize=(12 * cols, 10 * rows))
         colors = ['#66c2a5', '#fc8d62', '#8da0cb', '#e78ac3', '#a6d854', '#ffd92f']
         ylabel = "$C_u(\\tau, t')$"
         xlabel = '$\\tau$'
-        if len(rho_params_list) > 1:
+        if is_rho_phase_equal:
             change_params_list = rho_params_list
         else:
-            change_params_list = phase_params_list
+            if len(rho_params_list) > 1:
+                change_params_list = rho_params_list
+            else:
+                change_params_list = phase_params_list
         for i, change_params in enumerate(change_params_list):
             ax = axes[i//rows, i%rows]
             ax.annotate(f'({letters[i ]})', xy=(0, 0), xytext=(-0.12, 1.04), xycoords='axes fraction', size=labelsize*1.3)
             simpleaxis(ax)
-            if len(rho_params_list) > 1:
-                if 'cutoff' in self.initial_setup:
-                    title = '$\\sigma_{u}=$' + f'{change_params[0]}' 
-                else:
-                    title = '$\\sigma_{u}=$' + f'{change_params}' 
+            if is_rho_phase_equal: # only support eigen_fourier=False for now
+                title = '$\\sigma_{u}=\\sigma_{\\vartheta}=$' + f'{change_params}' 
                 rho_params = change_params
-                phase_params = phase_params_list[0]
-                if eigen_fourier:
-                    filename = f'quantum={self.quantum_or_not}_network={self.network_type}_N={self.N}_d={self.d}_alpha={self.alpha}_dt={self.dt}_initial_setup={self.initial_setup}_seed={seed_initial_condition_list[-1]}_{self.rho_or_phase}_phase={phase_params}_t={t_list}_tau_covariance_tau={tau_list[0]}_{tau_list[-1]}_eigen.png'
-                else:
-                    filename = f'quantum={self.quantum_or_not}_network={self.network_type}_N={self.N}_d={self.d}_alpha={self.alpha}_dt={self.dt}_initial_setup={self.initial_setup}_seed={seed_initial_condition_list[-1]}_{self.rho_or_phase}_phase={phase_params}_t={t_list}_tau_covariance_tau={tau_list[0]}_{tau_list[-1]}.png'
-
-            else:
-                if 'cutoff' in self.initial_setup:
-                    title = '$\\sigma_{\\vartheta}=$' + f'{change_params[0]}' 
-                else:
-                    title = '$\\sigma_{\\vartheta}=$' + f'{change_params}' 
-
                 phase_params = change_params
-                rho_params = rho_params_list[0]
-                if eigen_fourier:
-                    filename = f'quantum={self.quantum_or_not}_network={self.network_type}_N={self.N}_d={self.d}_alpha={self.alpha}_dt={self.dt}_initial_setup={self.initial_setup}_seed={seed_initial_condition_list[-1]}_{self.rho_or_phase}_rho={rho_params}_t={t_list}_tau_covariance_tau={tau_list[0]}_{tau_list[-1]}_eigen.png'
+                filename = f'quantum={self.quantum_or_not}_network={self.network_type}_N={self.N}_d={self.d}_alpha={self.alpha}_dt={self.dt}_initial_setup={self.initial_setup}_seed={seed_initial_condition_list[-1]}_{self.rho_or_phase}_rho_phase={phase_params}_t={t_list}_tau_covariance_tau={tau_list[0]}_{tau_list[-1]}.png'
+            else:
+                if len(rho_params_list) > 1:
+                    if 'cutoff' in self.initial_setup:
+                        title = '$\\sigma_{u}=$' + f'{change_params[0]}' 
+                    else:
+                        title = '$\\sigma_{u}=$' + f'{change_params}' 
+                    rho_params = change_params
+                    phase_params = phase_params_list[0]
+                    if eigen_fourier:
+                        filename = f'quantum={self.quantum_or_not}_network={self.network_type}_N={self.N}_d={self.d}_alpha={self.alpha}_dt={self.dt}_initial_setup={self.initial_setup}_seed={seed_initial_condition_list[-1]}_{self.rho_or_phase}_phase={phase_params}_t={t_list}_tau_covariance_tau={tau_list[0]}_{tau_list[-1]}_eigen.png'
+                    else:
+                        filename = f'quantum={self.quantum_or_not}_network={self.network_type}_N={self.N}_d={self.d}_alpha={self.alpha}_dt={self.dt}_initial_setup={self.initial_setup}_seed={seed_initial_condition_list[-1]}_{self.rho_or_phase}_phase={phase_params}_t={t_list}_tau_covariance_tau={tau_list[0]}_{tau_list[-1]}.png'
+
                 else:
-                    filename = f'quantum={self.quantum_or_not}_network={self.network_type}_N={self.N}_d={self.d}_alpha={self.alpha}_dt={self.dt}_initial_setup={self.initial_setup}_seed={seed_initial_condition_list[-1]}_{self.rho_or_phase}_rho={rho_params}_t={t_list}_tau_covariance_tau={tau_list[0]}_{tau_list[-1]}.png'
+                    if 'cutoff' in self.initial_setup:
+                        title = '$\\sigma_{\\vartheta}=$' + f'{change_params[0]}' 
+                    else:
+                        title = '$\\sigma_{\\vartheta}=$' + f'{change_params}' 
+
+                    phase_params = change_params
+                    rho_params = rho_params_list[0]
+                    if eigen_fourier:
+                        filename = f'quantum={self.quantum_or_not}_network={self.network_type}_N={self.N}_d={self.d}_alpha={self.alpha}_dt={self.dt}_initial_setup={self.initial_setup}_seed={seed_initial_condition_list[-1]}_{self.rho_or_phase}_rho={rho_params}_t={t_list}_tau_covariance_tau={tau_list[0]}_{tau_list[-1]}_eigen.png'
+                    else:
+                        filename = f'quantum={self.quantum_or_not}_network={self.network_type}_N={self.N}_d={self.d}_alpha={self.alpha}_dt={self.dt}_initial_setup={self.initial_setup}_seed={seed_initial_condition_list[-1]}_{self.rho_or_phase}_rho={rho_params}_t={t_list}_tau_covariance_tau={tau_list[0]}_{tau_list[-1]}.png'
 
             for j, t_i in enumerate(t_list):
                 if 'cutoff' in self.initial_setup:
@@ -1025,7 +1037,7 @@ class plotStateVariance():
                     if self.initial_setup != 'u_normal_phase_uniform_random':
                         ax.plot(tau_list, plot_limit, linestyle = '--', label='LLSSL', linewidth=3.0, color=colors[j])
                         if 'cutoff' not in self.initial_setup and eigen_fourier == False:
-                            ax.plot(tau_list, plot_limit_approx, linestyle = 'dotted', marker='*', markersize=10, label='LLSSCL', linewidth=3.0, color=colors[j])
+                            ax.plot(tau_list, plot_limit_approx, linestyle = 'dotted', markersize=10, label='LLSSCL', linewidth=3.0, color=colors[j])
                 else:
                     ax.plot(tau_list, corvar_mean , label=f"ENI t'={t_i}", linewidth=3.0, color=colors[0])
                     if self.initial_setup != 'u_normal_phase_uniform_random':
@@ -1501,7 +1513,7 @@ class plotStateVariance():
                 if eigen_fourier == True:
                     dt = self.dt
                     self.dt = 1
-                    corvar_eigen, t_eigen = self.corvar_t_eigen_fourier(seed_initial_condition_list, full_data_t=full_data_t, remove_bias=remove_bias)
+                    corvar_eigen_list, corvar_eigen, t_eigen = self.corvar_t_eigen_fourier(seed_initial_condition_list, full_data_t=full_data_t, remove_bias=remove_bias)
                     self.dt = dt
                     stop_eigen = np.where(t_eigen < stop_t)[0][-1] + 1
                     ax.plot(t_eigen[:stop_eigen], corvar_eigen[:stop_eigen], label='ECTE', linestyle='--', linewidth=3.0, color='tab:grey')
@@ -1741,6 +1753,258 @@ class plotStateVariance():
         plt.savefig(save_des, format='png')
         plt.close()
 
+    def plot_std_t_num_realization_SI(self, rho_params, phase_params, num_realization_list, stop_t, full_data_t=False, remove_bias=False):
+        rows = 1
+        cols = 1
+        fig, axes = plt.subplots(rows, cols, sharex=True, sharey=True, figsize=(20 * cols, 16 * rows))
+
+        colors = ['#fc8d62', '#66c2a5',  '#8da0cb', '#e78ac3', '#a6d854', '#ffd92f']
+        if remove_bias:
+            ylabel = '$\\hat{\\sigma}_{u}^{2}(t)$'
+        else:
+            ylabel = '$\\sigma_{u}^2(t)$'
+
+        filename = f'quantum_method={self.quantum_method}_network={self.network_type}_N={self.N}_d={self.d}_alpha={self.alpha}_dt={self.dt}_initial_setup={self.initial_setup}_M={num_realization_list}_rho={rho_params}_phase={phase_params}_stop={stop_t}.png'
+        if self.initial_setup in ['u_normal_random_cutoff', 'u_uniform_random_cutoff']:
+            distribution_params = rho_params + phase_params
+        else:
+            distribution_params = [rho_params, phase_params]
+        self.distribution_params = distribution_params
+        ax = axes
+        simpleaxis(ax)
+        color_labels = [color for color in colors]
+        label_position = (0.91, 0.51)
+        #labelsize *= 0.7
+        xlabel = '$t$'
+        ax.set_xlabel(xlabel, size=labelsize*1.4)
+        ax.set_ylabel(ylabel, size=labelsize*1.4)
+        ax.yaxis.get_offset_text().set_fontsize(labelsize*1.4)
+        ax.tick_params(axis='both', labelsize=labelsize * 1.4)
+
+
+        for l, num_realization in enumerate(num_realization_list):
+            self.seed_initial_condition_list = np.arange(num_realization) + 10
+            if self.quantum_method == 'eigen':
+                corvar_list, corvar_mean, t = self.corvar_t_eigen_fourier(self.seed_initial_condition_list, full_data_t=full_data_t, remove_bias=remove_bias)
+            elif self.quantum_method == 'CN':
+                corvar_list, corvar_mean, t = self.corvar_t(self.seed_initial_condition_list, full_data_t=full_data_t, remove_bias=remove_bias)
+            else:
+                print(f"{quantum_method} is not available")
+            if full_data_t:
+                t_equal = np.arange(t[0], t[-1]+0.05, t[-1]-t[-2])
+                index = np.array([np.where(np.abs(t_i - t)<0.1)[0][0] for t_i in t_equal ])
+                corvar_mean = corvar_mean[index]
+                corvar_list = [corvar_i[index] for corvar_i in corvar_list]
+                t = t_equal
+            stop_index = np.where(t<stop_t)[0][-1] + 1
+            plot_mean = corvar_mean
+            plot_list = corvar_list
+            ax.plot(t[:stop_index], plot_mean[:stop_index], label=f'M={num_realization}', linestyle='-', linewidth=3.0, color=color_labels[l])
+            ax.annotate(f'(b)', xy=(0, 0), xytext=(-0.05, 1.02), xycoords='axes fraction', size=labelsize*1.5)
+
+        ax.legend(fontsize=labelsize*1.5, frameon=False, loc=4, bbox_to_anchor= label_position) 
+        fig.subplots_adjust(left=0.19, right=0.95, wspace=0.25, hspace=0.3, bottom=0.13, top=0.90)
+        save_des = '../transfer_figure/' + filename
+        plt.savefig(save_des, format='png')
+        plt.close()
+
+    def plot_std_t_individual_SI(self, rho_params, phase_params, num_realization, stop_t, full_data_t=False, remove_bias=False):
+        rows = 1
+        cols = 1
+        fig, axes = plt.subplots(rows, cols, sharex=True, sharey=True, figsize=(20 * cols, 16 * rows))
+
+        colors = ['#fc8d62', '#66c2a5',  '#8da0cb', '#e78ac3', '#a6d854', '#ffd92f']
+        if remove_bias:
+            ylabel = '$\\hat{\\sigma}_{u}^{2}(t)$'
+        else:
+            ylabel = '$\\sigma_{u}^2(t)$'
+
+        filename = f'quantum_method={self.quantum_method}_network={self.network_type}_N={self.N}_d={self.d}_alpha={self.alpha}_dt={self.dt}_initial_setup={self.initial_setup}_M={num_realization}_rho={rho_params}_phase={phase_params}_stop={stop_t}.png'
+        if self.initial_setup in ['u_normal_random_cutoff', 'u_uniform_random_cutoff']:
+            distribution_params = rho_params + phase_params
+        else:
+            distribution_params = [rho_params, phase_params]
+        self.distribution_params = distribution_params
+        ax = axes
+        simpleaxis(ax)
+        color_labels = [color for color in colors]
+        label_position = (1.03, 0.71)
+        #labelsize *= 0.7
+        xlabel = '$t$'
+        ax.set_xlabel(xlabel, size=labelsize*1.4)
+        ax.set_ylabel(ylabel, size=labelsize*1.4)
+        ax.yaxis.get_offset_text().set_fontsize(labelsize*1.4)
+        ax.tick_params(axis='both', labelsize=labelsize * 1.4)
+
+
+        for l, realization_id in enumerate(range(num_realization)):
+            self.seed_initial_condition_list = [10 + realization_id]
+            if self.quantum_method == 'eigen':
+                corvar_list, corvar_mean, t = self.corvar_t_eigen_fourier(self.seed_initial_condition_list, full_data_t=full_data_t, remove_bias=remove_bias)
+            elif self.quantum_method == 'CN':
+                corvar_list, corvar_mean, t = self.corvar_t(self.seed_initial_condition_list, full_data_t=full_data_t, remove_bias=remove_bias)
+            else:
+                print(f"{quantum_method} is not available")
+            if full_data_t:
+                t_equal = np.arange(t[0], t[-1]+0.05, t[-1]-t[-2])
+                index = np.array([np.where(np.abs(t_i - t)<0.1)[0][0] for t_i in t_equal ])
+                corvar_mean = corvar_mean[index]
+                corvar_list = [corvar_i[index] for corvar_i in corvar_list]
+                t = t_equal
+            stop_index = np.where(t<stop_t)[0][-1] + 1
+            plot_mean = corvar_mean
+            plot_list = corvar_list
+            ax.plot(t[:stop_index], plot_mean[:stop_index], linestyle='-', linewidth=3.0, color=color_labels[l])
+            ax.annotate(f'(a)', xy=(0, 0), xytext=(-0.05, 1.02), xycoords='axes fraction', size=labelsize*1.5)
+
+        fig.subplots_adjust(left=0.19, right=0.95, wspace=0.25, hspace=0.3, bottom=0.13, top=0.90)
+        save_des = '../transfer_figure/' + filename
+        plt.savefig(save_des, format='png')
+        plt.close()
+
+    def plot_std_t_N_SI(self, rho_params, phase_params, N_list, stop_t, full_data_t=False, remove_bias=False):
+        rows = 1
+        cols = 1
+        fig, axes = plt.subplots(rows, cols, sharex=True, sharey=True, figsize=(20 * cols, 16 * rows))
+
+        colors = ['#fc8d62', '#66c2a5',  '#8da0cb', '#e78ac3', '#a6d854', '#ffd92f']
+        if remove_bias:
+            ylabel = '$\\hat{\\sigma}_{u}^{2}(t)$'
+        else:
+            ylabel = '$\\sigma_{u}^2(t)$'
+
+        filename = f'quantum_method={self.quantum_method}_network={self.network_type}_N={self.N}_d={self.d}_alpha={self.alpha}_dt={self.dt}_initial_setup={self.initial_setup}_N={N_list}_rho={rho_params}_phase={phase_params}_stop={stop_t}.png'
+        if self.initial_setup in ['u_normal_random_cutoff', 'u_uniform_random_cutoff']:
+            distribution_params = rho_params + phase_params
+        else:
+            distribution_params = [rho_params, phase_params]
+        self.distribution_params = distribution_params
+        ax = axes
+        simpleaxis(ax)
+        color_labels = [color for color in colors]
+        label_position = (1.03, 0.71)
+        #labelsize *= 0.7
+        xlabel = '$t$'
+        ax.set_xlabel(xlabel, size=labelsize*1.1)
+        ax.set_ylabel(ylabel, size=labelsize*1.1)
+        ax.yaxis.get_offset_text().set_fontsize(labelsize*1.1)
+        ax.tick_params(axis='both', labelsize=labelsize * 1.1)
+
+
+        for l, N in enumerate(N_list):
+            self.N = N
+            self.seed_initial_condition_list = np.arange(10) + 10
+            if self.quantum_method == 'eigen':
+                corvar_list, corvar_mean, t = self.corvar_t_eigen_fourier(self.seed_initial_condition_list, full_data_t=full_data_t, remove_bias=remove_bias)
+            elif self.quantum_method == 'CN':
+                corvar_list, corvar_mean, t = self.corvar_t(self.seed_initial_condition_list, full_data_t=full_data_t, remove_bias=remove_bias)
+            else:
+                print(f"{quantum_method} is not available")
+            if full_data_t:
+                t_equal = np.arange(t[0], t[-1]+0.05, t[-1]-t[-2])
+                index = np.array([np.where(np.abs(t_i - t)<0.1)[0][0] for t_i in t_equal ])
+                corvar_mean = corvar_mean[index]
+                corvar_list = [corvar_i[index] for corvar_i in corvar_list]
+                t = t_equal
+            stop_index = np.where(t<stop_t)[0][-1] + 1
+            plot_mean = corvar_mean
+            plot_list = corvar_list
+            ax.plot(t[:stop_index], plot_mean[:stop_index], label=f'L={N}', linestyle='-', linewidth=3.0, color=color_labels[l])
+
+        ax.legend(fontsize=labelsize*0.9, frameon=False, loc=4, bbox_to_anchor= label_position) 
+        ax.annotate(f'(a)', xy=(0, 0), xytext=(-0.05, 1.02), xycoords='axes fraction', size=labelsize*1.5)
+
+        fig.subplots_adjust(left=0.16, right=0.95, wspace=0.25, hspace=0.3, bottom=0.13, top=0.90)
+        save_des = '../transfer_figure/' + filename
+        plt.savefig(save_des, format='png')
+        plt.close()
+
+    def plot_var_t_tau_proposal(self, rho_params_list, phase_params_list, seed_initial_condition_list, t_list, tau_list, full_data_t, remove_bias, eigen_fourier=False):
+        rows = 1
+        cols = 1
+        fig, axes = plt.subplots(rows, cols, sharex=False, sharey=False, figsize=(12 * cols, 10 * rows))
+        colors = ['#66c2a5', '#fc8d62', '#8da0cb', '#e78ac3', '#a6d854', '#ffd92f']
+        ylabel = "$C_u(\\tau, t')$"
+        xlabel = '$\\tau$'
+        if len(rho_params_list) > 1:
+            change_params_list = rho_params_list
+        else:
+            change_params_list = phase_params_list
+        for i, change_params in enumerate(change_params_list):
+            ax = axes
+            ax.annotate(f'({letters[i ]})', xy=(0, 0), xytext=(-0.12, 1.04), xycoords='axes fraction', size=labelsize*1.3)
+            simpleaxis(ax)
+            if len(rho_params_list) > 1:
+                if 'cutoff' in self.initial_setup:
+                    title = '$\\sigma_{u}=$' + f'{change_params[0]}' 
+                else:
+                    title = '$\\sigma_{u}=$' + f'{change_params}' 
+                rho_params = change_params
+                phase_params = phase_params_list[0]
+                if eigen_fourier:
+                    filename = f'quantum={self.quantum_or_not}_network={self.network_type}_N={self.N}_d={self.d}_alpha={self.alpha}_dt={self.dt}_initial_setup={self.initial_setup}_seed={seed_initial_condition_list[-1]}_{self.rho_or_phase}_phase={phase_params}_t={t_list}_tau_covariance_tau={tau_list[0]}_{tau_list[-1]}_eigen.png'
+                else:
+                    filename = f'quantum={self.quantum_or_not}_network={self.network_type}_N={self.N}_d={self.d}_alpha={self.alpha}_dt={self.dt}_initial_setup={self.initial_setup}_seed={seed_initial_condition_list[-1]}_{self.rho_or_phase}_phase={phase_params}_t={t_list}_tau_covariance_tau={tau_list[0]}_{tau_list[-1]}.png'
+
+            else:
+                if 'cutoff' in self.initial_setup:
+                    title = '$\\sigma_{\\vartheta}=$' + f'{change_params[0]}' 
+                else:
+                    title = '$\\sigma_{\\vartheta}=$' + f'{change_params}' 
+
+                phase_params = change_params
+                rho_params = rho_params_list[0]
+                if eigen_fourier:
+                    filename = f'quantum={self.quantum_or_not}_network={self.network_type}_N={self.N}_d={self.d}_alpha={self.alpha}_dt={self.dt}_initial_setup={self.initial_setup}_seed={seed_initial_condition_list[-1]}_{self.rho_or_phase}_rho={rho_params}_t={t_list}_tau_covariance_tau={tau_list[0]}_{tau_list[-1]}_eigen.png'
+                else:
+                    filename = f'quantum={self.quantum_or_not}_network={self.network_type}_N={self.N}_d={self.d}_alpha={self.alpha}_dt={self.dt}_initial_setup={self.initial_setup}_seed={seed_initial_condition_list[-1]}_{self.rho_or_phase}_rho={rho_params}_t={t_list}_tau_covariance_tau={tau_list[0]}_{tau_list[-1]}.png'
+
+            for j, t_i in enumerate(t_list):
+                if 'cutoff' in self.initial_setup:
+                    distribution_params = rho_params + phase_params
+                else:
+                    distribution_params = [rho_params, phase_params]
+                self.distribution_params = distribution_params
+                t2 = [t_i + i for i in tau_list]
+                corvar_list, corvar_mean = self.corvar_t1t2(seed_initial_condition_list, [t_i], t2, full_data_t=full_data_t, remove_bias=False)
+                corvar_limit, corvar_limit_approx = self.corvar_t_tau_approx(self.distribution_params, t_i, np.array(tau_list))
+                plot_limit = corvar_limit
+                plot_limit_approx = corvar_limit_approx
+                if len(t_list) > 1:
+
+                    ax.plot(tau_list, corvar_mean , label=f"t'={t_i}", linewidth=3.0, color=colors[j])
+                    if eigen_fourier:
+                        dt = self.dt
+                        self.dt = 1
+                        corvar_list_eigen, corvar_mean_eigen = self.corvar_t1t2_eigen_fourier(seed_initial_condition_list, [t_i], t2, full_data_t=full_data_t, remove_bias=False)
+                        self.dt = dt
+                        ax.plot(tau_list, corvar_mean_eigen, linestyle='dashdot', label=f"t'={t_i}", linewidth=3.0, color=colors[j])
+                else:
+                    ax.plot(tau_list, corvar_mean , label=f"t'={t_i}", linewidth=3.0, color=colors[0])
+                    if eigen_fourier:
+                        dt = self.dt
+                        self.dt = 1
+                        corvar_list_eigen, corvar_mean_eigen = self.corvar_t1t2_eigen_fourier(seed_initial_condition_list, [t_i], t2, full_data_t=full_data_t, remove_bias=False)
+                        self.dt = dt
+                        ax.plot(tau_list, corvar_mean_eigen, linestyle='dashdot', label=f"t'={t_i}", linewidth=3.0, color=colors[2])
+
+                label_position = (1.18, 0.51)
+
+                ax.set_xlabel(xlabel, size=labelsize*1.3)
+                ax.set_ylabel(ylabel, size=labelsize*1.3)
+                ax.yaxis.get_offset_text().set_fontsize(labelsize*0.87)
+                ax.tick_params(axis='both', labelsize=labelsize)
+            #ax.plot(tau_list, np.zeros(len(tau_list)) , linewidth=3.0, color='k')
+
+        ax.legend(fontsize=labelsize*0.9, frameon=False, loc=4, bbox_to_anchor= label_position) 
+        #fig.text(x=0.02, y=0.5, horizontalalignment='center', s=ylabel, size=labelsize*1.3, rotation=90)
+        #fig.text(x=0.5, y=0.04, horizontalalignment='center', s=xlabel, size=labelsize*1.3)
+        fig.subplots_adjust(left=0.22, right=0.85, wspace=0.55, hspace=0.55, bottom=0.18, top=0.90)
+        #filename = f'quantum={self.quantum_or_not}_network={self.network_type}_N={self.N}_d={self.d}_initial_setup={self.initial_setup}_seed={seed_initial_condition_list[-1]}_{self.rho_or_phase}_rho={rho_params}_r={stop_r}_state_variance_all.png'
+        save_des = '../transfer_figure/' + filename
+        plt.savefig(save_des, format='png')
+        plt.close()
+
 
 
 hbar = 0.6582
@@ -1752,7 +2016,7 @@ letters = 'abcdefghijklmnopqrstuvwxyz'
 if __name__ == '__main__':
     quantum_or_not = True  
     network_type = '1D'
-    N = 1000
+    N = 10000
     d = 4
     seed = 0
     alpha = 1
@@ -1763,8 +2027,9 @@ if __name__ == '__main__':
     rho_or_phase = 'rho'  # plot statistics for rho or phase
     r_separation = 0  # to calculate the two-point (position) correlation function 
     t_separation = 0  # to calculate the (two-point time) autocorrelation function
+    quantum_method = 'CN'  # whether use ENI or ECTE  (eigenvalue decomposition)
     ### if both r_separation and t_separation are 0, then it actually calculates the variance.
-    psv = plotStateVariance(quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, rho_or_phase, r_separation, t_separation)  # initialize the instance
+    psv = plotStateVariance(quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, rho_or_phase, r_separation, t_separation, quantum_method)  # initialize the instance
 
     """Fig 1 (N = 10000 in the paper)"""  
     rho_list = [0, 0.05, 0.1, 0.2]
@@ -1774,293 +2039,337 @@ if __name__ == '__main__':
     eigen_fourier = False
     full_data_t = False # depending the date generated 
     grid = '2'
-    psv.plot_std_t_collection(rho_list, phase_list, seed_initial_condition_list, stop_t, full_data_t=full_data_t, remove_bias=remove_bias, eigen_fourier=eigen_fourier, grid=grid)
+    #  psv.plot_std_t_collection(rho_list, phase_list, seed_initial_condition_list, stop_t, full_data_t=full_data_t, remove_bias=remove_bias, eigen_fourier=eigen_fourier, grid=grid)
 
 
 
-'''
-if __name__ == '__main__':
-    quantum_or_not = True
-    initial_setup = 'uniform_random'
-
-    network_type = '2D_disorder'
-    N = 10000
-    d = 0.51
-    network_type = '3D'
-    N = 8000
-    d = 4
-    network_type = '1D'
-    N = 10000
-    d = 4
-    network_type = '2D'
-    N = 10000
-    d = 4
-
-    seed = 0
-    alpha = 1
-    dt = 1
-    seed_initial_condition_list = np.arange(0, 10, 1)
-    distribution_params = [1, 1, -1, 1]
-    rho_or_phase = 'phase'
-    rho_or_phase = 'rho'
-
-    rho_list = [[1, 1], [3/8, 5/8], [1/4, 3/4], [0, 1]]
-    phase_list = [[-1, 1], [-7/8, 7/8], [-3/4, 3/4], [-5/8, 5/8], [-1/2, 1/2], [-3/8, 3/8], [-1/4, 1/4], [-1/8, 1/8], [-1/16, 1/16], [-1/32, 1/32], [0, 0]]
-
-    initial_setup = "u_uniform_random_cutoff"
-    rho_list = [ [0.05, 0.1]]
-    phase_list = [[0, 0.1], [0.05, 0.1], [0.1, 0.1], [0.2, 0.1]]
-
-    initial_setup = "u_uniform_random"
-    initial_setup = "u_normal_random"
-    rho_list = [ [0], [0.05], [0.1], [0.2]]
-    rho_list = [ [0], [0.05], [0.1], [0.2], [0.3]]
-    phase_list = [[0], [0.05], [0.1], [0.2]]
-    phase_list = [[0], [0.05], [0.1], [0.2], [0.3]]
-
-
-    r_separation = 10
-    t_separation = 10
-    psv = plotStateVariance(quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, rho_or_phase, r_separation, t_separation)
-
-
-    stop_t_list = [100]
-    phase_list_list = [phase_list]
-    r_separation_list = [0]
-    t_separation_list = [10, 100, 500]
-    for phase_list in phase_list_list:
-        distribution_params_raw = [rho + phase for rho in rho_list for phase in phase_list]
-        distribution_params_list = []
-        for i in distribution_params_raw:
-            distribution_params_list.append( [round(j, 10) for j in i])
-
-        for stop_t in stop_t_list:
-            for r_separation in r_separation_list:
-                psv.r_separation = r_separation
-                #psv.plot_std_t(distribution_params_list, seed_initial_condition_list, stop_t)
-
-            for t_separation in t_separation_list:
-                psv.t_separation = t_separation
-                #psv.plot_std_t_separation(distribution_params_list, seed_initial_condition_list, stop_t)
-    
-    psv.N = 8000
-    psv.network_type = '3D'
-    for plot_std in [False]:
-        #psv.plot_std_t_vs_initial(rho_list, phase_list, seed_initial_condition_list, plot_std)
-        pass
-
-    #psv.plot_std_t_vs_initial_rho(rho_list, phase_list, seed_initial_condition_list)
-
-    psv.initial_setup = 'u_normal_random'
-    rho_list = [0, 0.05, 0.1, 0.2]
-    phase_list = [0, 0.05, 0.1, 0.2]
-
-    psv.initial_setup = 'u_normal_random_cutoff'
-    rho_list = [[0, 0.6], [0.05, 0.6], [0.1, 0.6], [0.2, 0.6]]
-    phase_list = [[0, 0.6], [0.05, 0.6], [0.1, 0.6], [0.2, 0.6]]
-    rho_list = [[0, 0.4], [0.05, 0.4], [0.1, 0.4], [0.2, 0.4]]
-    phase_list = [[0, 0.4], [0.05, 0.4], [0.1, 0.4], [0.2, 0.4]]
-    rho_list = [[0, 0.1], [0.05, 0.1], [0.1, 0.1], [0.2, 0.1]]
-    phase_list = [[0, 0.1], [0.05, 0.1], [0.1, 0.1], [0.2, 0.1]]
-    rho_list = [[0, 0.2], [0.05, 0.2], [0.1, 0.2], [0.2, 0.2]]
-    phase_list = [[0, 0.2], [0.05, 0.2], [0.1, 0.2], [0.2, 0.2]]
-
-
-    #phase_list = [0, 0.01]
-    psv.network_type = '1D'
-    psv.N = 10000
-    remove_bias = 'D'
-    remove_bias = False
-
-    #psv.initial_setup = 'u_normal_phase_uniform_random'
-    #phase_list = [1]
-
-
-    "variance vs r snapshots or vs t"
-    psv.network_type = '1D'
-    psv.d = 4
-    psv.N = 10000
-    network_type_list = ['1D', '2D', '3D']
-    d_list = [4, 4, 4] 
-    N_list = [10000, 10000, 8000]
-    network_type_list = ['3D']
-    d_list = [4]
-    N_list = [8000]
-
+    """Fig. SI """
     rho_params = 0.05
-    phase_params_list =[0, 0.05, 0.1, 0.2]
-    phase_params_list =[0, 0.1, 0.2]
+    phase_params = 0
+    num_realization_list = [1, 5, 10, 20, 40]
+    N_list = [1000, 2000, 4000, 10000]
+    num_realization = 5
+    stop_t = 100
+    full_data_t = True
 
-    remove_bias = 'D'
+
+    "start from ID = 10 for SI plot"
+    for quantum_method  in ["CN"]:
+        psv.quantum_method = quantum_method
+        psv.plot_std_t_num_realization_SI(rho_params, phase_params, num_realization_list, stop_t, full_data_t=full_data_t, remove_bias=False)
+
+        # psv.plot_std_t_individual_SI(rho_params, phase_params, num_realization, stop_t, full_data_t=full_data_t, remove_bias=False)
+        # psv.plot_std_t_N_SI(rho_params, phase_params, N_list, stop_t, full_data_t=full_data_t, remove_bias=False)
+
+    "Fig 6"
+    psv.initial_setup = "u_normal_random"
+    psv.quantum_method = 'CN'
+
+    rho_params_list = [0.01, 0.05, 0.1, 0.2]
+    phase_params_list = [0.01, 0.05, 0.1, 0.2]
+    t_list = [10, 20, 50, 100]
+    tau_list = [i for i in range(1, 100, 1)]
     remove_bias = False
-    t_list = [1, 5, 10, 100]
+    full_data_t = True
+    eigen_fourier = False
+    psv.plot_var_t_tau(rho_params_list, phase_params_list, seed_initial_condition_list, t_list, tau_list, full_data_t, remove_bias, eigen_fourier=eigen_fourier, is_rho_phase_equal=True)
 
-    stop_r_list_list = [[50], [20], [20]]
-    stop_t_list = [125, 250]
-    stop_t_list = [2000, 3000]
-    stop_t_list = [100]
-    stop_t_list = [1000]
-    for network_type, N, d, stop_r_list in zip(network_type_list, N_list, d_list, stop_r_list_list):
-        psv.network_type = network_type
-        psv.N = N
-        psv.d = d
-        for stop_r in stop_r_list:
-            #psv.plot_std_r_collection(rho_params, phase_params_list, seed_initial_condition_list, stop_r, t_list, remove_bias)
+    "Fig 6-like proposal"
+    psv.initial_setup = "u_normal_random"
+    psv.quantum_method = 'CN'
+
+    rho_params_list = [0.05]
+    phase_params_list = [0.1]
+    t_list = [10, 20, 50, 100]
+    tau_list = [i for i in range(1, 400, 1)]
+    remove_bias = False
+    full_data_t = True
+    eigen_fourier = False
+    # psv.plot_var_t_tau_proposal(rho_params_list, phase_params_list, seed_initial_condition_list, t_list, tau_list, full_data_t, remove_bias, eigen_fourier=eigen_fourier)
+
+
+def cached_plot():
+    if __name__ == '__main__':
+        quantum_or_not = True
+        initial_setup = 'uniform_random'
+
+        network_type = '2D_disorder'
+        N = 10000
+        d = 0.51
+        network_type = '3D'
+        N = 8000
+        d = 4
+        network_type = '1D'
+        N = 10000
+        d = 4
+        network_type = '2D'
+        N = 10000
+        d = 4
+
+        seed = 0
+        alpha = 1
+        dt = 1
+        seed_initial_condition_list = np.arange(0, 10, 1)
+        distribution_params = [1, 1, -1, 1]
+        rho_or_phase = 'phase'
+        rho_or_phase = 'rho'
+
+        rho_list = [[1, 1], [3/8, 5/8], [1/4, 3/4], [0, 1]]
+        phase_list = [[-1, 1], [-7/8, 7/8], [-3/4, 3/4], [-5/8, 5/8], [-1/2, 1/2], [-3/8, 3/8], [-1/4, 1/4], [-1/8, 1/8], [-1/16, 1/16], [-1/32, 1/32], [0, 0]]
+
+        initial_setup = "u_uniform_random_cutoff"
+        rho_list = [ [0.05, 0.1]]
+        phase_list = [[0, 0.1], [0.05, 0.1], [0.1, 0.1], [0.2, 0.1]]
+
+        initial_setup = "u_uniform_random"
+        initial_setup = "u_normal_random"
+        rho_list = [ [0], [0.05], [0.1], [0.2]]
+        rho_list = [ [0], [0.05], [0.1], [0.2], [0.3]]
+        phase_list = [[0], [0.05], [0.1], [0.2]]
+        phase_list = [[0], [0.05], [0.1], [0.2], [0.3]]
+
+
+        r_separation = 10
+        t_separation = 10
+        psv = plotStateVariance(quantum_or_not, network_type, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, rho_or_phase, r_separation, t_separation)
+
+
+        stop_t_list = [100]
+        phase_list_list = [phase_list]
+        r_separation_list = [0]
+        t_separation_list = [10, 100, 500]
+        for phase_list in phase_list_list:
+            distribution_params_raw = [rho + phase for rho in rho_list for phase in phase_list]
+            distribution_params_list = []
+            for i in distribution_params_raw:
+                distribution_params_list.append( [round(j, 10) for j in i])
+
+            for stop_t in stop_t_list:
+                for r_separation in r_separation_list:
+                    psv.r_separation = r_separation
+                    #psv.plot_std_t(distribution_params_list, seed_initial_condition_list, stop_t)
+
+                for t_separation in t_separation_list:
+                    psv.t_separation = t_separation
+                    #psv.plot_std_t_separation(distribution_params_list, seed_initial_condition_list, stop_t)
+        
+        psv.N = 8000
+        psv.network_type = '3D'
+        for plot_std in [False]:
+            #psv.plot_std_t_vs_initial(rho_list, phase_list, seed_initial_condition_list, plot_std)
             pass
 
-        for stop_t in stop_t_list:
-            if stop_t <= 1000:
-                full_data_t = False
-            else:
-                full_data_t = True
-            #for remove_bias in ['Dx']:
-            for remove_bias in ['Dx', False]:
-                #psv.dt = 0.1
-                eigen_fourier = False
-                full_data_t = True
-                grid = '2'
-                #grid = '2'
-                psv.plot_std_t_collection(rho_list, phase_list, seed_initial_condition_list, stop_t, full_data_t=full_data_t, remove_bias=remove_bias, eigen_fourier=eigen_fourier, grid=grid)
-                "dt sensitivity" 
-                dt_list = [0.1, 0.2, 1]
-                grid = '1'
-                """
-                rho_list = [0.05]
-                phase_list = [0]
-                """
-                for phase_i in phase_list:
-                    #psv.plot_std_t_collection_dt(rho_list, [phase_i], dt_list, seed_initial_condition_list, stop_t, full_data_t=full_data_t, remove_bias=remove_bias, eigen_fourier=True, grid=grid)
-                    pass
-                pass
-        #psv.plot_std_t_collection_local_max(rho_list, phase_list, seed_initial_condition_list, full_data_t=full_data_t, remove_bias='D')
-
-    "Correlation function of t and r for disordered lattices"
-    network_type_list = ['2D_disorder', '3D_disorder']
-    d_list_list = [[0.51, 0.55, 0.7, 0.9, 1], [0.3, 0.5, 0.7, 1]]
-    N_list = [10000, 8000]
-    stop_r_list_list = [[20], [20]]
-    stop_t_list = [100]
-    for network_type, N, d_list, stop_r_list in zip(network_type_list, N_list, d_list_list, stop_r_list_list):
-        psv.network_type = network_type
-        psv.N = N
-        for stop_r in stop_r_list:
-            #psv.plot_std_r_disorder(d_list, rho_params, phase_params_list, seed_initial_condition_list, stop_r, t_list, remove_bias)
-            pass
-        for stop_t in stop_t_list:
-            #psv.plot_std_t_disorder(d_list, rho_list, phase_list, seed_initial_condition_list, stop_t, remove_bias)
-            pass
-
-
-    "Delta x effect"
-    psv.network_type = '1D'
-    psv.N = 1000
-    psv.d = 4
-    alpha_list = [0.5, 1, 2, 3]
-
-    rho_params = 0.05
-    phase_params_list =[0, 0.1]
-    stop_t = 50
-    D_sigma = 'D'
-    D_sigma = 'sigma'
-    seed_initial_condition_list = np.arange(0, 10, 1)
-    for scaling in [True, False]:
-        for remove_bias in ['Dx']:
-            #psv.plot_std_deltax_collection(alpha_list, rho_params, phase_params_list, seed_initial_condition_list, stop_t, scaling, D_sigma, remove_bias=remove_bias)
-            pass
-
-    "separation by \tau = t- t'"
-    network_type_list = ['1D', '2D', '3D']
-    N_list = [10000, 10000, 8000]
-    d_list = [4, 4, 4]
-    network_type_list = ['2D', '3D']
-    N_list = [10000, 8000]
-    d_list = [4, 4]
-    psv.rho_or_phase = 'rho'
-    for network_type, N, d in zip(network_type_list, N_list, d_list):
-        psv.network_type = network_type
-        psv.N = N
-        psv.d = d
-        psv.initial_setup = "u_normal_random"
-        """
-        psv.initial_setup = 'u_normal_phase_uniform_random'
-        psv.distribution_params = [0.1, 0.05]
-        """
-        seed_initial_condition_list = range(10)
-        t_list = [1, 5, 10, 50]
-        t_list = [50]
-        t_list = [1, 5, 10, 100]
-        t_list = [10, 20, 50, 100]
-
-        tau_list = [i for i in range(10, 5000, 10)]
-        tau_list = [i for i in np.arange(0.2, 10, 0.2)]
-        tau_list = [i for i in range(1, 100, 1)]
-        tau_list = [i for i in range(10, 1000, 10)]
-
-        phase_params_list = [0, 0.05, 0.1, 0.2]
-        rho_params = 0.05
-        phase_params_list = [1]
-        rho_params_list = [0, 0.05, 0.1, 0.2]
-
-        #phase_params_list = [0, 0.01, 0.05, 0.1]
-        #rho_params = 0.01
+        #psv.plot_std_t_vs_initial_rho(rho_list, phase_list, seed_initial_condition_list)
 
         psv.initial_setup = 'u_normal_random'
-        phase_params_list = [0, 0.05, 0.1, 0.2]
-        rho_params_list = [0.05]
+        rho_list = [0, 0.05, 0.1, 0.2]
+        phase_list = [0, 0.05, 0.1, 0.2]
 
-        psv.initial_setup = "u_normal_random_cutoff"
-        phase_params_list = [[0, 0.6], [0.05, 0.6], [0.1, 0.6], [0.2, 0.6]]
-        rho_params_list = [[0.05, 0.6]]
-        phase_params_list = [[0, 0.4], [0.05, 0.4], [0.1, 0.4], [0.2, 0.4]]
-        rho_params_list = [[0.05, 0.4]]
-        phase_params_list = [[0, 0.1], [0.05, 0.1], [0.1, 0.1], [0.2, 0.1]]
-        rho_params_list = [[0.05, 0.1]]
-        phase_params_list = [[0, 0.2], [0.05, 0.2], [0.1, 0.2], [0.2, 0.2]]
-        rho_params_list = [[0.05, 0.2]]
-
-
-        remove_bias = False
-        full_data_t = False
-        eigen_fourier = False
-        #psv.dt = 0.2
-        #psv.alpha = 0.2
-        psv.plot_var_t_tau(rho_params_list, phase_params_list, seed_initial_condition_list, t_list, tau_list, full_data_t, remove_bias, eigen_fourier=eigen_fourier)
-        dt_list = [0.1, 0.2, 1]
-        t_list = [20]
-        for t_list in [[10], [20], [50], [100]]:
-            #psv.plot_var_t_tau_dt(rho_params_list, phase_params_list, dt_list, seed_initial_condition_list, t_list, tau_list, full_data_t, remove_bias, eigen_fourier=True)
-
-            pass
-        rho_params_list = [0.05]
-        phase_params_list = [0]
-        t_list = [10, 50]
-        tau_list = [i for i in range(1, 100, 1)]
-        #psv.plot_var_t_tau_dt_SI(rho_params_list, phase_params_list, dt_list, seed_initial_condition_list, t_list, tau_list, full_data_t=True, remove_bias=False, eigen_fourier=True)
-        plot_scale_list = ['original', 'loglog', 'logx', 'logy']
-        #plot_scale_list = ['loglog']
-        fitting = True
-        fitting = False
-        for plot_scale in plot_scale_list:
-            #psv.plot_var_t_tau_local_max(rho_params, phase_params_list, seed_initial_condition_list, t_list, tau_list, False, remove_bias, plot_scale=plot_scale, fitting=fitting)
-            pass
-        rho_params_list = [0.05, 0.1]
-        #seed_initial_condition_list = [0]
-        t_stop_list = [10000]
-        for t_stop in t_stop_list:
-            #psv.plot_std_rho_phase_sum_const(rho_params_list, phase_params_list, seed_initial_condition_list, t_stop)
-            pass
+        psv.initial_setup = 'u_normal_random_cutoff'
+        rho_list = [[0, 0.6], [0.05, 0.6], [0.1, 0.6], [0.2, 0.6]]
+        phase_list = [[0, 0.6], [0.05, 0.6], [0.1, 0.6], [0.2, 0.6]]
+        rho_list = [[0, 0.4], [0.05, 0.4], [0.1, 0.4], [0.2, 0.4]]
+        phase_list = [[0, 0.4], [0.05, 0.4], [0.1, 0.4], [0.2, 0.4]]
+        rho_list = [[0, 0.1], [0.05, 0.1], [0.1, 0.1], [0.2, 0.1]]
+        phase_list = [[0, 0.1], [0.05, 0.1], [0.1, 0.1], [0.2, 0.1]]
+        rho_list = [[0, 0.2], [0.05, 0.2], [0.1, 0.2], [0.2, 0.2]]
+        phase_list = [[0, 0.2], [0.05, 0.2], [0.1, 0.2], [0.2, 0.2]]
 
 
-        ### test LLSSL for different dx
-        t_list = [10]
-        dx_list = [0.2, 1, 2]
-        dx_list = [0.1, 0.5, 1]
-        rho_params_list = [0, 0.05, 0.1, 0.2]
-        phase_params_list = [0.05]
-        psv.network_type = '3D'
-        psv.N = 8000
-        psv.network_type = '2D'
+        #phase_list = [0, 0.01]
+        psv.network_type = '1D'
         psv.N = 10000
-        #psv.plot_var_t_tau_dx_erf(rho_params_list, phase_params_list, dx_list, t_list, tau_list)
-'''
+        remove_bias = 'D'
+        remove_bias = False
+
+        #psv.initial_setup = 'u_normal_phase_uniform_random'
+        #phase_list = [1]
+
+
+        "variance vs r snapshots or vs t"
+        psv.network_type = '1D'
+        psv.d = 4
+        psv.N = 10000
+        network_type_list = ['1D', '2D', '3D']
+        d_list = [4, 4, 4] 
+        N_list = [10000, 10000, 8000]
+        network_type_list = ['3D']
+        d_list = [4]
+        N_list = [8000]
+
+        rho_params = 0.05
+        phase_params_list =[0, 0.05, 0.1, 0.2]
+        phase_params_list =[0, 0.1, 0.2]
+
+        remove_bias = 'D'
+        remove_bias = False
+        t_list = [1, 5, 10, 100]
+
+        stop_r_list_list = [[50], [20], [20]]
+        stop_t_list = [125, 250]
+        stop_t_list = [2000, 3000]
+        stop_t_list = [100]
+        stop_t_list = [1000]
+        for network_type, N, d, stop_r_list in zip(network_type_list, N_list, d_list, stop_r_list_list):
+            psv.network_type = network_type
+            psv.N = N
+            psv.d = d
+            for stop_r in stop_r_list:
+                #psv.plot_std_r_collection(rho_params, phase_params_list, seed_initial_condition_list, stop_r, t_list, remove_bias)
+                pass
+
+            for stop_t in stop_t_list:
+                if stop_t <= 1000:
+                    full_data_t = False
+                else:
+                    full_data_t = True
+                #for remove_bias in ['Dx']:
+                for remove_bias in ['Dx', False]:
+                    #psv.dt = 0.1
+                    eigen_fourier = False
+                    full_data_t = True
+                    grid = '2'
+                    #grid = '2'
+                    psv.plot_std_t_collection(rho_list, phase_list, seed_initial_condition_list, stop_t, full_data_t=full_data_t, remove_bias=remove_bias, eigen_fourier=eigen_fourier, grid=grid)
+                    "dt sensitivity" 
+                    dt_list = [0.1, 0.2, 1]
+                    grid = '1'
+                    """
+                    rho_list = [0.05]
+                    phase_list = [0]
+                    """
+                    for phase_i in phase_list:
+                        #psv.plot_std_t_collection_dt(rho_list, [phase_i], dt_list, seed_initial_condition_list, stop_t, full_data_t=full_data_t, remove_bias=remove_bias, eigen_fourier=True, grid=grid)
+                        pass
+                    pass
+            #psv.plot_std_t_collection_local_max(rho_list, phase_list, seed_initial_condition_list, full_data_t=full_data_t, remove_bias='D')
+
+        "Correlation function of t and r for disordered lattices"
+        network_type_list = ['2D_disorder', '3D_disorder']
+        d_list_list = [[0.51, 0.55, 0.7, 0.9, 1], [0.3, 0.5, 0.7, 1]]
+        N_list = [10000, 8000]
+        stop_r_list_list = [[20], [20]]
+        stop_t_list = [100]
+        for network_type, N, d_list, stop_r_list in zip(network_type_list, N_list, d_list_list, stop_r_list_list):
+            psv.network_type = network_type
+            psv.N = N
+            for stop_r in stop_r_list:
+                #psv.plot_std_r_disorder(d_list, rho_params, phase_params_list, seed_initial_condition_list, stop_r, t_list, remove_bias)
+                pass
+            for stop_t in stop_t_list:
+                #psv.plot_std_t_disorder(d_list, rho_list, phase_list, seed_initial_condition_list, stop_t, remove_bias)
+                pass
+
+
+        "Delta x effect"
+        psv.network_type = '1D'
+        psv.N = 1000
+        psv.d = 4
+        alpha_list = [0.5, 1, 2, 3]
+
+        rho_params = 0.05
+        phase_params_list =[0, 0.1]
+        stop_t = 50
+        D_sigma = 'D'
+        D_sigma = 'sigma'
+        seed_initial_condition_list = np.arange(0, 10, 1)
+        for scaling in [True, False]:
+            for remove_bias in ['Dx']:
+                #psv.plot_std_deltax_collection(alpha_list, rho_params, phase_params_list, seed_initial_condition_list, stop_t, scaling, D_sigma, remove_bias=remove_bias)
+                pass
+
+        "separation by \tau = t- t'"
+        network_type_list = ['1D', '2D', '3D']
+        N_list = [10000, 10000, 8000]
+        d_list = [4, 4, 4]
+        network_type_list = ['2D', '3D']
+        N_list = [10000, 8000]
+        d_list = [4, 4]
+        psv.rho_or_phase = 'rho'
+        for network_type, N, d in zip(network_type_list, N_list, d_list):
+            psv.network_type = network_type
+            psv.N = N
+            psv.d = d
+            psv.initial_setup = "u_normal_random"
+            """
+            psv.initial_setup = 'u_normal_phase_uniform_random'
+            psv.distribution_params = [0.1, 0.05]
+            """
+            seed_initial_condition_list = range(10)
+            t_list = [1, 5, 10, 50]
+            t_list = [50]
+            t_list = [1, 5, 10, 100]
+            t_list = [10, 20, 50, 100]
+
+            tau_list = [i for i in range(10, 5000, 10)]
+            tau_list = [i for i in np.arange(0.2, 10, 0.2)]
+            tau_list = [i for i in range(1, 100, 1)]
+            tau_list = [i for i in range(10, 1000, 10)]
+
+            phase_params_list = [0, 0.05, 0.1, 0.2]
+            rho_params = 0.05
+            phase_params_list = [1]
+            rho_params_list = [0, 0.05, 0.1, 0.2]
+
+            #phase_params_list = [0, 0.01, 0.05, 0.1]
+            #rho_params = 0.01
+
+            psv.initial_setup = 'u_normal_random'
+            phase_params_list = [0, 0.05, 0.1, 0.2]
+            rho_params_list = [0.05]
+
+            psv.initial_setup = "u_normal_random_cutoff"
+            phase_params_list = [[0, 0.6], [0.05, 0.6], [0.1, 0.6], [0.2, 0.6]]
+            rho_params_list = [[0.05, 0.6]]
+            phase_params_list = [[0, 0.4], [0.05, 0.4], [0.1, 0.4], [0.2, 0.4]]
+            rho_params_list = [[0.05, 0.4]]
+            phase_params_list = [[0, 0.1], [0.05, 0.1], [0.1, 0.1], [0.2, 0.1]]
+            rho_params_list = [[0.05, 0.1]]
+            phase_params_list = [[0, 0.2], [0.05, 0.2], [0.1, 0.2], [0.2, 0.2]]
+            rho_params_list = [[0.05, 0.2]]
+
+
+            remove_bias = False
+            full_data_t = False
+            eigen_fourier = False
+            #psv.dt = 0.2
+            #psv.alpha = 0.2
+            psv.plot_var_t_tau(rho_params_list, phase_params_list, seed_initial_condition_list, t_list, tau_list, full_data_t, remove_bias, eigen_fourier=eigen_fourier)
+            dt_list = [0.1, 0.2, 1]
+            t_list = [20]
+            for t_list in [[10], [20], [50], [100]]:
+                #psv.plot_var_t_tau_dt(rho_params_list, phase_params_list, dt_list, seed_initial_condition_list, t_list, tau_list, full_data_t, remove_bias, eigen_fourier=True)
+
+                pass
+            rho_params_list = [0.05]
+            phase_params_list = [0]
+            t_list = [10, 50]
+            tau_list = [i for i in range(1, 100, 1)]
+            #psv.plot_var_t_tau_dt_SI(rho_params_list, phase_params_list, dt_list, seed_initial_condition_list, t_list, tau_list, full_data_t=True, remove_bias=False, eigen_fourier=True)
+            plot_scale_list = ['original', 'loglog', 'logx', 'logy']
+            #plot_scale_list = ['loglog']
+            fitting = True
+            fitting = False
+            for plot_scale in plot_scale_list:
+                #psv.plot_var_t_tau_local_max(rho_params, phase_params_list, seed_initial_condition_list, t_list, tau_list, False, remove_bias, plot_scale=plot_scale, fitting=fitting)
+                pass
+            rho_params_list = [0.05, 0.1]
+            #seed_initial_condition_list = [0]
+            t_stop_list = [10000]
+            for t_stop in t_stop_list:
+                #psv.plot_std_rho_phase_sum_const(rho_params_list, phase_params_list, seed_initial_condition_list, t_stop)
+                pass
+
+
+            ### test LLSSL for different dx
+            t_list = [10]
+            dx_list = [0.2, 1, 2]
+            dx_list = [0.1, 0.5, 1]
+            rho_params_list = [0, 0.05, 0.1, 0.2]
+            phase_params_list = [0.05]
+            psv.network_type = '3D'
+            psv.N = 8000
+            psv.network_type = '2D'
+            psv.N = 10000
+            #psv.plot_var_t_tau_dx_erf(rho_params_list, phase_params_list, dx_list, t_list, tau_list)
 

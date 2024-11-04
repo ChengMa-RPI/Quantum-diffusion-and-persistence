@@ -349,8 +349,8 @@ if __name__ == '__main__':
     distribution_params_list = []
     for i in distribution_params_raw:
         distribution_params_list.append( [round(j, 10) for j in i])
-    N_list = [10000]
     N_list = [900, 1600, 2500, 3600, 4900, 6400, 8100, 10000]
+    N_list = [10000]
     seed_list = np.arange(10)
     plot_ipr_list = ['ipr_t', 'ipr_peak', 'peak_time', 'lifetime']
     plot_ipr_list = ['ipr_t']

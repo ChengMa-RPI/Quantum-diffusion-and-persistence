@@ -495,7 +495,7 @@ class diffusionPersistence:
             grid_list = np.arange(0, self.N, 1)
             k_list = 2 * np.pi  * grid_list / self.N / self.alpha
             psi_k = np.sum(np.exp(-1j * k_list.reshape(len(k_list), 1) * grid_list * self.alpha) * psi_0, axis=1)
-            E_k = hbar ** 2 * (1 - np.cos(k_list * self.alpha)) / m / self.alpha ** 2
+            E_k = hbar ** 2 * (1 - np.cos(k_list * self.alpha)) / self.m / self.alpha ** 2
             x_list = grid_list * self.alpha
             psi_xt = 1 / L  * psi_k * np.exp(-1j * E_k.reshape(len(k_list), 1) * t_list / hbar).transpose()@(np.exp(1j * k_list.reshape(len(k_list), 1) * x_list))
         elif self.network_type == '2D':
@@ -747,8 +747,8 @@ if __name__ == '__main__':
 
     "quantum or classical"
     quantum_or_not = False  # classical diffusion
-    quantum_or_not = 'SE'  # quantum Schrodinger Eq
     quantum_or_not = 'TB'  # quantum Tight binding model
+    quantum_or_not = 'SE'  # quantum Schrodinger Eq
 
 
     "initial setup"
@@ -787,11 +787,6 @@ if __name__ == '__main__':
     rho_list = [[0]]
     phase_list = [[10000, 1], [10000, 0.5]]
 
-    # normal random for u and phase
-    initial_setup = 'u_normal_random'
-    rho_list = [[0], [0.05], [0.1], [0.2]]
-    phase_list = [[0], [0.05], [0.1], [0.2]]
-
     # normal random for u and phase with cutoffs
     initial_setup = 'u_normal_random_cutoff'
     rho_list = [[0, 0.2], [0.05, 0.2], [0.1, 0.2], [0.2, 0.2]]
@@ -815,6 +810,14 @@ if __name__ == '__main__':
     initial_setup = 'full_local'
     rho_list = [[0]]
     phase_list = [[0, 0]]
+
+    # normal random for u and phase
+    initial_setup = 'u_normal_random'
+    rho_list = [[0], [0.05], [0.1], [0.2]]
+    phase_list = [[0], [0.05], [0.1], [0.2]]
+    rho_list = [[0.05]]
+    phase_list = [[0]]
+
 
 
 
@@ -843,42 +846,46 @@ if __name__ == '__main__':
     alpha_list = [1]
     seed_list = [0]
 
-    ########## regular lattice #####################
-    network_type_list = ['2D']
-    d_list = [4]
-    N_list_list = [[10000]]
-    alpha_list = [1]
-    seed_list = [0]
 
     ####### disordered lattice ######################
     network_type_list = ['2D_disorder'] 
     d_list = [1]
     d_list = [0.51]
-
     N_list_list = [[900, 1600, 2500, 3600, 4900, 6400, 8100, 10000]]
-    alpha_list = [1, 1, 1, 1, 1, 1, 1, 1]
-    seed_list = np.arange(0, 10, 1)
+    seed_list = np.arange(0, 1, 1)
 
-    num_realization_list = [1] * len(alpha_list)
+    ########## regular lattice #####################
+    network_type_list = ['1D']
+    d_list = [4]
+    seed_list = [0]
+
+
+    N_list_list = [[10000]]
+    alpha_list = [1]
+
+    N_list_list = [[1000, 2000, 4000, 10000]]
+    alpha_list = [1, 1, 1, 1]
+
+    num_realization_list = [10] * len(alpha_list)
     dt_list = [1] * len(alpha_list)
     m_list = [m_e] * len(alpha_list)
     quantum_method = 'eigen'
+    quantum_method = 'CN'
 
     #############################################################
     # start simulation
     for seed in seed_list:
         for network_type, d, N_list in zip(network_type_list, d_list, N_list_list):
             for m, N, alpha, dt, num_realization in zip(m_list, N_list, alpha_list, dt_list, num_realization_list):
-                seed_initial_condition_list = np.arange(num_realization) 
-                t = np.arange(0, 10000*dt, dt)
+                seed_initial_condition_list = np.arange(num_realization)  + 10
 
                 t = np.arange(0, 1000000*dt, dt)
                 t = np.hstack((t[:20], t[20:200][::10], t[200:2000][::100], t[2000:10000][::500], t[10000:100000][::5000], t[100000:][::50000]))# save space, only for eigenvalue approach, as there is no dt dependent. 
-                #t = np.arange(0, 20000*dt, dt)
+                t = np.arange(0, 100*dt, dt)
                 for distribution_params in distribution_params_list:
                     t1 = time.time()
-                    dp = diffusionPersistence(quantum_or_not, network_type, m, N, d, seed, alpha, t, dt, initial_setup, distribution_params, quantum_method)
-                    #dp.save_phi_parallel(cpu_number, seed_initial_condition_list)
-                    dp.save_phi_eigen_fourier_parallel(cpu_number, seed_initial_condition_list)
+                    dp = diffusionPersistence(quantum_or_not, network_type, m, N, d, seed, alpha, t, dt, initial_setup, distribution_params, quantum_method)  
+                    dp.save_phi_parallel(cpu_number, seed_initial_condition_list)  # for CN
+                    # dp.save_phi_eigen_fourier_parallel(cpu_number, seed_initial_condition_list)  # for eigen
                     t2 = time.time()
                     print(f'time for running on network={network_type}, N={N}, initial distribution={distribution_params} is {round(t2 - t1, 2)}.')

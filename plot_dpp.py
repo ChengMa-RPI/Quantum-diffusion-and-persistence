@@ -1270,6 +1270,115 @@ class Plot_Dpp():
         plt.close()
 
 
+    def plot_pa_pb_stretched_exp_proposal(self, N, params_rho, params_phase, fixed):
+        if fixed == 'phase':
+            params_fixed = params_phase
+            params_change = params_rho
+        else:
+            params_fixed = params_rho
+            params_change = params_phase
+        param_fixed = params_fixed[0]
+        colors = ['#fc8d62',  '#66c2a5', '#e78ac3', '#a6d854',  '#8da0cb', '#ffd92f','#b3b3b3', '#e5c494', '#7fc97f', '#beaed4', '#ffff99']
+        cols = 1
+        rows = 1
+        fig, axes = plt.subplots(rows, cols, sharex=False, sharey=False, figsize=(12 * cols, 10 * rows))
+        pa_or_pb = 'pa'
+        ax = axes
+        ax.annotate('(b)', xy=(0, 0), xytext=(-0.12, 1.04), xycoords='axes fraction', size=labelsize*1.3)
+        simpleaxis(ax)
+        for l, param_change in enumerate(params_change):
+            if fixed == 'phase':
+                distribution_params = [param_change, param_fixed]
+            else:
+                distribution_params = [param_fixed, param_change]
+
+            self.distribution_params = distribution_params
+            color = colors[l]
+            self.plot_dpp_t_disorder_loglog(ax, N, pa_or_pb, "", color, linear_fit=True, d=1, A_as_initial=1)
+        legend_pos = (1.18, 0.51)
+        ax.legend(fontsize=labelsize*0.9, frameon=False, loc=4, bbox_to_anchor=legend_pos ) 
+        if self.rho_or_phase == 'rho':
+            if pa_or_pb == 'pa':
+                ylabel = '$P_u^a(t)$'
+            else:
+                ylabel = '$P_u^b(t)$'
+        else:
+            if pa_or_pb == 'pa':
+                ylabel = '$P_{\\vartheta}^a(t)$'
+            else:
+                ylabel = '$P_{\\vartheta}^b(t)$'
+
+        ax.set_ylabel(ylabel, size=labelsize*1.3)
+        ax.set_xlabel('$t^{\\beta}$', size=labelsize*1.3)
+        ax.tick_params(axis='both', which='major', labelsize=labelsize*0.87)
+        ax.set_xlim(-5, 100)
+        ax.set_ylim(8e-5, 1.1)
+        fig.subplots_adjust(left=0.22, right=0.85, wspace=0.25, hspace=0.55, bottom=0.18, top=0.90)
+        save_des = f'../transfer_figure/quantum={self.quantum_or_not}_network={self.network_type}_initial_setup={self.initial_setup}_{self.rho_or_phase}_dpp_N={self.N}_{fixed}_fixed_stretched_exp.png'
+        plt.savefig(save_des, format='png')
+        plt.close()
+        return 
+
+
+    def plot_pa_pb_N_dependence(self, N_list):
+        cols = 2
+        rows = 1
+        letters = 'abcd'
+        fig, axes = plt.subplots(rows, cols, sharex=True, sharey=True, figsize=(4 * cols, 3.5 * rows))
+        for j, pa_or_pb in enumerate(['pa', 'pb']):
+            ax = axes[j]
+            simpleaxis(ax)
+            for k, N in enumerate(N_list):
+                self.N = N
+                label = f'$L=${N}'
+                color = colors[k]
+                self.plot_dpp_t_initial_setup(ax, N, pa_or_pb, label, color)
+                ax.tick_params(axis='both', which='major', labelsize=13)
+                ax.set_xlim(-5, 100)
+                ax.set_ylim(1e-2, 1.1)
+
+                ax.legend(fontsize=legendsize*0.7, frameon=False, loc=4, bbox_to_anchor=(1.15, 0.53) ) 
+                ax.annotate(f'({letters[j+1]})', xy=(0, 0), xytext=(-0.05, 1.02), xycoords='axes fraction', size=labelsize*0.55)
+        fig.text(x=0.02, y=0.5, horizontalalignment='center', s="$P_a$", size=labelsize*0.6, rotation=90)
+        fig.text(x=0.48, y=0.5, horizontalalignment='center', s="$P_b$", size=labelsize*0.6, rotation=90)
+        #fig.text(x=0.37, y=0.01, horizontalalignment='center', s="$t / (\\Delta x) ^2$", size=labelsize*0.6)
+        fig.text(x=0.27, y=0.01, horizontalalignment='center', s="$t$", size=labelsize*0.6)
+        fig.text(x=0.69, y=0.01, horizontalalignment='center', s="$t$", size=labelsize*0.6)
+        fig.subplots_adjust(left=0.1, right=0.85, wspace=0.25, hspace=0.25, bottom=0.2, top=0.85)
+        save_des = f'../transfer_figure/dpp_quantum=ENI_network={self.network_type}_initial_setup={self.initial_setup}_{self.rho_or_phase}_M={len(self.seed_initial_condition_list)}_N={N_list}.png'
+        plt.savefig(save_des, format='png')
+        plt.close()
+        return 
+
+    def plot_pa_pb_M_dependence(self, num_realization_list):
+        cols = 2
+        rows = 1
+        letters = 'abcde'
+        fig, axes = plt.subplots(rows, cols, sharex=True, sharey=True, figsize=(4 * cols, 3.5 * rows))
+        for j, pa_or_pb in enumerate(['pa', 'pb']):
+            ax = axes[j]
+            simpleaxis(ax)
+            for k, num_realization in enumerate(num_realization_list):
+                self.seed_initial_condition_list = np.arange(num_realization) + 10
+                label = f'$M=${num_realization}'
+                color = colors[k]
+                self.plot_dpp_t_initial_setup(ax, N, pa_or_pb, label, color)
+                ax.tick_params(axis='both', which='major', labelsize=13)
+                ax.set_xlim(-5, 100)
+                ax.set_ylim(1e-2, 1.1)
+
+                ax.annotate(f'({letters[j+2]})', xy=(0, 0), xytext=(-0.05, 1.02), xycoords='axes fraction', size=labelsize*0.55)
+                ax.legend(fontsize=legendsize*0.7, frameon=False, loc=4, bbox_to_anchor=(1.15, 0.48) ) 
+        fig.text(x=0.02, y=0.5, horizontalalignment='center', s="$P_a$", size=labelsize*0.6, rotation=90)
+        fig.text(x=0.48, y=0.5, horizontalalignment='center', s="$P_b$", size=labelsize*0.6, rotation=90)
+        #fig.text(x=0.37, y=0.01, horizontalalignment='center', s="$t / (\\Delta x) ^2$", size=labelsize*0.6)
+        fig.text(x=0.27, y=0.01, horizontalalignment='center', s="$t$", size=labelsize*0.6)
+        fig.text(x=0.69, y=0.01, horizontalalignment='center', s="$t$", size=labelsize*0.6)
+        fig.subplots_adjust(left=0.1, right=0.85, wspace=0.25, hspace=0.25, bottom=0.2, top=0.85)
+        save_des = f'../transfer_figure/dpp_quantum=ENI_network={self.network_type}_initial_setup={self.initial_setup}_{self.rho_or_phase}_M={num_realization_list}_N={self.N}.png'
+        plt.savefig(save_des, format='png')
+        plt.close()
+        return 
 
 hbar = 0.6582
 m_e = 5.68
@@ -1277,6 +1386,39 @@ m_e = 5.68
 m = 5.68
 
 if __name__ == '__main__':
+    quantum_or_not = True
+    N = 10000
+    network_type = '1D'
+    d = 4
+    seed_initial_condition_list = np.arange(0, 10, 1)
+    seed = 0
+    alpha = 1
+    reference_line = 'average'
+    rho_or_phase = 'rho'
+
+    dt = 1
+
+
+    initial_setup = 'u_normal_random'
+    distribution_params = [0.05, 0.05]
+
+    pdpp = Plot_Dpp(quantum_or_not, network_type, m, N, d, seed, alpha, dt, initial_setup, distribution_params, seed_initial_condition_list, reference_line, rho_or_phase)
+    params_rho = [0.05, 0.1, 0.2]
+    params_phase = [0]
+    fixed = 'phase'
+    # pdpp.plot_pa_pb_stretched_exp_proposal(N, params_rho, params_phase, fixed)
+    "persistence dependence on N"
+
+    N_list = [1000, 2000, 4000, 10000]
+    pdpp.distribution_params = [0.05, 0]
+    pdpp.seed_initial_condition_list = np.arange(10) + 10
+    pdpp.plot_pa_pb_N_dependence(N_list)
+    num_realization_list = [1, 5, 10, 20, 40]
+    pdpp.N = 10000
+    pdpp.plot_pa_pb_M_dependence(num_realization_list)
+
+
+def cached():
     quantum_or_not = True
     initial_setup = 'rho_uniform_phase_const_pi'
     initial_setup = 'rho_const_phase_uniform'
@@ -1354,12 +1496,12 @@ if __name__ == '__main__':
             
     """ dpp regular lattice
     """
-    network_type_list = ['1D', '2D', '3D']
-    N_list = [10000, 10000, 8000]
     network_type_list = ['2D']
     N_list = [10000]
     network_type_list = ['3D']
     N_list = [8000]
+    network_type_list = ['1D']
+    N_list = [10000]
     #pdpp.dt = 0.2
     #pdpp.alpha = 0.2
     for network_type, N in zip(network_type_list, N_list):
@@ -1377,8 +1519,8 @@ if __name__ == '__main__':
             pdpp.rho_or_phase = rho_or_phase
             pdpp.reference_line = reference_line
             for fixed in ['phase']:
-                pdpp.plot_pa_pb_initial_setup_collections(N, params_rho, params_phase, fixed, axis_scale='semilogy')
-                #pdpp.plot_pa_pb_stretched_exp(N, params_rho, params_phase, fixed)
+                # pdpp.plot_pa_pb_initial_setup_collections(N, params_rho, params_phase, fixed, axis_scale='semilogy')
+                # pdpp.plot_pa_pb_stretched_exp(N, params_rho, params_phase, fixed)
                 pass
     
         params_rho = [0, 0.05, 0.1, 0.2]
@@ -1391,8 +1533,8 @@ if __name__ == '__main__':
             pdpp.rho_or_phase = rho_or_phase
             pdpp.reference_line = reference_line
             for fixed in ['rho']:
-                pdpp.plot_pa_pb_initial_setup_collections(N, params_rho, params_phase, fixed, axis_scale='semilogy')
-                #pdpp.plot_pa_pb_stretched_exp(N, params_rho, params_phase, fixed)
+                # pdpp.plot_pa_pb_initial_setup_collections(N, params_rho, params_phase, fixed, axis_scale='semilogy')
+                # pdpp.plot_pa_pb_stretched_exp(N, params_rho, params_phase, fixed)
                 pass
      
 
@@ -1421,7 +1563,7 @@ if __name__ == '__main__':
         pdpp.rho_or_phase = rho_or_phase
         pdpp.reference_line = reference_line
         for pa_or_pb in ['pa', 'pb']:
-            #pdpp.plot_pa_pb_disorder_collections(N, d_list, params_rho, params_phase, pa_or_pb, linear_fit, seed_list=seed_list, loglog=loglog)
+            # pdpp.plot_pa_pb_disorder_collections(N, d_list, params_rho, params_phase, pa_or_pb, linear_fit, seed_list=seed_list, loglog=loglog)
 
             pass
 

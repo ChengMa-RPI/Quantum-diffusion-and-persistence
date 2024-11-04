@@ -413,13 +413,16 @@ if __name__ == '__main__':
     rho_list = [[0.05]]
     phase_list = [[0.05]]
 
-    initial_setup = 'u_normal_random'
-    rho_list = [[0], [0.05], [0.1], [0.2]]
-    phase_list = [[0], [0.05], [0.1], [0.2]]
 
     initial_setup = 'u_normal_random_cutoff'
     rho_list = [[0, 0.2], [0.05, 0.2], [0.1, 0.2], [0.2, 0.2]]
     phase_list = [[0, 0.2], [0.05, 0.2], [0.1, 0.2], [0.2, 0.2]]
+
+    initial_setup = 'u_normal_random'
+    rho_list = [[0], [0.05], [0.1], [0.2]]
+    phase_list = [[0], [0.05], [0.1], [0.2]]
+    rho_list = [[0.05]]
+    phase_list = [[0]]
 
 
     m_list = [m_e]  * 12
@@ -479,10 +482,8 @@ if __name__ == '__main__':
     """
 
     m_list = [m_e]  * len(alpha_list)
-    N_list = [10000] * len(alpha_list)
-    num_realization_list = [10] * len(alpha_list)
 
-    seed_list = [i for i in range(0, 1)]
+    seed_list = [i for i in range(1)]
 
     network_type = '2D'
     N_list = [10000]
@@ -490,6 +491,10 @@ if __name__ == '__main__':
     network_type = '3D'
     N_list = [8000]
     d_list = [4]
+    network_type = '1D'
+    d_list = [4]
+    N_list = [4000] * len(alpha_list)
+    num_realization_list = [10] * len(alpha_list)
     alpha_list = [1]
     dt_list = [1]
     full_data_t = True
@@ -500,7 +505,7 @@ if __name__ == '__main__':
     for seed in seed_list:
         for d in d_list:
             for m, N, alpha, dt, num_realization in zip(m_list, N_list, alpha_list, dt_list, num_realization_list):
-                seed_initial_condition_list = np.arange(num_realization) 
+                seed_initial_condition_list = np.arange(num_realization)  + 10
                 for distribution_params in distribution_params_list:
                     for rho_or_phase, reference_line in zip(rho_or_phase_list, reference_line_list):
                         pA = persistenceAnalysis(quantum_or_not, network_type, m, N, d, seed, alpha, dt, initial_setup, distribution_params, reference_line, rho_or_phase, full_data_t)
@@ -510,7 +515,7 @@ if __name__ == '__main__':
                         #t_list = np.round(np.arange(0.0, 100, 1) * dt, 2).tolist()
                         #t_list = np.round([0.0, 1, 1e1, 1e2, 1e3, 1e4, 9.99*1e4 ], 1).tolist()
                         for seed_initial_condition in seed_initial_condition_list:
-                            pA.get_state_distribution(seed_initial_condition, t_list)
+                            # pA.get_state_distribution(seed_initial_condition, t_list)
                             pass
                         pass
 

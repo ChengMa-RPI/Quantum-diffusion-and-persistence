@@ -101,18 +101,24 @@ class extremefluc():
         return t, state
 
     def extract_extreme(self, seed_initial_condition, std_threshold=0.5):
+        # read state data, u or theta
         t, state = self.read_phi(seed_initial_condition)
         if self.rho_or_phase == 'rho':
             state = state * self.N
+        # the average state for each node 
         state_ave = np.mean(state, 1)
+        # the deviation from the mean, and the extreme (largest) deviation
         deviation = state - state_ave.reshape(len(state_ave), 1) 
         extreme_above = np.max(deviation, 1)
         extreme_below = np.min(deviation, 1)
-        "determine the starting point for stability, cut off the initial steps"
+        "determine the starting timestamp for stability [index stable], cut off the initial steps"
+        # calculate std_mean as the indicator of whether the system is close the "stable state"
         std = np.std(deviation, 1)
         std_mean = np.mean(std[-1000:])
         std_diff = np.abs(std - std_mean)/std_mean
+        # std_diff after "index" should be within the window of (1-std_threshold, 1 + threshold) * std_mean
         index = np.where(std_diff > std_threshold)[0][-1]
+        # we only consider the extreme statistics after index_stable for the data collection, namely, extreme_above[index_stable:] and extreme_below[index_stable:]
         index_stable = max(index * 2, 10)
         return t, deviation, index_stable, extreme_above, extreme_below
 
@@ -225,8 +231,8 @@ class extremefluc():
             extreme_above_N.append( np.mean(np.hstack((extreme_above_list))) )
             extreme_below_N.append( np.abs(np.mean(np.hstack((extreme_below_list))) ))
 
-        ax.loglog(N_list, extreme_above_N, '--o', color='tab:red', label='above', markersize=5) 
-        ax.loglog(N_list, extreme_below_N, '--*', color='tab:blue', label='below', markersize=5) 
+        ax.loglog(np.log(np.array(N_list)), extreme_above_N, '--o', color='tab:red', label='above', markersize=5) 
+        ax.loglog(np.log(np.array(N_list)), extreme_below_N, '--*', color='tab:blue', label='below', markersize=5) 
         if self.rho_or_phase == 'rho':
             ylabel = '$\\langle \\Delta_{\\mathrm{max}}(\\rho) \\rangle$'
         elif self.rho_or_phase == 'phase':
